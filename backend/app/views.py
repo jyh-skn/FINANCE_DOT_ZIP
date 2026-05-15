@@ -428,6 +428,10 @@ def search_company(request):
     try:
         from src.services.report_service import build_report_response
         report_result = build_report_response(stock_code)
+
+        ai_report_result = build_ai_report_result_once(
+            stock_code=stock_code,
+        )
     except Exception as e:
         return fail_response(message=f"리포트 생성 오류: {str(e)}")
 
