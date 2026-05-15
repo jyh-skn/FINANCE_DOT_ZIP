@@ -20,7 +20,8 @@ const RISK_COLOR = {
 const REPORT_SECTIONS = [
   { key: 'executive_summary',       title: '경영 요약'      },
   { key: 'financial_change_summary', title: '재무 변동 요약' },
-  { key: 'related_news_summary',    title: '관련 뉴스 요약' },
+  { key: 'news_evidence_summary',    title: '관련 뉴스 요약' },
+  { key: 'disclosure_evidence_summary',    title: '공시근거/사업보고서 기반' },
   { key: 'possible_causes',         title: '변동 가능 원인' },
   { key: 'interview_point',         title: '인터뷰 포인트'  },
   { key: 'limitations',             title: '분석의 한계'    },

@@ -1,18 +1,11 @@
 import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import "./AIChatPanel.css";
+import ratIcon from "../../assets/rat_icon.png";
 
 // ── 아이콘 ──────────────────────────────────────────
 function BotIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="3" y="11" width="18" height="10" rx="2" />
-      <circle cx="12" cy="5" r="2" />
-      <line x1="12" y1="7" x2="12" y2="11" />
-      <line x1="8" y1="15" x2="8" y2="17" />
-      <line x1="16" y1="15" x2="16" y2="17" />
-    </svg>
-  );
+  return <img src={ratIcon} alt="AI" width="28" height="28" style={{ borderRadius: "50%", objectFit: "cover" }} />;
 }
 
 function UserIcon() {

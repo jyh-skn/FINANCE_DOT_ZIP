@@ -87,9 +87,8 @@ function App() {
       method: 'POST',
       pCall:  (svcId, responseData, errCd, msgTp, msgCd, msgText) => {
 
-
-        if(responseData.data.status === 'Fail') {
-          alert(responseData.data.message);
+        if(responseData.status === 'fail') {
+          alert(responseData.message);
           setLoading(false);
           return;
         }
@@ -100,6 +99,9 @@ function App() {
             alert('일부 데이터가 누락되었습니다.');
             
         } else {
+
+            console.log("responseData.data.reportData")
+            console.log(responseData.data.reportData)
             setSearchResult(responseData.data);
             setCompanyName(responseData.data.reportData?.company_name ?? keyword);
             const code = responseData.data.reportData?.company_info?.stock_code ?? null;
