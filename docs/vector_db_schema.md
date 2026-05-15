@@ -108,3 +108,4 @@ Vector DB retrieval
 - metadata 기반 filtering 지원
 - 검색 단계에서는 `source_url` 기준 deduplication 적용
 - 동일 문서가 반복 반환되지 않도록 검색 결과 중복 제거 수행
+- retriever 반환 타입은 `list[dict]` 구조 사용

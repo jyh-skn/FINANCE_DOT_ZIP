@@ -280,3 +280,22 @@ if __name__ == "__main__":
         with_score=True,
     )
     print_search_results(results)
+
+    print("\n[TEST] 삼성전자 disclosure 검색")
+    results = search_similar_documents(
+        query="삼성전자 공시",
+        stock_code="005930",
+        data_type="disclosure",
+        top_k=5,
+        with_score=True,
+    )
+    print_search_results(results)
+
+    print("\n[TEST] 삼성전자 data_type 없이 검색")
+    results = search_similar_documents(
+        query="삼성전자",
+        stock_code="005930",
+        top_k=5,
+        with_score=True,
+    )
+    print_search_results(results)
