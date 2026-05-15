@@ -3,15 +3,17 @@ news_query_builder.py
 
 재무 변동(detected_changes)을 기반으로 뉴스 검색 query_groups를 생성하는 모듈입니다.
 
-v2 개선 방향:
-- 기존 LLM 기반 뉴스 쿼리 생성 방식은 속도가 느릴 수 있습니다.
-- 현재 detected_changes 안에 metric_label, year, direction, severity, search_keywords가 이미 들어오므로
-  LLM 호출 없이 template 기반으로 Tavily 검색 쿼리를 생성합니다.
-- 이를 통해 news_query_builder 단계의 실행 시간을 크게 줄입니다.
+v3 개선 내용:
+- detected_changes가 있으면 기존처럼 signal/metric 기반 뉴스 검색 query를 생성합니다.
+- detected_changes가 없으면 기업명 기반 일반 동향/근황 query를 생성합니다.
+- LLM 호출 없이 template 기반으로 동작합니다.
 
-주의:
-- build_news_queries(ai_input, llm=None) 시그니처는 기존 호출부 호환을 위해 유지합니다.
-- llm 인자는 더 이상 사용하지 않습니다.
+사용 목적:
+1. 눈에 띄는 signal이 있는 기업
+   → 해당 signal 원인 뉴스 검색
+
+2. 눈에 띄는 signal이 없는 기업
+   → 최근 기업 동향, 사업 전망, 실적 흐름 뉴스 검색
 """
 
 from typing import Any, Dict, List, Optional
@@ -67,10 +69,7 @@ def unique_keep_order(items: List[str]) -> List[str]:
     for item in items:
         item = safe_text(item).strip()
 
-        if not item:
-            continue
-
-        if item in seen:
+        if not item or item in seen:
             continue
 
         seen.add(item)
@@ -79,8 +78,16 @@ def unique_keep_order(items: List[str]) -> List[str]:
     return result
 
 
+def get_company_info(ai_input: Dict[str, Any]) -> Dict[str, Any]:
+    return ai_input.get("company_info", {}) or {}
+
+
+def get_industry_info(ai_input: Dict[str, Any]) -> Dict[str, Any]:
+    return ai_input.get("industry_info", {}) or {}
+
+
 def get_company_name(ai_input: Dict[str, Any]) -> str:
-    company_info = ai_input.get("company_info", {}) or {}
+    company_info = get_company_info(ai_input)
 
     return (
         company_info.get("company_name")
@@ -90,7 +97,7 @@ def get_company_name(ai_input: Dict[str, Any]) -> str:
 
 
 def get_stock_code(ai_input: Dict[str, Any]) -> str:
-    company_info = ai_input.get("company_info", {}) or {}
+    company_info = get_company_info(ai_input)
 
     return (
         company_info.get("stock_code")
@@ -100,8 +107,20 @@ def get_stock_code(ai_input: Dict[str, Any]) -> str:
 
 
 def get_industry_group(ai_input: Dict[str, Any]) -> str:
-    industry_info = ai_input.get("industry_info", {}) or {}
+    industry_info = get_industry_info(ai_input)
     return industry_info.get("industry_group", "")
+
+
+def get_analysis_year(ai_input: Dict[str, Any]) -> Optional[int]:
+    year = ai_input.get("analysis_year")
+
+    if year is None:
+        return None
+
+    try:
+        return int(float(year))
+    except Exception:
+        return None
 
 
 def get_detected_changes(ai_input: Dict[str, Any]) -> List[Dict[str, Any]]:
@@ -272,6 +291,7 @@ def build_query_group(
         "direction": change.get("direction"),
         "severity": change.get("severity"),
         "signal_type": change.get("signal_type"),
+        "signal_code": change.get("signal_code"),
         "yoy_change_rate": change.get("yoy_change_rate"),
         "description": change.get("description"),
         "source_signal": change.get("source_signal"),
@@ -282,6 +302,73 @@ def build_query_group(
     }
 
 
+def build_general_company_news_queries(
+    ai_input: Dict[str, Any],
+    max_queries: int = 3,
+) -> List[Dict[str, Any]]:
+    """
+    detected_changes가 없을 때 기업 일반 동향/근황 검색용 query_group을 생성합니다.
+    """
+
+    company_name = get_company_name(ai_input)
+    stock_code = get_stock_code(ai_input)
+    industry_group = get_industry_group(ai_input)
+    analysis_year = get_analysis_year(ai_input)
+
+    if not company_name:
+        company_name = stock_code
+
+    industry_keywords = INDUSTRY_CONTEXT_KEYWORDS.get(industry_group, [])
+
+    base_keywords = [
+        "최근 실적 동향",
+        "최근 뉴스",
+        "사업 전망",
+        "경영 현황",
+        "투자 계획",
+    ]
+
+    if industry_keywords:
+        base_keywords.extend(industry_keywords[:2])
+
+    queries = []
+
+    for keyword in unique_keep_order(base_keywords):
+        query = build_single_query(
+            company_name=company_name,
+            year=analysis_year,
+            metric_label="",
+            keyword=keyword,
+        )
+
+        if query:
+            queries.append(query)
+
+        if len(queries) >= max_queries:
+            break
+
+    return [
+        {
+            "company_name": company_name,
+            "stock_code": stock_code,
+            "metric_key": "general_company_trend",
+            "metric_label": "기업 일반 동향",
+            "year": analysis_year,
+            "base_year": ai_input.get("base_year"),
+            "change_type": "general_trend",
+            "direction": "neutral",
+            "severity": "low",
+            "signal_type": "neutral",
+            "signal_code": "GENERAL_TREND",
+            "yoy_change_rate": None,
+            "description": "눈에 띄는 재무 signal이 없어 기업 일반 동향과 최근 근황을 검색합니다.",
+            "source_signal": "기업 일반 동향",
+            "queries": queries,
+            "query": queries[0] if queries else f"{company_name} 최근 뉴스",
+        }
+    ]
+
+
 def build_news_queries(
     ai_input: Dict[str, Any],
     llm: Any = None,
@@ -290,12 +377,20 @@ def build_news_queries(
 ) -> List[Dict[str, Any]]:
     """
     ai_input의 detected_changes를 기반으로 뉴스 검색 query_groups를 생성합니다.
+
+    detected_changes가 없으면 기업 일반 동향 query_group을 생성합니다.
     """
 
     company_name = get_company_name(ai_input)
     stock_code = get_stock_code(ai_input)
     industry_group = get_industry_group(ai_input)
     detected_changes = get_detected_changes(ai_input)
+
+    if not detected_changes:
+        return build_general_company_news_queries(
+            ai_input=ai_input,
+            max_queries=max_queries_per_change,
+        )
 
     if not company_name:
         company_name = stock_code
@@ -335,7 +430,7 @@ def build_news_query_groups(
 if __name__ == "__main__":
     import json
 
-    sample_ai_input = {
+    sample_ai_input_without_signal = {
         "company_info": {
             "company_name": "삼성전자",
             "stock_code": "005930",
@@ -344,40 +439,13 @@ if __name__ == "__main__":
             "industry_group": "tech_equipment",
             "industry_group_name": "기술 및 장치 산업",
         },
-        "detected_changes": [
-            {
-                "metric_key": "operating_income",
-                "metric_label": "영업이익",
-                "year": 2023,
-                "base_year": 2022,
-                "change_type": "sharp_decrease",
-                "direction": "decrease",
-                "severity": "high",
-                "signal_type": "negative",
-                "yoy_change_rate": -84.86,
-                "description": "전년 대비 영업이익이 -84.86% 감소했습니다.",
-                "search_keywords": ["영업이익 감소", "수익성 악화", "실적 부진"],
-                "source_signal": "영업이익 급감",
-            },
-            {
-                "metric_key": "net_income",
-                "metric_label": "당기순이익",
-                "year": 2023,
-                "base_year": 2022,
-                "change_type": "decrease",
-                "direction": "decrease",
-                "severity": "medium",
-                "signal_type": "negative",
-                "yoy_change_rate": -72.17,
-                "description": "전년 대비 당기순이익이 -72.17% 감소했습니다.",
-                "search_keywords": ["순이익 감소", "실적 악화"],
-                "source_signal": "순이익 감소",
-            },
-        ],
+        "analysis_year": 2023,
+        "base_year": 2022,
+        "detected_changes": [],
     }
 
-    result = build_news_queries(sample_ai_input)
+    result = build_news_queries(sample_ai_input_without_signal)
 
-    print("[News Query Builder Template Test]")
+    print("[News Query Builder General Fallback Test]")
     print("query_group_count:", len(result))
     print(json.dumps(result, ensure_ascii=False, indent=2))
