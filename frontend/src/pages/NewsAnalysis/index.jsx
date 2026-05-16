@@ -34,11 +34,15 @@ export default function NewsAnalysis({ newsData, newsLoading = false }) {
       {/* 최근 이슈 + 변동 사유 (2열) */}
       <SignalList evidenceNews={evidenceNews} detectedChanges={detectedChanges} />
 
-      {/* 주요 경영 판단 요약 (Signal 태그 흐름) */}
-      <NewsSummary detectedChanges={detectedChanges} />
-
-      {/* 뉴스 출처 */}
-      <NewsSource evidenceNews={evidenceNews} />
+      {/* 주요 경영 판단 요약 + 뉴스 출처 (2열) */}
+      <div className="na-bottom-row">
+        <div className="na-bottom-main">
+          <NewsSummary detectedChanges={detectedChanges} />
+        </div>
+        <div className="na-bottom-side">
+          <NewsSource evidenceNews={evidenceNews} />
+        </div>
+      </div>
     </div>
   );
 }
