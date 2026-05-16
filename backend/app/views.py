@@ -429,9 +429,8 @@ def search_company(request):
         from src.services.report_service import build_report_response
         report_result = build_report_response(stock_code)
 
-        ai_report_result = build_ai_report_result_once(
-            stock_code=stock_code,
-        )
+        ai_data = ai_report_result.get("data", {}) if ai_report_result.get("status") == "success" else {}
+        
     except Exception as e:
         return fail_response(message=f"리포트 생성 오류: {str(e)}")
 
@@ -442,7 +441,7 @@ def search_company(request):
 
     news_data = {
         "detected_changes": report_data.get("detected_changes", []) or [],
-        "evidence_news": [],
+        "evidence_news": ai_data.get("evidence_news", []),
         "signals": report_data.get("signals", []) or [],
         "company_info": report_data.get("company_info", {}),
     }
