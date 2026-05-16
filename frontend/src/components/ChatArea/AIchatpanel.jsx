@@ -90,16 +90,16 @@ export default function AIChatPanel({ companyName, stockCode }) {
 
     if (!stockCode) return;
 
-    setReportLoading(true);
-    axios
-      .post(`/api/v1/report/comprehensive/${stockCode}/ai`, { use_mock_disclosures: true })
-      .then((res) => {
-        if (res.data?.status === "success") {
-          setAiReportResult(res.data.data);
-        }
-      })
-      .catch(() => {})
-      .finally(() => setReportLoading(false));
+    // setReportLoading(true);
+    // axios
+    //   .post(`/api/v1/report/comprehensive/${stockCode}/ai`, { use_mock_disclosures: true })
+    //   .then((res) => {
+    //     if (res.data?.status === "success") {
+    //       setAiReportResult(res.data.data);
+    //     }
+    //   })
+    //   .catch(() => {})
+    //   .finally(() => setReportLoading(false));
   }, [companyName, stockCode]);
 
   // 새 메시지 올 때마다 스크롤 하단 이동

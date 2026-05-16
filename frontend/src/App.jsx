@@ -26,6 +26,7 @@ function App() {
   const [filteredData, setFilteredData]     = useState([]);
   const [searchCollapsed, setSearchCollapsed] = useState(false);
   const [searchResult, setSearchResult]     = useState(null);
+  const [keyword, setKeyword]               = useState('');
   const [companyName, setCompanyName]       = useState(null);
   const [stockCode, setStockCode]           = useState(null);
   const [reportData, setReportData]         = useState(null);
@@ -139,6 +140,19 @@ function App() {
     }
   };
 
+  const handleRefresh = () => {
+    setSearchResult(null);
+    setCompanyName(null);
+    setStockCode(null);
+    setReportData(null);
+    setEvidenceNews([]);
+    setNewsLoading(false);
+    setFilteredData([]);
+    setActiveTab('report');
+    setSearchCollapsed(false);
+    setKeyword('');
+  };
+
   const handleKeyIn = (keyword) => {
     if (!keyword) { setFilteredData([]); return; }
     setFilteredData(
@@ -150,12 +164,14 @@ function App() {
 
   return (
     <LucideProvider>
-      <Header onToggleSearch={() => setSearchCollapsed(v => !v)} searchCollapsed={searchCollapsed} />
+      <Header onToggleSearch={() => setSearchCollapsed(v => !v)} searchCollapsed={searchCollapsed} onRefresh={handleRefresh} />
       <div className={`app-search-bar${searchCollapsed ? ' collapsed' : ''}`}>
         <SearchBox
           onSearch={handleSearch}
           onKeyIn={handleKeyIn}
           searchResults={filteredData}
+          keyword={keyword}
+          onKeywordChange={setKeyword}
         />
       </div>
       {loading && (

@@ -37,14 +37,26 @@ function ChevronIcon({ collapsed }) {
   );
 }
 
-export default function Header({ onToggleSearch, searchCollapsed }) {
+function RefreshIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="23 4 23 10 17 10" />
+      <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
+    </svg>
+  );
+}
+
+export default function Header({ onToggleSearch, searchCollapsed, onRefresh }) {
   return (
     <header className="hd-header">
-      <div className="hd-logo">
+      <button className="hd-logo" onClick={onRefresh} title="홈으로 돌아가기">
         <span className="hd-logo-icon"><LogoIcon /></span>
         <span className="hd-logo-text">Finance.zip</span>
-      </div>
+      </button>
       <div className="hd-actions">
+        <button className="hd-icon-btn" title="새로고침" onClick={onRefresh}>
+          <RefreshIcon />
+        </button>
         <div className="hd-divider" />
         <button
           className="hd-icon-btn"

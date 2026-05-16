@@ -15,26 +15,21 @@ export default function BasicInfo({ reportData }) {
   const riskLevel = summary.overall_risk_level ?? 'NORMAL';
   const riskStyle = RISK_COLOR[riskLevel] ?? RISK_COLOR.NORMAL;
 
+  console.log(reportData)
+
   const rows = [
-    { label: '기업명',   value: info.company_name  ?? '-' },
+    { label: '기업명',   value: info.company_name   ?? '-' },
     { label: '종목코드', value: info.stock_code     ?? '-', highlight: true },
+    { label: '산업정보', value: industry_info.industry_group_name      ?? '-' },
     { label: '분석연도', value: reportData?.analysis_year ? `${reportData.analysis_year}년` : '-' },
     { label: '기준연도', value: reportData?.base_year     ? `${reportData.base_year}년`     : '-' },
-    { label: '주요발견', value: `${(signals.key_findings ?? []).length}건` },
+    { label: '주요발견', value: `${(reportData.detected_changes ?? []).length}건` },
   ];
 
   return (
     <div className="na-card bi-wrap">
       <div className="bi-title-row">
         <p className="na-card-title">기본 정보</p>
-        {riskLevel && (
-          <span
-            className="bi-risk-badge"
-            style={{ color: riskStyle.color, background: riskStyle.bg }}
-          >
-            {RISK_LABEL[riskLevel] ?? riskLevel}
-          </span>
-        )}
       </div>
       <div className="bi-row">
         {rows.map(({ label, value, highlight }) => (
