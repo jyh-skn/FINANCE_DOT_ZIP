@@ -115,13 +115,13 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 .na-change-item {
   display: flex;
-  align-items: flex-start;
-  gap: 10px;
+  align-items: baseline;
+  gap: 8px;
 }
 
 .na-change-badge {
@@ -129,8 +129,11 @@
   font-weight: 600;
   padding: 2px 8px;
   border-radius: 6px;
-  flex-shrink: 0;
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  flex-shrink: 0;
+  min-width: 80px;
+  text-align: center;
 }
 
 .na-change-reason {
@@ -162,7 +165,7 @@
 .ns-category {
   font-size: 13px;
   color: var(--text);
-  min-width: 120px;
+  min-width: 90px;
   flex-shrink: 0;
 }
 
@@ -264,25 +267,14 @@
   border-radius: 4px;
 }
 
-/* 하단 2열 레이아웃 */
-.na-bottom-row {
+/* 3섹션 세로 레이아웃 */
+.na-three-col {
   display: flex;
+  flex-direction: column;
   gap: 16px;
-  align-items: flex-start;
 }
 
-.na-bottom-main {
-  flex: 3;
-  min-width: 0;
-}
-
-.na-bottom-side {
-  flex: 2;
-  min-width: 0;
-}
-
-.na-bottom-main .na-card,
-.na-bottom-side .na-card {
+.na-three-col .na-card {
   margin-bottom: 0;
 }
 
@@ -299,7 +291,7 @@
 .nso-item {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .nso-outlet {
@@ -309,6 +301,12 @@
   border-radius: 4px;
   color: #fff;
   flex-shrink: 0;
+  width: 90px;
+  text-align: center;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .nso-title {
