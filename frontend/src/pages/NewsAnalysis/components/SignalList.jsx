@@ -14,28 +14,25 @@ function toSignal(direction, severity) {
   return 'neutral';
 }
 
-function toLabel(direction, yoyRate) {
-  if (yoyRate == null) {
+function extractRateFromDesc(description) {
+  const match = description?.match(/(\d+(?:\.\d+)?)\s*%/);
+  return match ? parseFloat(match[1]) : null;
+}
+
+function toLabel(direction, yoyRate, description) {
+  const rate = yoyRate ?? extractRateFromDesc(description);
+  if (rate == null) {
     if (direction === 'increase') return '▲';
     if (direction === 'decrease') return '▼';
     return '→';
   }
-  const abs = Math.abs(yoyRate).toFixed(1);
+  const abs = Math.abs(rate).toFixed(1);
   if (direction === 'increase') return `▲ +${abs}%`;
   if (direction === 'decrease') return `▼ -${abs}%`;
   return `→ 0.0%`;
 }
 
-export default function SignalList({ evidenceNews, detectedChanges }) {
-  const recentIssues = useMemo(() => {
-    if (!evidenceNews?.length) return [];
-    return evidenceNews.map((item, i) => ({
-      id: i + 1,
-      date: (item.published_date ?? '').replace(/-/g, '.'),
-      headline: item.title ?? '',
-    }));
-  }, [evidenceNews]);
-
+export default function SignalList({ detectedChanges }) {
   const changeReasons = useMemo(() => {
     if (!detectedChanges?.length) return [];
     const seen = new Set();
@@ -43,7 +40,7 @@ export default function SignalList({ evidenceNews, detectedChanges }) {
       .map((item, i) => ({
         id: i + 1,
         signal: toSignal(item.direction, item.severity),
-        label: toLabel(item.direction, item.yoy_change_rate),
+        label: toLabel(item.direction, item.yoy_change_rate, item.description),
         reason: item.description ?? '',
       }))
       .filter(item => {
@@ -54,48 +51,28 @@ export default function SignalList({ evidenceNews, detectedChanges }) {
   }, [detectedChanges]);
 
   return (
-    <div className="na-section-row">
-      {/* 최근 주요 이슈 요약 */}
-      <div className="na-card na-card-half">
-        <h3 className="na-card-title">최근 주요 이슈 요약</h3>
-        {recentIssues.length > 0 ? (
-          <ul className="na-issue-list">
-            {recentIssues.map((item) => (
-              <li key={item.id} className="na-issue-item">
-                <span className="na-issue-date">{item.date}</span>
-                <span className="na-issue-text">{item.headline}</span>
+    <div className="na-card">
+      <h3 className="na-card-title">뉴스 기반 변동 사유</h3>
+      {changeReasons.length > 0 ? (
+        <ul className="na-change-list">
+          {changeReasons.map((item) => {
+            const style = SIGNAL_COLOR[item.signal];
+            return (
+              <li key={item.id} className="na-change-item">
+                <span
+                  className="na-change-badge"
+                  style={{ color: style.color, background: style.bg }}
+                >
+                  {item.label}
+                </span>
+                <span className="na-change-reason">{item.reason}</span>
               </li>
-            ))}
-          </ul>
-        ) : (
-          <p className="na-empty-msg">뉴스를 불러오지 못했습니다.</p>
-        )}
-      </div>
-
-      {/* 뉴스 기반 변동 사유 */}
-      <div className="na-card na-card-half">
-        <h3 className="na-card-title">뉴스 기반 변동 사유</h3>
-        {changeReasons.length > 0 ? (
-          <ul className="na-change-list">
-            {changeReasons.map((item) => {
-              const style = SIGNAL_COLOR[item.signal];
-              return (
-                <li key={item.id} className="na-change-item">
-                  <span
-                    className="na-change-badge"
-                    style={{ color: style.color, background: style.bg }}
-                  >
-                    {item.label}
-                  </span>
-                  <span className="na-change-reason">{item.reason}</span>
-                </li>
-              );
-            })}
-          </ul>
-        ) : (
-          <p className="na-empty-msg">변동 사유를 불러오지 못했습니다.</p>
-        )}
-      </div>
+            );
+          })}
+        </ul>
+      ) : (
+        <p className="na-empty-msg">변동 사유를 불러오지 못했습니다.</p>
+      )}
     </div>
   );
 }

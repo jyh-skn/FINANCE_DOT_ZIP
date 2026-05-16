@@ -68,7 +68,7 @@ function App() {
       method: 'GET',
       pCall:  (svcId, responseData, errCd) => {
         if (errCd === 0) {
-          setEvidenceNews(responseData.data.newsData.evidence_news ?? []);
+          setEvidenceNews(responseData.data.evidence_news ?? []);
         }
         setNewsLoading(false);
       },
