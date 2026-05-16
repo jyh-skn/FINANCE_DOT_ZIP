@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-export function SearchBox({ onSearch, onKeyIn, searchResults, keyword, onKeywordChange }) {
+export function SearchBox({ onSearch, onKeyIn, searchResults, keyword, onKeywordChange, onCompanySelect }) {
   // 현재 키보드로 포커스된 아이템의 인덱스 (-1은 선택 없음)
   const [focusedIndex, setFocusedIndex] = useState(-1);
 
@@ -16,7 +16,7 @@ export function SearchBox({ onSearch, onKeyIn, searchResults, keyword, onKeyword
   };
 
   const handleItemClick = (company) => {
-    onKeywordChange(company.CORP_NAME);
+    onCompanySelect(company);
     onKeyIn("");
   };
 

@@ -124,6 +124,7 @@
   border-radius: 14px;
   line-height: 1.65;
   font-size: 13.5px;
+  text-align: left;
 }
 .acp-row.assistant .acp-bubble {
   background: #1c2030;

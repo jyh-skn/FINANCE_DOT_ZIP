@@ -20,18 +20,25 @@ const PAGE_MAP = {
 };
 
 function App() {
-  const [activeTab, setActiveTab]           = useState('report');
+  // 화면 제어
+  const [activeTab, setActiveTab]           = useState('report'); // 탬 초기 선택 Report
   const [loading, setLoading]               = useState(false);
+  const [searchCollapsed, setSearchCollapsed] = useState(false);  // 검색창 접힘 여부
+
+  // 조회 조건
   const [allCompanies, setAllCompanies]     = useState([]);
   const [filteredData, setFilteredData]     = useState([]);
-  const [searchCollapsed, setSearchCollapsed] = useState(false);
   const [searchResult, setSearchResult]     = useState(null);
-  const [keyword, setKeyword]               = useState('');
-  const [companyName, setCompanyName]       = useState(null);
+  const [keyword, setKeyword]               = useState('');     // 조회 조건의 keyword
+  const [selectedCorpCode, setSelectedCorpCode] = useState(null);
+  const [companyName, setCompanyName]       = useState(null);   // 조회된 회사명
   const [stockCode, setStockCode]           = useState(null);
+
+  // 조회 후 리턴 데이터
   const [reportData, setReportData]         = useState(null);
   const [evidenceNews, setEvidenceNews]     = useState([]);
   const [newsLoading, setNewsLoading]       = useState(false);
+  const [combinedData, setCombinedData]     = useState(null);
 
   useEffect(() => {
     const fetchInitialData = async () => {
@@ -48,10 +55,10 @@ function App() {
     fetchInitialData();
   }, []);
 
-const code = responseData.data.reportData?.company_info?.stock_code ?? null;
-if (code && !responseData.data.newsData.evidence_news?.length) {
-    fetchNewsAnalysis(code);
-}
+// const code = responseData.data.reportData?.company_info?.stock_code ?? null;
+// if (code && !responseData.data.newsData.evidence_news?.length) {
+//     fetchNewsAnalysis(code);
+// }
 
   const fetchNewsAnalysis = async (code) => {
     setNewsLoading(true);
@@ -73,8 +80,22 @@ if (code && !responseData.data.newsData.evidence_news?.length) {
     }
   };
 
-  const handleSearch = async (keyword) => {
-    if (!keyword) { alert('검색어를 입력해주세요.'); return; }
+  const handleCompanySelect = (company) => {
+    setKeyword(company.CORP_NAME);
+    setSelectedCorpCode(company.CORP_CODE);
+  };
+
+  const handleKeywordChange = (value) => {
+    setKeyword(value);
+    setSelectedCorpCode(null);
+  };
+
+  const handleSearch = async (kw) => {
+    const param = selectedCorpCode
+      ? { corp_code: selectedCorpCode }
+      : { keyword: kw };
+
+    if (!selectedCorpCode && !kw) { alert('검색어를 입력해주세요.'); return; }
 
     // 내용 초기화
     setSearchResult(null);
@@ -89,7 +110,7 @@ if (code && !responseData.data.newsData.evidence_news?.length) {
     const options = {
       svcId:  'searchCompany',
       strUrl: '/api/searchCompany',
-      param:  { keyword },
+      param,
       method: 'POST',
       pCall:  (svcId, responseData, errCd, msgTp, msgCd, msgText) => {
 
@@ -105,13 +126,23 @@ if (code && !responseData.data.newsData.evidence_news?.length) {
             alert('일부 데이터가 누락되었습니다.');
             
         } else {
+            // 데이터 병합
+            const combinedData = {
+              ...reportData,
+              ...disclosureData
+            }
 
+            console.log(combinedData)
+            console.log(responseData.data.reportData)
+            console.log(responseData.data.disclosureData)
             console.log("responseData.data.reportData")
             console.log(responseData.data.reportData)
+            // useState 업데이트
             setSearchResult(responseData.data);
             setCompanyName(responseData.data.reportData?.company_name ?? keyword);
             const code = responseData.data.reportData?.company_info?.stock_code ?? null;
             setStockCode(code);
+            setCombinedData(combinedData);
             setReportData(responseData.data.reportData);
             if (code) fetchNewsAnalysis(code);
         }
@@ -136,12 +167,12 @@ if (code && !responseData.data.newsData.evidence_news?.length) {
     const disclosureData = searchResult.disclosureData ?? MOCK;
 
     switch (activeTab) {
-      case 'report':     return <Report reportData={reportData} disclosureData={disclosureData} />;
+      case 'report':     return <Report reportData={combinedData} />;
       case 'news': {
         const mergedNewsData = { ...newsData, evidence_news: evidenceNews };
         return <NewsAnalysis newsData={mergedNewsData} newsLoading={newsLoading} />;
       }
-      case 'disclosure': return <Disclosure reportData={reportData} disclosureData={disclosureData} />;
+      case 'disclosure': return <Disclosure reportData={combinedData} />;
     }
   };
 
@@ -176,7 +207,8 @@ if (code && !responseData.data.newsData.evidence_news?.length) {
           onKeyIn={handleKeyIn}
           searchResults={filteredData}
           keyword={keyword}
-          onKeywordChange={setKeyword}
+          onKeywordChange={handleKeywordChange}
+          onCompanySelect={handleCompanySelect}
         />
       </div>
       {loading && (

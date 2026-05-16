@@ -8,15 +8,7 @@
       1. EXPECTED_AI_OUTPUT 형식(report 섹션) 렌더링
       2. 구형 { title, sections, warnings } 형식 fallback 지원
 */
-
-const RISK_LABEL = { high: '고위험', medium: '주의', low: '안정', normal: '안정' };
-const RISK_COLOR = {
-  high:   { color: '#f87171', bg: 'rgba(248,113,113,0.12)', border: 'rgba(248,113,113,0.3)' },
-  medium: { color: '#fb923c', bg: 'rgba(251,146,60,0.12)',  border: 'rgba(251,146,60,0.3)'  },
-  low:    { color: '#4ade80', bg: 'rgba(74,222,128,0.12)',  border: 'rgba(74,222,128,0.3)'  },
-  normal: { color: '#4ade80', bg: 'rgba(74,222,128,0.12)',  border: 'rgba(74,222,128,0.3)'  },
-};
-
+// Report로 출력되는 key값
 const REPORT_SECTIONS = [
   { key: 'executive_summary',       title: '경영 요약'      },
   { key: 'financial_change_summary', title: '재무 변동 요약' },
@@ -33,8 +25,6 @@ function AIReportView({ reportData }) {
   const summary     = reportData.summary     ?? {};
   const companyInfo = reportData.company_info ?? {};
   const metadata    = reportData.metadata    ?? {};
-  const riskLevel   = summary.overall_risk_level ?? 'normal';
-  const riskStyle   = RISK_COLOR[riskLevel] ?? RISK_COLOR.normal;
 
   return (
     <div>
@@ -42,12 +32,6 @@ function AIReportView({ reportData }) {
       <div className="na-card dc-header-card">
         <div className="dc-header-top">
           <span className="dc-company-name">{companyInfo.company_name ?? '-'}</span>
-          <span
-            className="dc-risk-badge"
-            style={{ color: riskStyle.color, background: riskStyle.bg, border: `1px solid ${riskStyle.border}` }}
-          >
-            {RISK_LABEL[riskLevel] ?? riskLevel}
-          </span>
         </div>
         {summary.one_line_summary && (
           <p className="dc-one-liner">{summary.one_line_summary}</p>

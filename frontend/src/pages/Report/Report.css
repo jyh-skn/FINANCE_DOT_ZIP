@@ -73,7 +73,7 @@
 
 .bi-label {
   font-size: 10px;
-  color: var(--text-muted, #5a6680);
+  color: var(--text-muted, #9eb0cc);
 }
 
 .bi-value {
@@ -142,7 +142,7 @@
 
 .ps-signal-label {
   font-size: 10px;
-  color: var(--text-muted, #5a6680);
+  color: var(--text-muted, #8899bb);
 }
 
 .ps-signal-val {
@@ -177,7 +177,7 @@
   align-items: center;
   gap: 4px;
   font-size: 10px;
-  color: var(--text-muted, #5a6680);
+  color: var(--text-muted, #8899bb);
 }
 
 .rc-legend-dot {
