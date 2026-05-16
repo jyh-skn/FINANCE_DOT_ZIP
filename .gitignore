@@ -64,6 +64,7 @@ data/processed/
 .pytest_cache/
 .coverage
 htmlcov/
+.cache/
 
 # 일시 파일
 *.tmp
