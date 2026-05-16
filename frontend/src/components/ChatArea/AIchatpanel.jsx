@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import axios from "axios";
+import { gfn_transaction } from "../../util/common-util";
 import "./AIChatPanel.css";
 import ratIcon from "../../assets/rat_icon.png";
 
@@ -124,57 +124,77 @@ export default function AIChatPanel({ companyName, stockCode }) {
     setInputValue("");
     setIsTyping(true);
 
+    // 현재 질문 포함한 전체 대화 이력 (role/content 만 추출)
+    const history = [...messages, userMsg].map(({ role, content }) => ({ role, content }));
+
+    console.log("history");
+    console.log(history);
+
+    const param = {
+      question: text,
+      messages: history,
+      use_mock_disclosures: false,
+    };
+    if (aiReportResult) {
+      param.ai_report_result = aiReportResult;
+    } else {
+      param.allow_generate_report = true;
+    }
+
     try {
-      const body = { question: text, use_mock_disclosures: true };
-      if (aiReportResult) {
-        body.ai_report_result = aiReportResult;
-      } else {
-        body.allow_generate_report = true;
-      }
+      await gfn_transaction({
+        svcId:  'chat',
+        strUrl: `/api/v1/report/comprehensive/${stockCode}/chat`,
+        param,
+        method: 'POST',
+        pCall:  (svcId, responseData, errCd) => {
+          if (errCd !== 0 || !responseData) {
+            const errMsg = responseData?.message || "오류가 발생했습니다. 다시 시도해주세요.";
+            setIsTyping(false);
+            setMessages((prev) => [
+              ...prev,
+              { id: Date.now() + 1, role: "assistant", content: errMsg, time: getTime() },
+            ]);
+            inputRef.current?.focus();
+            return;
+          }
 
-      const res = await axios.post(
-        `/api/v1/report/comprehensive/${stockCode}/chat`,
-        body
-      );
+          const answer =
+            responseData?.data?.answer ||
+            responseData?.message ||
+            "답변을 가져오지 못했습니다.";
 
-      const answer =
-        res.data?.data?.answer ||
-        res.data?.message ||
-        "답변을 가져오지 못했습니다.";
+          const botMsgId = Date.now() + 1;
+          const msgTime  = getTime();
 
-      const botMsgId = Date.now() + 1;
-      const msgTime = getTime();
+          setIsTyping(false);
+          setMessages((prev) => [
+            ...prev,
+            { id: botMsgId, role: "assistant", content: "", time: msgTime },
+          ]);
 
+          let charIndex = 0;
+          setIsAnimating(true);
+          typewriterRef.current = setInterval(() => {
+            charIndex = Math.min(charIndex + 4, answer.length);
+            setMessages((prev) =>
+              prev.map((m) =>
+                m.id === botMsgId ? { ...m, content: answer.slice(0, charIndex) } : m
+              )
+            );
+            if (charIndex >= answer.length) {
+              clearInterval(typewriterRef.current);
+              typewriterRef.current = null;
+              setIsAnimating(false);
+              inputRef.current?.focus();
+            }
+          }, 18);
+        },
+      });
+    } catch {
+      // gfn_transaction이 pCall(errCd=-1) 호출 후 throw하므로 UI 처리는 pCall에서 완료
+      // 여기서는 isTyping 안전 초기화만 담당
       setIsTyping(false);
-      setMessages((prev) => [
-        ...prev,
-        { id: botMsgId, role: "assistant", content: "", time: msgTime },
-      ]);
-
-      let charIndex = 0;
-      setIsAnimating(true);
-      typewriterRef.current = setInterval(() => {
-        charIndex = Math.min(charIndex + 4, answer.length);
-        setMessages((prev) =>
-          prev.map((m) =>
-            m.id === botMsgId ? { ...m, content: answer.slice(0, charIndex) } : m
-          )
-        );
-        if (charIndex >= answer.length) {
-          clearInterval(typewriterRef.current);
-          typewriterRef.current = null;
-          setIsAnimating(false);
-          inputRef.current?.focus();
-        }
-      }, 18);
-    } catch (err) {
-      const errMsg =
-        err.response?.data?.message || "오류가 발생했습니다. 다시 시도해주세요.";
-      setIsTyping(false);
-      setMessages((prev) => [
-        ...prev,
-        { id: Date.now() + 1, role: "assistant", content: errMsg, time: getTime() },
-      ]);
       inputRef.current?.focus();
     }
   };
