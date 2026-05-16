@@ -229,6 +229,38 @@ def get_ai_report_result_from_request(request):
     return None
 
 
+def get_chat_history_from_request(request):
+    """
+    프론트에서 전달한 이전 대화 기록을 여러 key 이름으로 허용합니다.
+
+    권장 Request body 예시:
+    {
+        "question": "방금 답변에서 말한 두 번째 뉴스는 뭐야?",
+        "ai_report_result": {...},
+        "chat_history": [
+            {"role": "user", "content": "파트론의 2021년 영업이익이 왜 증가했어?"},
+            {"role": "assistant", "content": "파트론의 영업이익 증가는 ..."}
+        ]
+    }
+    """
+
+    candidates = [
+        "chat_history",
+        "chatHistory",
+        "messages",
+        "conversation_history",
+        "conversationHistory",
+    ]
+
+    for key in candidates:
+        value = request.data.get(key)
+
+        if isinstance(value, list):
+            return value
+
+    return []
+
+
 def get_report_data_from_request(request):
     """
     프론트가 별도로 넘긴 정량 리포트 데이터를 가져옵니다.
@@ -584,13 +616,18 @@ def report_chat(request, stock_code):
     {
         "question": "삼성전자는 2023년에 영업이익이 왜 감소했어?",
         "ai_report_result": {...},
-        "use_mock_disclosures": true
+        "chat_history": [
+            {"role": "user", "content": "이전 질문"},
+            {"role": "assistant", "content": "이전 답변"}
+        ],
+        "use_mock_disclosures": false
     }
 
     중요:
     - 기본 동작은 ai_report_result를 받아서 답변만 생성합니다.
     - 따라서 챗봇 질문마다 create_ai_report()를 다시 실행하지 않습니다.
-    - 테스트/비상용으로 allow_generate_report=true를 보내면 기존처럼 내부에서 리포트를 생성합니다.
+    - chat_history가 있으면 "방금 답변", "두 번째 뉴스" 같은 후속 질문 처리에 사용합니다.
+    - 테스트/비상용으로 allow_generate_report=true를 보내면 내부에서 리포트를 생성합니다.
     """
 
     print("\n===== [1] report_chat 호출됨 =====")
@@ -609,6 +646,8 @@ def report_chat(request, stock_code):
             message="question이 필요합니다.",
             data=None
         )
+
+    chat_history = get_chat_history_from_request(request)
 
     use_mock_disclosures = to_bool(
         request.data.get("use_mock_disclosures"),
@@ -661,7 +700,8 @@ def report_chat(request, stock_code):
                     "required_body_example": {
                         "question": "삼성전자는 2023년에 영업이익이 왜 감소했어?",
                         "ai_report_result": "{...}",
-                        "use_mock_disclosures": True,
+                        "chat_history": [],
+                        "use_mock_disclosures": False,
                     }
                 }
             )
@@ -682,6 +722,7 @@ def report_chat(request, stock_code):
             llm=llm,
             question=question,
             chat_context=chat_context,
+            chat_history=chat_history,
         )
 
     except Exception as e:
@@ -712,6 +753,7 @@ def report_chat(request, stock_code):
             "use_mock_disclosures": use_mock_disclosures,
             "received_ai_report_result": received_ai_report_result,
             "generated_ai_report_inside_chat": generated_ai_report_inside_chat,
+            "request_chat_history_count": len(chat_history or []),
         },
     }
 
@@ -719,3 +761,4 @@ def report_chat(request, stock_code):
         data=response_data,
         message="리포트 챗봇 답변 생성 성공"
     )
+
