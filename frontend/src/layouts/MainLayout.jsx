@@ -1,6 +1,7 @@
 import { useRef, useState, useCallback } from 'react';
 import AIChatPanel from '../components/ChatArea/AIchatpanel';
-import { Building2, Bot } from 'lucide-react';
+import HomePage from '../pages/Home';
+import { Building2 } from 'lucide-react';
 import './MainLayout.css';
 
 const TABS = [
@@ -57,42 +58,27 @@ export default function MainLayout({ activeTab, onTabChange, children, companyNa
       </nav>
 
       <div className="ml-body">
-        <div className="ml-content">
-          
-          {children ? (
-              children
-            ) : (
-              <div>
-                {/* 데이터가 없는 경우 default 부분 */}      
-                <div className="default-report-wrap">
-                  <Building2 size={64} className="mx-auto mb-4 opacity-50" />
-                  <p>기업을 검색하여 재무 보고서를 확인하세요</p>
-                </div>
+        {companyName ? (
+          <>
+            <div className="ml-content">
+              {children}
+            </div>
+
+            <div className="ml-resizer" onMouseDown={onMouseDown}>
+              <div className="ml-resizer-handle">
+                <span /><span /><span /><span /><span /><span />
               </div>
-            )
-          }
-          
-        </div>
+            </div>
 
-        <div className="ml-resizer" onMouseDown={onMouseDown}>
-          <div className="ml-resizer-handle">
-            <span /><span /><span /><span /><span /><span />
-          </div>
-        </div>
-
-        <aside className="ml-chat" style={{ width: chatWidth }}>
-          {companyName ? (
+            <aside className="ml-chat" style={{ width: chatWidth }}>
               <AIChatPanel companyName={companyName} stockCode={stockCode} />
-            ) : (
-              <div>
-                <div className="default-chat-wrap">
-                  <Bot size={64} className="mx-auto mb-4 opacity-50" />
-                  <p>기업을 검색하면 AI 어시스턴트와<br />대화를 시작할 수 있습니다</p>
-                </div>
-              </div>
-            )
-          }
-        </aside>
+            </aside>
+          </>
+        ) : (
+          <div className="ml-content">
+            <HomePage />
+          </div>
+        )}
       </div>
     </div>
   );

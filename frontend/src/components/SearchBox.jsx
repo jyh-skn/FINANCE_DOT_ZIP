@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-export function SearchBox({ onSearch, onKeyIn, searchResults }) {
-  const [keyword, setKeyword] = useState('');
-
+export function SearchBox({ onSearch, onKeyIn, searchResults, keyword, onKeywordChange }) {
   // 현재 키보드로 포커스된 아이템의 인덱스 (-1은 선택 없음)
   const [focusedIndex, setFocusedIndex] = useState(-1);
 
@@ -13,16 +11,13 @@ export function SearchBox({ onSearch, onKeyIn, searchResults }) {
 
   const handleInputChange = (e) => {
     const value = e.target.value;
-    setKeyword(value);    // 화면에 타이핑한 글자 반영
-    onKeyIn(value);       // 부모(App.jsx)에게 전달해서 리스트 필터링
+    onKeywordChange(value);
+    onKeyIn(value);
   };
 
   const handleItemClick = (company) => {
-    // 클릭한 회사의 이름을 검색창에 반영
-    setKeyword(company.CORP_NAME);
-    
-    // 리스트 닫기.
-    onKeyIn(""); 
+    onKeywordChange(company.CORP_NAME);
+    onKeyIn("");
   };
 
   const handleInputKeydown = (e) => {

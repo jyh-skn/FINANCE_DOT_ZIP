@@ -14,6 +14,16 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  background: none;
+  border: none;
+  padding: 6px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.hd-logo:hover {
+  background: var(--accent-bg);
 }
 
 .hd-logo-icon {
