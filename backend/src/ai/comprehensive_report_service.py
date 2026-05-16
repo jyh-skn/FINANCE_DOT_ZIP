@@ -33,7 +33,7 @@ from src.ai.industry_analysis_rules import build_industry_analysis_instruction
 from src.ai.llm_client import get_llm
 from src.ai.news_evidence_filter import filter_evidence
 from src.ai.news_query_builder import build_news_queries
-from src.ai.news_search_service import search_news_by_query_groups
+from src.ai.news_search_cache_service import search_news_by_query_groups_cached
 from src.ai.report_writer_chain import generate_report
 
 
@@ -392,10 +392,12 @@ def create_ai_report(
     # 3. Tavily 뉴스 후보 수집
     # 뉴스 Vector DB 실시간 적재 담당 로직이 별도 모듈에 있다면 이 검색 결과를 upsert에 사용하면 됩니다.
     step_start = time.perf_counter()
-    searched_news = search_news_by_query_groups(
+    searched_news = search_news_by_query_groups_cached(
         query_groups=query_groups,
+        ai_input=ai_input,
         max_results_per_query=max_results_per_query,
         max_total_results=max_total_news_results,
+        cache_enabled=True,
     )
     log_step_time("news_search_service", step_start, f"searched_news_count={len(searched_news)}")
 
