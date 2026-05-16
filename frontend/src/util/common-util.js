@@ -28,7 +28,7 @@ export const gfn_transaction = async (options) => {
     if (pCall && typeof pCall === 'function') {
     
       const responseData = response.data;
-      const errCd = responseData.errCd ?? 0; // 서버가 주는 에러 코드 (0이면 성공)
+      const errCd = responseData.status === "fail" ? -1 : 0; // 서버가 주는 에러 코드 (0이면 성공)
       const msgText = responseData.msgText ?? 'Success';
 
       // 콜백 실행: (svcId, responseData, errCd, msgTp, msgCd, msgText)

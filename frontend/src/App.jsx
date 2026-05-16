@@ -48,6 +48,11 @@ function App() {
     fetchInitialData();
   }, []);
 
+const code = responseData.data.reportData?.company_info?.stock_code ?? null;
+if (code && !responseData.data.newsData.evidence_news?.length) {
+    fetchNewsAnalysis(code);
+}
+
   const fetchNewsAnalysis = async (code) => {
     setNewsLoading(true);
     const options = {
@@ -56,7 +61,7 @@ function App() {
       method: 'GET',
       pCall:  (svcId, responseData, errCd) => {
         if (errCd === 0) {
-          setEvidenceNews(responseData?.data?.evidence_news ?? []);
+          setEvidenceNews(responseData.data.newsData.evidence_news ?? []);
         }
         setNewsLoading(false);
       },
