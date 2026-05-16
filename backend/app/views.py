@@ -396,48 +396,49 @@ def init_data(request):
         message="초기 기업 데이터 조회 성공"
     )
 
-
 @api_view(["GET", "POST"])
 def search_company(request):
+    # keyword(기업명/종목명에서 종목코드로 변경)
     if request.method == "GET":
-        keyword = request.query_params.get("keyword", "").strip()
+        stock_code = request.query_params.get("corp_code", "").strip()
     else:
-        keyword = str(request.data.get("keyword", "")).strip()
+        stock_code = str(request.data.get("corp_code", "")).strip()
 
-    if not keyword:
-        return fail_response(message="keyword가 필요합니다.", data=[])
-
-    # 기존 목업 데이터 수정처리
-    # result = [
-    #     company for company in TEMP_COMPANY_DATA
-    #     if keyword in company["CORP_NAME"] or keyword in company["TICKER"]
-    # ]
+    if not stock_code:
+        return fail_response(message="자동완성에서 종목코드를 선택해주세요.", data=[])
 
     # DB에서 검색 결과 가져오기
-    result = search_companies(keyword)
+    # result = search_companies(keyword)
 
-    if not result:
-        return fail_response(message="검색 결과가 없습니다.", data=[])
+    # if not result:
+    #     return fail_response(message="검색 결과가 없습니다.", data=[])
 
-    if len(result) > 1:
-        return fail_response(message="검색 결과가 여러 개입니다. 더 구체적으로 검색해주세요.", data=result)
+    # 주석처리
+    # if len(result) > 1:
+    #     return fail_response(message="검색 결과가 여러 개입니다. 더 구체적으로 검색해주세요.", data=result)
     
-    matched = result[0]
-    stock_code = matched["TICKER"]
+    # matched = resultstock_code = matched["TICKER"][0]  
 
     try:
         from src.services.report_service import build_report_response
-        report_result = build_report_response(stock_code)
+        # report_result = build_report_response(stock_code)
 
-        ai_data = ai_report_result.get("data", {}) if ai_report_result.get("status") == "success" else {}
+        # 기존 report_result를 ai_report에서 포함하고 있어, 주석처리 후 ai_report 변수 생성
+        ai_report_result = build_ai_report_result_once(
+            stock_code=stock_code,
+        )
         
     except Exception as e:
         return fail_response(message=f"리포트 생성 오류: {str(e)}")
 
-    if report_result.get("status") == "fail":
-        return fail_response(message=report_result.get("message", "리포트 조회 실패"))
+    if ai_report_result.get("status") == "fail":
+        return fail_response(message=ai_report_result.get("message", "리포트 조회 실패"))
 
-    report_data = report_result.get("data", {})
+    # ai_report_result에서 data 추출
+    report_data = ai_report_result.get("data", {})
+
+    # newsData에서 사용하는 ai_data 변수 추출
+    ai_data = ai_report_result.get("data", {}) if ai_report_result.get("status") == "success" else {}
 
     news_data = {
         "detected_changes": report_data.get("detected_changes", []) or [],

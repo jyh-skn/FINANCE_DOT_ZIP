@@ -77,9 +77,9 @@ export default function RevenueChart({ reportData }) {
         <ResponsiveContainer width="100%" height="100%">
           <ComposedChart data={chartData} margin={{ top: 4, right: 24, left: 0, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(37,45,61,0.8)" vertical={false} />
-            <XAxis dataKey="year" tick={{ fontSize: 10, fill: '#5a6680' }} axisLine={false} tickLine={false} />
-            <YAxis yAxisId="left" tickFormatter={fmtEok} tick={{ fontSize: 10, fill: '#5a6680' }} axisLine={false} tickLine={false} width={48} />
-            <YAxis yAxisId="right" orientation="right" tickFormatter={(v) => `${v}%`} tick={{ fontSize: 10, fill: '#5a6680' }} axisLine={false} tickLine={false} width={32} />
+            <XAxis dataKey="year" tick={{ fontSize: 10, fill: '#8899bb' }} axisLine={false} tickLine={false} />
+            <YAxis yAxisId="left" tickFormatter={fmtEok} tick={{ fontSize: 10, fill: '#8899bb' }} axisLine={false} tickLine={false} width={48} />
+            <YAxis yAxisId="right" orientation="right" tickFormatter={(v) => `${v}%`} tick={{ fontSize: 10, fill: '#8899bb' }} axisLine={false} tickLine={false} width={32} />
             <Tooltip content={<CustomTooltip />} />
             <Bar yAxisId="left" dataKey="revenue"   name="매출"     fill={COLORS.revenue}   opacity={0.85} radius={[2,2,0,0]} barSize={14} />
             <Bar yAxisId="left" dataKey="operating" name="영업이익" fill={COLORS.operating} opacity={0.85} radius={[2,2,0,0]} barSize={14} />

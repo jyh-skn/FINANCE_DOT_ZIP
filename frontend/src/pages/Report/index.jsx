@@ -11,7 +11,6 @@ export default function Report({ reportData }) {
       <div className="na-page-header">
         <div className="na-title-group">
           <h2 className="na-page-title">기업 분석 기본 정보</h2>
-          <span className="na-badge">LLM 베타</span>
         </div>
       </div>
 
