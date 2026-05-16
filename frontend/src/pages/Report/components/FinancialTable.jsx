@@ -4,12 +4,17 @@ const STMT_KEYS  = ['revenue', 'operating_income', 'net_income'];
 const RATIO_KEYS = ['operating_margin', 'debt_ratio', 'current_ratio'];
 
 function fmtValue(val, unit) {
+  // null, undefined, NaN 모두 '-' 처리
   if (val == null) return '-';
+  
+  const num = Number(val);
+  if (isNaN(num)) return '-';
+  
   if (unit === 'KRW') {
-    const eok = val / 100_000_000;
+    const eok = num / 100_000_000;
     return eok.toLocaleString('ko-KR', { maximumFractionDigits: 0 }) + '억';
   }
-  if (unit === '%') return `${Number(val).toFixed(1)}%`;
+  if (unit === '%') return `${num.toFixed(1)}%`;
   return String(val);
 }
 
@@ -45,9 +50,14 @@ function buildTable(reportData, keys) {
     label: 'YoY 변동률',
     values: sorted.map((s, i) => {
       if (i === 0) return '-';
-      const key  = keys[0];
-      const m    = metrics[key];
-      if (m && s.year === m.current_year) return `${m.yoy_change_rate > 0 ? '+' : ''}${m.yoy_change_rate.toFixed(1)}%`;
+      const key = keys[0];
+      const m   = metrics[key];
+      // yoy_change_rate가 null/undefined이면 toFixed 호출하지 않음
+      if (m && s.year === m.current_year && m.yoy_change_rate != null) {
+        const rate = Number(m.yoy_change_rate);
+        if (isNaN(rate)) return '-';
+        return `${rate > 0 ? '+' : ''}${rate.toFixed(1)}%`;
+      }
       return '-';
     }),
     dir: sorted.map(() => 0),
@@ -110,7 +120,7 @@ export default function FinancialTable({ reportData }) {
               <tr key={label}>
                 <td>{label}</td>
                 {values.map((v, i) => (
-                  <td key={i} className={dirClass(dir[i])}> {activeTab === 'stmt' ? (v != "-" ? Math.round((v?? 0) / 100_000_000): v):  v}</td>
+                  <td key={i} className={dirClass(dir[i])}>{v}</td>
                 ))}
               </tr>
             ))}

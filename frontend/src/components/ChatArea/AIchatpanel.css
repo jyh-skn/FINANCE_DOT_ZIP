@@ -199,7 +199,7 @@
 .acp-send-btn {
   width: 46px;
   height: 46px;
-  background: #2e44b8;
+  background: var(--accent, #2e44b8);
   border: none;
   display: flex;
   align-items: center;
