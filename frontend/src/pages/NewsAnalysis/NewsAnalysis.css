@@ -48,7 +48,7 @@
 
 /* 섹션 공통 */
 .na-card {
-  background: #1c2030;
+  background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 18px 20px;
