@@ -3,26 +3,15 @@ report_chat_chain.py
 
 AI 리포트 기반 Q&A 챗봇 Chain 모듈입니다.
 
-역할:
-1. chat_context_builder.py에서 생성한 chat_context를 입력받습니다.
-2. 사용자 질문과 context_text를 바탕으로 답변 JSON을 생성합니다.
-3. 제공된 리포트/재무 데이터/뉴스 근거/공시 근거 안에서만 답변하도록 제한합니다.
-4. 투자 추천, 매수/매도/보유 판단, 목표주가 판단을 하지 않습니다.
-
-입력:
-- question: 사용자 질문
-- chat_context: build_chat_context() 결과
-- llm: llm_client.py에서 생성한 공통 LLM 객체
-
-출력:
-{
-    "answer": "...",
-    "used_sources": [...],
-    "limitations": "...",
-    "metadata": {...}
-}
+성능 개선 버전:
+- LLM에 전달하는 chat_context를 압축합니다.
+- 기존 context_text 전체 + available_sources_json 전체를 모두 넣던 구조를 줄입니다.
+- source 목록은 LLM이 source_id를 고를 수 있을 정도로만 짧게 제공합니다.
+- answer 후처리에서는 기존 available_sources를 사용하므로 used_sources 상세 정보는 유지됩니다.
+- chat_history는 최근 대화만 짧게 넣습니다.
 """
 
+import ast
 import json
 from datetime import datetime
 from typing import Any, Dict, List, Optional
@@ -49,37 +38,30 @@ except ModuleNotFoundError:
 # ---------------------------------------------------------------------
 
 def safe_text(value: Any) -> str:
-    """
-    None 또는 비문자열 값을 안전하게 문자열로 변환합니다.
-    """
-
     if value is None:
         return ""
-
     return str(value)
 
 
-def shorten_text(text: Any, max_length: int = 8000) -> str:
-    """
-    LLM 입력이 너무 길어지지 않도록 텍스트를 자릅니다.
-    """
-
+def shorten_text(text: Any, max_length: int = 800) -> str:
     text = safe_text(text).strip()
-
     if not text:
         return ""
-
     if len(text) <= max_length:
         return text
-
     return text[:max_length] + "...(truncated)"
 
 
-def get_model_name(llm: Any) -> str:
-    """
-    ChatOpenAI 객체에서 모델명을 추출합니다.
-    """
+def compact_json(value: Any) -> str:
+    return json.dumps(
+        value,
+        ensure_ascii=False,
+        default=str,
+        separators=(",", ":"),
+    )
 
+
+def get_model_name(llm: Any) -> str:
     return (
         getattr(llm, "model_name", None)
         or getattr(llm, "model", None)
@@ -88,24 +70,74 @@ def get_model_name(llm: Any) -> str:
 
 
 def extract_json_from_llm_output(output: str) -> Dict[str, Any]:
-    """
-    LLM 응답 문자열에서 JSON을 파싱합니다.
-    LLM이 코드블록 형태로 JSON을 반환하는 경우도 처리합니다.
-    """
-
     cleaned = output.strip()
     fence = "`" * 3
 
     if cleaned.startswith(f"{fence}json"):
         cleaned = cleaned.replace(f"{fence}json", "", 1).strip()
-
     if cleaned.startswith(fence):
         cleaned = cleaned.replace(fence, "", 1).strip()
-
     if cleaned.endswith(fence):
         cleaned = cleaned[:-3].strip()
 
     return json.loads(cleaned)
+
+
+def looks_like_object_string(text: str) -> bool:
+    text = safe_text(text).strip()
+    if not text:
+        return False
+    return (
+        (text.startswith("{") and text.endswith("}"))
+        or (text.startswith("[") and text.endswith("]"))
+    )
+
+
+def convert_object_answer_to_text(answer: str) -> str:
+    answer = safe_text(answer).strip()
+
+    if not looks_like_object_string(answer):
+        return answer
+
+    try:
+        parsed = ast.literal_eval(answer)
+    except Exception:
+        try:
+            parsed = json.loads(answer)
+        except Exception:
+            return answer
+
+    if not isinstance(parsed, dict):
+        return answer
+
+    lines = []
+    news_items = parsed.get("news_evidence") or parsed.get("news") or []
+    disclosure_items = parsed.get("disclosure_evidence") or parsed.get("disclosures") or []
+
+    if news_items:
+        lines.append("뉴스 근거에서는 다음 내용이 언급됩니다.")
+        for idx, item in enumerate(news_items, start=1):
+            if not isinstance(item, dict):
+                continue
+            source_id = item.get("source_id", f"news_{idx}")
+            summary = item.get("summary", "")
+            lines.append(f"- {source_id}: {summary}")
+
+    if disclosure_items:
+        if lines:
+            lines.append("")
+        lines.append("공시 근거에서는 다음 내용이 언급됩니다.")
+        for idx, item in enumerate(disclosure_items, start=1):
+            if not isinstance(item, dict):
+                continue
+            source_id = item.get("source_id", f"disclosure_{idx}")
+            summary = item.get("summary", "")
+            lines.append(f"- {source_id}: {summary}")
+
+    if lines:
+        return "\n".join(lines).strip()
+
+    return answer
 
 
 # ---------------------------------------------------------------------
@@ -113,10 +145,6 @@ def extract_json_from_llm_output(output: str) -> Dict[str, Any]:
 # ---------------------------------------------------------------------
 
 def build_available_sources(chat_context: Dict[str, Any]) -> List[Dict[str, Any]]:
-    """
-    chat_context에 포함된 뉴스/공시 근거를 used_sources 후보로 정리합니다.
-    """
-
     sources = []
 
     for idx, item in enumerate(chat_context.get("evidence_news", []) or [], start=1):
@@ -151,7 +179,6 @@ def build_available_sources(chat_context: Dict[str, Any]) -> List[Dict[str, Any]
         )
 
     report = chat_context.get("report", {}) or {}
-
     if report.get("executive_summary"):
         sources.insert(
             0,
@@ -166,16 +193,31 @@ def build_available_sources(chat_context: Dict[str, Any]) -> List[Dict[str, Any]
     return sources
 
 
+def build_compact_sources_for_prompt(
+    available_sources: List[Dict[str, Any]],
+    max_summary_chars: int = 220,
+) -> List[Dict[str, Any]]:
+    compact_sources = []
+
+    for source in available_sources:
+        compact_sources.append(
+            {
+                "source_id": source.get("source_id"),
+                "source_type": source.get("source_type"),
+                "title": source.get("title") or source.get("source"),
+                "metric_label": source.get("metric_label"),
+                "year": source.get("year"),
+                "summary": shorten_text(source.get("summary", ""), max_length=max_summary_chars),
+            }
+        )
+
+    return compact_sources
+
+
 def clean_used_sources(
     used_sources: Any,
     available_sources: List[Dict[str, Any]],
 ) -> List[Dict[str, Any]]:
-    """
-    LLM이 반환한 used_sources를 정리합니다.
-
-    source_id가 available_sources에 존재하면 해당 source 정보를 보강합니다.
-    """
-
     if not isinstance(used_sources, list):
         return []
 
@@ -193,19 +235,193 @@ def clean_used_sources(
 
         source_id = item.get("source_id")
         base = source_map.get(source_id, {})
-
-        merged = {
-            **base,
-            **item,
-        }
-
+        merged = {**base, **item}
         cleaned.append(merged)
 
     return cleaned
 
 
+def infer_used_sources_from_question(
+    question: str,
+    available_sources: List[Dict[str, Any]],
+    max_per_type: int = 3,
+) -> List[Dict[str, Any]]:
+    question = safe_text(question)
+    inferred = []
+
+    wants_news = "뉴스" in question
+    wants_disclosure = ("공시" in question) or ("사업보고서" in question) or ("문서" in question)
+    wants_report = (
+        ("리포트" in question)
+        or ("요약" in question)
+        or ("왜" in question)
+        or ("원인" in question)
+        or ("주요" in question)
+    )
+
+    if wants_report:
+        inferred.extend(
+            source
+            for source in available_sources
+            if source.get("source_type") == "ai_report"
+        )
+
+    if wants_news:
+        inferred.extend(
+            source
+            for source in available_sources
+            if source.get("source_type") == "news"
+        )
+
+    if wants_disclosure:
+        inferred.extend(
+            source
+            for source in available_sources
+            if source.get("source_type") in {"disclosure", "business_report"}
+        )
+
+    if ("두 번째" in question or "2번째" in question) and "뉴스" in question:
+        inferred.extend(
+            source
+            for source in available_sources
+            if source.get("source_type") == "news"
+        )
+
+    if not inferred:
+        inferred.extend(
+            source
+            for source in available_sources
+            if source.get("source_type") in {"ai_report", "news"}
+        )
+
+    result = []
+    seen = set()
+    type_counts = {}
+
+    for source in inferred:
+        source_id = source.get("source_id")
+        if not source_id or source_id in seen:
+            continue
+
+        source_type = source.get("source_type")
+        type_counts[source_type] = type_counts.get(source_type, 0) + 1
+
+        if source_type != "ai_report" and type_counts[source_type] > max_per_type:
+            continue
+
+        result.append(source)
+        seen.add(source_id)
+
+    return result
+
+
+def normalize_limitations(
+    limitations: str,
+    chat_context: Dict[str, Any],
+) -> str:
+    limitations = safe_text(limitations).strip()
+    disclosure_count = len(chat_context.get("evidence_disclosures", []) or [])
+
+    if disclosure_count > 0:
+        bad_phrases = [
+            "공시 근거는 없습니다",
+            "공시 근거가 없습니다",
+            "공시 근거는 없으며",
+            "공시 근거가 전혀 없는",
+        ]
+
+        if any(phrase in limitations for phrase in bad_phrases):
+            limitations = (
+                "본 답변은 제공된 AI 리포트, 재무 데이터, 뉴스 근거, 공시 근거에 한정됩니다. "
+                "공시 내용이 재무 변화의 직접 원인을 의미하는지는 추가 확인이 필요합니다."
+            )
+
+    if not limitations:
+        limitations = "본 답변은 제공된 AI 리포트, 재무 데이터, 뉴스 근거, 공시 근거에 한정됩니다."
+
+    return limitations
+
+
 # ---------------------------------------------------------------------
-# 3. fallback 답변
+# 3. context 압축
+# ---------------------------------------------------------------------
+
+def build_compact_context_text(
+    chat_context: Dict[str, Any],
+    max_news_items: int = 3,
+    max_disclosure_items: int = 3,
+    max_detected_changes: int = 4,
+) -> str:
+    company = chat_context.get("company", {}) or {}
+    report = chat_context.get("report", {}) or {}
+    detected_changes = chat_context.get("detected_changes", []) or []
+    evidence_news = chat_context.get("evidence_news", []) or []
+    evidence_disclosures = chat_context.get("evidence_disclosures", []) or []
+
+    lines = [
+        "[기업 정보]",
+        f"기업명: {company.get('company_name')}",
+        f"종목코드: {company.get('stock_code')}",
+        f"업종: {company.get('industry_group_name')} ({company.get('industry_group')})",
+        f"분석 연도: {company.get('analysis_year')}",
+        f"비교 기준 연도: {company.get('base_year')}",
+        "",
+        "[AI 리포트 요약]",
+        f"요약: {shorten_text(report.get('executive_summary'), 450)}",
+        f"재무 변화: {shorten_text(report.get('financial_change_summary'), 650)}",
+        f"뉴스 근거 요약: {shorten_text(report.get('news_evidence_summary'), 550)}",
+        f"공시 근거 요약: {shorten_text(report.get('disclosure_evidence_summary'), 550)}",
+        f"가능한 배경: {shorten_text(report.get('possible_causes'), 450)}",
+        f"한계: {shorten_text(report.get('limitations'), 350)}",
+        "",
+        "[핵심 재무 변화]",
+    ]
+
+    if detected_changes:
+        for item in detected_changes[:max_detected_changes]:
+            lines.append(
+                "- "
+                f"{item.get('year')}년 {item.get('metric_label')} "
+                f"변화율={item.get('yoy_change_rate')}, "
+                f"severity={item.get('severity')}, "
+                f"signal_type={item.get('signal_type')}, "
+                f"설명={shorten_text(item.get('description'), 180)}"
+            )
+    else:
+        lines.append("핵심 재무 변동 정보가 제공되지 않았습니다.")
+
+    lines.extend(["", "[뉴스 근거]"])
+
+    if evidence_news:
+        for idx, item in enumerate(evidence_news[:max_news_items], start=1):
+            lines.append(
+                f"[뉴스 {idx}] "
+                f"title={item.get('title')}, "
+                f"metric={item.get('metric_label')}, "
+                f"summary={shorten_text(item.get('evidence_summary') or item.get('content'), 420)}, "
+                f"url={item.get('url')}"
+            )
+    else:
+        lines.append("리포트 근거로 선별된 뉴스가 없습니다.")
+
+    lines.extend(["", "[공시 근거]"])
+
+    if evidence_disclosures:
+        for idx, item in enumerate(evidence_disclosures[:max_disclosure_items], start=1):
+            lines.append(
+                f"[공시 {idx}] "
+                f"source={item.get('source')}, "
+                f"metric={item.get('metric_label')}, "
+                f"summary={shorten_text(item.get('evidence_summary') or item.get('chunk_text'), 420)}"
+            )
+    else:
+        lines.append("리포트 근거로 선별된 공시/사업보고서 근거가 없습니다.")
+
+    return "\n".join(lines).strip()
+
+
+# ---------------------------------------------------------------------
+# 4. fallback 답변
 # ---------------------------------------------------------------------
 
 def build_fallback_answer(
@@ -213,13 +429,8 @@ def build_fallback_answer(
     chat_context: Dict[str, Any],
     error_message: Optional[str] = None,
 ) -> Dict[str, Any]:
-    """
-    LLM 답변 생성 실패 시 사용할 fallback 답변을 생성합니다.
-    """
-
     company = chat_context.get("company", {}) or {}
     report = chat_context.get("report", {}) or {}
-
     company_name = company.get("company_name") or "해당 기업"
 
     answer = (
@@ -256,32 +467,25 @@ def build_fallback_answer(
 
 
 # ---------------------------------------------------------------------
-# 4. Report Chat Chain
+# 5. Report Chat Chain
 # ---------------------------------------------------------------------
 
 REPORT_CHAT_SYSTEM_PROMPT = """
 당신은 특정 기업의 재무 분석 리포트에 대해 질의응답을 수행하는 AI 챗봇입니다.
+반드시 JSON만 반환하세요. 마크다운, 코드블록, 추가 설명 문장은 출력하지 마세요.
 
-목표:
-- 사용자의 질문에 대해 제공된 리포트 context 안에서만 답변합니다.
-- 재무 데이터, signals, detected_changes, 뉴스 근거, 공시 근거를 바탕으로 설명합니다.
-- 답변은 JSON 형식으로만 반환합니다.
+원칙:
+- 제공된 리포트 context, 이전 대화, 사용 가능한 근거 목록 안에서만 답변하세요.
+- context에 없는 사실은 만들지 마세요.
+- 뉴스나 공시를 재무 변화의 직접 원인으로 단정하지 마세요.
+- "가능한 배경", "관련 요인", "검토할 수 있다", "추가 확인이 필요하다"처럼 신중하게 표현하세요.
+- 투자 추천, 매수/매도/보유, 목표주가 판단은 절대 하지 마세요.
+- 현재 질문이 "방금 답변", "그 내용", "두 번째 뉴스", "앞에서 말한 공시"처럼 이전 대화를 가리키면 [이전 대화]를 참고하세요.
+- 단, 최종 근거는 반드시 제공된 AI 리포트, 뉴스 근거, 공시 근거 안에서만 사용하세요.
+- used_sources에는 실제 답변에 사용한 source_id만 넣으세요.
+- answer는 자연스러운 한국어 문장으로 작성하세요.
 
-중요 원칙:
-1. 반드시 JSON만 반환하세요.
-2. 마크다운, 코드블록, 추가 설명 문장을 출력하지 마세요.
-3. 제공된 context에 없는 사실은 임의로 만들지 마세요.
-4. 모르는 내용은 모른다고 말하고, 추가 확인이 필요하다고 작성하세요.
-5. 뉴스나 공시 내용을 재무 변화의 직접 원인으로 단정하지 마세요.
-6. "가능한 배경", "관련 요인", "언급됩니다", "추가 확인이 필요합니다"처럼 신중한 표현을 사용하세요.
-7. 투자 추천, 매수, 매도, 보유, 목표주가 판단을 절대 하지 마세요.
-8. 사용자가 투자 판단을 요구하면, 제공된 재무 정보와 리스크 요약까지만 설명하고 투자 조언은 할 수 없다고 답하세요.
-9. 수치 질문에는 context에 있는 수치를 그대로 사용하고 새로 계산하지 마세요.
-10. 답변에 사용한 근거가 있다면 used_sources에 source_id를 포함하세요.
-11. 사용자가 "방금 답변", "그 내용", "두 번째 뉴스", "앞에서 말한 공시"처럼 이전 대화를 가리키는 경우 [이전 대화]를 참고하세요.
-12. 단, 이전 대화에 있더라도 최종 답변의 근거는 반드시 제공된 리포트 context와 사용 가능한 근거 목록 안에서만 사용하세요.
-
-반환 JSON 형식:
+반환 JSON:
 {{
   "answer": "",
   "used_sources": [
@@ -298,31 +502,24 @@ REPORT_CHAT_SYSTEM_PROMPT = """
 
 
 def build_report_chat_chain(llm):
-    """
-    Report Q&A 전용 Chain을 생성합니다.
-    """
-
     prompt = ChatPromptTemplate.from_messages(
         [
             ("system", REPORT_CHAT_SYSTEM_PROMPT),
             (
                 "human",
                 """
-다음은 특정 기업의 재무 분석 리포트 context입니다.
-
-[Context]
+[리포트 Context]
 {context_text}
+
+{chat_history_text}
 
 [사용 가능한 근거 목록]
 {available_sources_json}
 
-[이전 대화]
-{chat_history_text}
-
-[현재 사용자 질문]
+[현재 질문]
 {question}
 
-위 context와 이전 대화를 참고하되, 최종 답변은 제공된 근거 안에서만 생성하세요.
+위 정보만 근거로 답변 JSON을 생성하세요.
 """,
             ),
         ]
@@ -338,27 +535,30 @@ def clean_chat_answer(
     llm: Any,
     chat_history: Optional[List[Dict[str, Any]]] = None,
 ) -> Dict[str, Any]:
-    """
-    LLM이 반환한 답변 JSON을 최종 필드 기준으로 정리합니다.
-    """
-
     available_sources = build_available_sources(chat_context)
+    normalized_chat_history = normalize_chat_history(chat_history)
 
     answer = safe_text(parsed.get("answer", "")).strip()
-    limitations = safe_text(parsed.get("limitations", "")).strip()
+    answer = convert_object_answer_to_text(answer)
+
+    limitations = normalize_limitations(
+        limitations=parsed.get("limitations", ""),
+        chat_context=chat_context,
+    )
 
     if not answer:
         answer = "제공된 리포트 context만으로는 해당 질문에 답변하기 어렵습니다."
-
-    if not limitations:
-        limitations = "본 답변은 제공된 AI 리포트, 재무 데이터, 뉴스 근거, 공시 근거에 한정됩니다."
 
     used_sources = clean_used_sources(
         used_sources=parsed.get("used_sources", []),
         available_sources=available_sources,
     )
 
-    normalized_history = normalize_chat_history(chat_history)
+    if not used_sources:
+        used_sources = infer_used_sources_from_question(
+            question=question,
+            available_sources=available_sources,
+        )
 
     return {
         "answer": answer,
@@ -372,7 +572,8 @@ def clean_chat_answer(
             "available_source_count": len(available_sources),
             "used_source_count": len(used_sources),
             "chat_history_used": has_chat_history(chat_history),
-            "chat_history_count": len(normalized_history),
+            "chat_history_count": len(normalized_chat_history),
+            "prompt_compaction_applied": True,
         },
     }
 
@@ -382,21 +583,8 @@ def answer_report_question(
     question: str,
     chat_context: Dict[str, Any],
     chat_history: Optional[List[Dict[str, Any]]] = None,
-    max_context_chars: int = 10000,
+    max_context_chars: int = 6500,
 ) -> Dict[str, Any]:
-    """
-    리포트 기반 사용자 질문에 답변합니다.
-
-    Args:
-        llm: 공통 LLM 객체
-        question: 사용자 질문
-        chat_context: chat_context_builder.build_chat_context() 결과
-        max_context_chars: LLM에 넣을 context_text 최대 길이
-
-    Returns:
-        답변 JSON dict
-    """
-
     question = safe_text(question).strip()
 
     if not question:
@@ -413,12 +601,20 @@ def answer_report_question(
         }
 
     context_text = shorten_text(
-        chat_context.get("context_text", ""),
+        build_compact_context_text(chat_context),
         max_length=max_context_chars,
     )
-    chat_history_text = build_chat_history_text(chat_history)
 
     available_sources = build_available_sources(chat_context)
+    compact_sources = build_compact_sources_for_prompt(
+        available_sources=available_sources,
+        max_summary_chars=220,
+    )
+    chat_history_text = build_chat_history_text(
+        chat_history,
+        max_messages=6,
+        max_chars_per_message=450,
+    )
 
     chain = build_report_chat_chain(llm)
 
@@ -426,13 +622,8 @@ def answer_report_question(
         raw_output = chain.invoke(
             {
                 "context_text": context_text,
-                "available_sources_json": json.dumps(
-                    available_sources,
-                    ensure_ascii=False,
-                    indent=2,
-                    default=str,
-                ),
                 "chat_history_text": chat_history_text,
+                "available_sources_json": compact_json(compact_sources),
                 "question": question,
             }
         )
@@ -455,24 +646,19 @@ def answer_report_question(
             chat_context=chat_context,
             error_message=str(error),
         )
-        fallback_metadata = fallback.get("metadata", {}) or {}
-        fallback_metadata["chat_history_used"] = has_chat_history(chat_history)
-        fallback_metadata["chat_history_count"] = len(normalize_chat_history(chat_history))
-        fallback["metadata"] = fallback_metadata
+        fallback["metadata"]["chat_history_used"] = has_chat_history(chat_history)
+        fallback["metadata"]["chat_history_count"] = len(normalize_chat_history(chat_history))
+        fallback["metadata"]["prompt_compaction_applied"] = True
+
         return fallback
 
 
-# 호환용 alias
 def chat_with_report(
     llm,
     question: str,
     chat_context: Dict[str, Any],
     chat_history: Optional[List[Dict[str, Any]]] = None,
 ) -> Dict[str, Any]:
-    """
-    answer_report_question()의 alias 함수입니다.
-    """
-
     return answer_report_question(
         llm=llm,
         question=question,
@@ -482,7 +668,7 @@ def chat_with_report(
 
 
 # ---------------------------------------------------------------------
-# 5. 단독 실행 테스트
+# 6. 단독 실행 테스트
 # ---------------------------------------------------------------------
 
 if __name__ == "__main__":
@@ -494,25 +680,13 @@ if __name__ == "__main__":
         from llm_client import get_llm
 
     sample_ai_report_result = {
-        "company_info": {
-            "company_name": "삼성전자",
-            "stock_code": "005930",
-        },
+        "company_info": {"company_name": "삼성전자", "stock_code": "005930"},
         "industry_info": {
             "industry_group": "tech_equipment",
             "industry_group_name": "기술 및 장치 산업",
         },
         "analysis_year": 2023,
         "base_year": 2022,
-        "signals": [
-            {
-                "year": 2023,
-                "type": "negative",
-                "severity": "HIGH",
-                "signal": "영업이익 급감",
-                "description": "전년 대비 영업이익이 -84.86% 감소했습니다.",
-            }
-        ],
         "detected_changes": [
             {
                 "metric_key": "operating_income",
@@ -539,6 +713,7 @@ if __name__ == "__main__":
         "evidence_news": [
             {
                 "metric_label": "영업이익",
+                "year": 2023,
                 "title": "삼성전자 영업이익 급감",
                 "url": "https://example.com/news",
                 "evidence_summary": "반도체 업황 부진이 영업이익 감소 배경으로 보도되었습니다.",
@@ -547,6 +722,7 @@ if __name__ == "__main__":
         "evidence_disclosures": [
             {
                 "metric_label": "영업이익",
+                "year": 2023,
                 "report_type": "사업보고서",
                 "section": "사업의 내용",
                 "source": "2023_삼성전자_사업보고서_mock",
@@ -558,14 +734,25 @@ if __name__ == "__main__":
 
     llm = get_llm()
     context = build_chat_context(sample_ai_report_result)
+    questions = [
+        "삼성전자는 2023년에 영업이익이 왜 감소했어?",
+        "뉴스 근거와 공시 근거를 나눠서 설명해줘.",
+        "그럼 첫 번째 뉴스는 어떤 의미야?",
+    ]
+    history: List[Dict[str, str]] = []
 
-    question = "삼성전자는 2023년에 영업이익이 왜 감소했어?"
+    print("[Fast Report Chat Chain Test]")
 
-    answer = answer_report_question(
-        llm=llm,
-        question=question,
-        chat_context=context,
-    )
+    for question in questions:
+        answer = answer_report_question(
+            llm=llm,
+            question=question,
+            chat_context=context,
+            chat_history=history,
+        )
 
-    print("[Report Chat Chain Test]")
-    print(json.dumps(answer, ensure_ascii=False, indent=2))
+        print("\nQuestion:", question)
+        print(json.dumps(answer, ensure_ascii=False, indent=2))
+
+        history.append({"role": "user", "content": question})
+        history.append({"role": "assistant", "content": answer.get("answer", "")})
