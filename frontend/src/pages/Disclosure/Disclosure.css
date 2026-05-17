@@ -48,7 +48,7 @@
   flex-direction: column;
   gap: 6px;
   padding-top: 10px;
-  border-top: 1px solid var(--border, #252d3d);
+  border-top: 1px solid var(--border);
 }
 
 .dc-finding-item {
@@ -63,7 +63,7 @@
   content: '·';
   position: absolute;
   left: 2px;
-  color: var(--accent, #4f8ef7);
+  color: var(--accent);
 }
 
 /* ===== 섹션 카드 ===== */
@@ -73,7 +73,7 @@
 
 .dc-section-content {
   font-size: 13px;
-  color: var(--text, #8899bb);
+  color: var(--text);
   line-height: 1.7;
   margin: 0;
   white-space: pre-line;
@@ -90,7 +90,7 @@
 
 .dc-meta-item {
   font-size: 11px;
-  color: var(--text-muted, #5a6680);
+  color: var(--text-muted);
 }
 
 /* ===== 구형 형식 (legacy) ===== */
@@ -104,7 +104,7 @@
 
 .dc-section-num {
   margin-right: 6px;
-  color: var(--accent, #4f8ef7);
+  color: var(--accent);
 }
 
 .dc-section-list {
@@ -118,7 +118,7 @@
 
 .dc-section-item {
   font-size: 13px;
-  color: var(--text, #8899bb);
+  color: var(--text);
   line-height: 1.6;
   padding-left: 12px;
   position: relative;
@@ -128,7 +128,7 @@
   content: '–';
   position: absolute;
   left: 0;
-  color: var(--border, #252d3d);
+  color: var(--border);
 }
 
 /* ===== Warning Signals (legacy) ===== */
@@ -149,7 +149,7 @@
   gap: 8px;
   padding: 8px 10px;
   border-radius: 8px;
-  border: 1px solid var(--border, #252d3d);
+  border: 1px solid var(--border);
 }
 
 .dc-warning-dot {
@@ -166,6 +166,6 @@
   line-height: 1.5;
 }
 
-.dc-warning-high   { color: #f87171; background: rgba(248,113,113,0.08); }
-.dc-warning-medium { color: #fb923c; background: rgba(251,146,60,0.08);  }
-.dc-warning-low    { color: #4ade80; background: rgba(74,222,128,0.08);  }
+.dc-warning-high   { color: var(--warning-high-color);   background: var(--warning-high-bg); }
+.dc-warning-medium { color: var(--warning-medium-color); background: var(--warning-medium-bg); }
+.dc-warning-low    { color: var(--warning-low-color);    background: var(--warning-low-bg); }

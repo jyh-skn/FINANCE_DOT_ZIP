@@ -64,7 +64,7 @@
   justify-content: space-between;
   align-items: baseline;
   padding: 4px 0;
-  border-bottom: 1px solid var(--border, #252d3d);
+  border-bottom: 1px solid var(--border);
 }
 
 .bi-item:last-child {
@@ -73,12 +73,12 @@
 
 .bi-label {
   font-size: 10px;
-  color: var(--text-muted, #9eb0cc);
+  color: var(--text-muted);
 }
 
 .bi-value {
   font-size: 11px;
-  color: var(--text-primary, #d0d8f0);
+  color: var(--text-primary);
   font-weight: 500;
   text-align: right;
 }
@@ -86,17 +86,17 @@
 .bi-ticker {
   font-size: 14px;
   font-weight: 700;
-  color: var(--accent, #4f8ef7);
+  color: var(--accent);
   letter-spacing: 0.04em;
 }
 
 .bi-summary {
   font-size: 11px;
-  color: var(--text, #8899bb);
+  color: var(--text);
   line-height: 1.5;
   margin: 10px 0 0;
   padding-top: 10px;
-  border-top: 1px solid var(--border, #252d3d);
+  border-top: 1px solid var(--border);
 }
 
 /* ===== PriceSignal ===== */
@@ -114,7 +114,7 @@
 .ps-price {
   font-size: 22px;
   font-weight: 700;
-  color: var(--text-primary, #d0d8f0);
+  color: var(--text-primary);
   letter-spacing: -0.02em;
 }
 
@@ -142,7 +142,7 @@
 
 .ps-signal-label {
   font-size: 10px;
-  color: var(--text-muted, #8899bb);
+  color: var(--text-muted);
 }
 
 .ps-signal-val {
@@ -152,7 +152,7 @@
 
 .ps-signal-val.up   { color: #ff6b6b; }
 .ps-signal-val.down { color: #4ecdc4; }
-.ps-signal-val.neu  { color: #8899bb; }
+.ps-signal-val.neu  { color: var(--text-secondary); }
 
 /* ===== RevenueChart ===== */
 .rc-wrap {
@@ -177,7 +177,7 @@
   align-items: center;
   gap: 4px;
   font-size: 10px;
-  color: var(--text-muted, #8899bb);
+  color: var(--text-muted);
 }
 
 .rc-legend-dot {
@@ -207,7 +207,7 @@
 .ft-tabs {
   display: flex;
   gap: 2px;
-  background: var(--bg-input, #1a2035);
+  background: var(--bg-input);
   border-radius: 6px;
   padding: 2px;
 }
@@ -218,14 +218,14 @@
   font-weight: 500;
   border: none;
   background: transparent;
-  color: var(--text-muted, #5a6680);
+  color: var(--text-muted);
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.15s;
 }
 
 .ft-tab-btn.active {
-  background: var(--accent, #4f8ef7);
+  background: var(--accent);
   color: #fff;
 }
 
@@ -240,8 +240,8 @@
   text-align: right;
   font-size: 10px;
   font-weight: 600;
-  color: var(--text-muted, #5a6680);
-  border-bottom: 1px solid var(--border, #252d3d);
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
 }
 
 .ft-table thead th:first-child { text-align: left; }

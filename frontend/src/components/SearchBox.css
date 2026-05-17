@@ -1,0 +1,105 @@
+/* ── SearchBox.css ── */
+
+.sb-wrap {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.sb-input-wrap {
+  position: relative;
+  flex: 1;
+}
+
+.sb-input {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-h);
+  font-size: 14px;
+  font-family: inherit;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.sb-input::placeholder {
+  color: var(--text-muted);
+}
+
+.sb-input:focus {
+  border-color: var(--accent);
+}
+
+/* 드롭다운 */
+.sb-dropdown {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  width: 100%;
+  background: var(--bg-card);
+  border: 1px solid var(--border-panel);
+  border-radius: 4px;
+  z-index: 100;
+  max-height: 200px;
+  overflow-y: auto;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  box-shadow: var(--shadow);
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-color) transparent;
+}
+
+.sb-dropdown::-webkit-scrollbar { width: 4px; }
+.sb-dropdown::-webkit-scrollbar-thumb { background: var(--scrollbar-color); border-radius: 4px; }
+
+/* 드롭다운 항목 */
+.sb-item {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--border-subtle);
+  text-align: left;
+  font-size: 12px;
+  line-height: 20px;
+  color: var(--text-secondary);
+  background: transparent;
+  transition: background 0.1s, color 0.1s;
+}
+
+.sb-item:last-child {
+  border-bottom: none;
+}
+
+.sb-item:hover,
+.sb-item.focused {
+  background: var(--accent-bg);
+  color: var(--text-h);
+}
+
+.sb-item-code {
+  color: var(--text-muted);
+  margin-left: 4px;
+}
+
+/* 검색 버튼 */
+.sb-search-btn {
+  padding: 10px 20px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.15s;
+}
+
+.sb-search-btn:hover {
+  opacity: 0.85;
+}
