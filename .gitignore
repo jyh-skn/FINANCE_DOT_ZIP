@@ -55,9 +55,16 @@ data/processed/
 !data/export/**/
 !data/export/**/*.csv
 
+# Local disclosure test exports; final disclosure outputs live under data/export/disclosure/
+data/export/kospi_001/disclosure_business_sections.csv
+data/export/kospi_001/disclosure_business_sections_ver2.csv
+data/export/kospi_001/major_disclosures_ver2.csv
+data/export/kospi_001/major_event_occurrences.csv
+
 # Company master artifacts for batch assignment
 !data/company_master/
 !data/company_master/listed_companies_master.csv
+!data/company_master/companies_for_db.csv
 !data/company_master/company_batch_summary.md
 
 # 캐시
