@@ -5,10 +5,10 @@
   flex-direction: column;
   flex: 1;
   min-height: 0;
-  background: #14161d;
+  background: var(--bg);
   font-family: "Pretendard", "Noto Sans KR", -apple-system, sans-serif;
   font-size: 13px;
-  color: #dde0ee;
+  color: var(--text-primary);
   overflow: hidden;
 }
 
@@ -18,7 +18,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 16px 18px;
-  border-bottom: 1px solid #1c1f2e;
+  border-bottom: 1px solid var(--border-subtle);
   flex-shrink: 0;
 }
 
@@ -32,24 +32,24 @@
   width: 30px;
   height: 30px;
   border-radius: 8px;
-  background: #1d2236;
-  border: 1px solid #272e48;
+  background: var(--ai-accent-bg);
+  border: 1px solid var(--ai-accent-border);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #7b9fff;
+  color: var(--ai-accent);
 }
 
 .acp-header-title {
   font-size: 15px;
   font-weight: 600;
   letter-spacing: -0.02em;
-  color: #e4e7f5;
+  color: var(--text-h);
 }
 
 .acp-report-loading {
   font-size: 11px;
-  color: #7b9fff;
+  color: var(--ai-accent);
   opacity: 0.8;
   animation: acp-pulse 1.4s ease-in-out infinite;
 }
@@ -64,10 +64,10 @@
   flex: 1;
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: #1e2235 transparent;
+  scrollbar-color: var(--scrollbar-color) transparent;
 }
 .acp-body::-webkit-scrollbar { width: 4px; }
-.acp-body::-webkit-scrollbar-thumb { background: #1e2235; border-radius: 4px; }
+.acp-body::-webkit-scrollbar-thumb { background: var(--scrollbar-color); border-radius: 4px; }
 
 /* 메시지 목록 */
 .acp-messages {
@@ -98,14 +98,14 @@
   flex-shrink: 0;
 }
 .acp-avatar.bot {
-  background: #1d2236;
-  border: 1px solid #272e48;
-  color: #7b9fff;
+  background: var(--ai-accent-bg);
+  border: 1px solid var(--ai-accent-border);
+  color: var(--ai-accent);
 }
 .acp-avatar.user {
-  background: #263080;
-  border: 1px solid #3040a0;
-  color: #a0b4ff;
+  background: var(--avatar-user-bg);
+  border: 1px solid var(--avatar-user-border);
+  color: var(--avatar-user-color);
 }
 
 /* 말풍선 + 시간 묶음 */
@@ -127,19 +127,19 @@
   text-align: left;
 }
 .acp-row.assistant .acp-bubble {
-  background: #1c2030;
-  color: #cdd2e8;
+  background: var(--bubble-assistant-bg);
+  color: var(--bubble-assistant-color);
   border-top-left-radius: 4px;
 }
 .acp-row.user .acp-bubble {
-  background: #3d52c4;
-  color: #e8ecff;
+  background: var(--bubble-user-bg);
+  color: var(--bubble-user-color);
   border-top-right-radius: 4px;
 }
 
 .acp-time {
   font-size: 11px;
-  color: #363d58;
+  color: var(--text-subtle);
   padding: 0 2px;
 }
 
@@ -156,7 +156,7 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #5b6a9e;
+  background: var(--dot-color);
   animation: acp-bounce 1.2s infinite;
 }
 .acp-dot:nth-child(2) { animation-delay: 0.2s; }
@@ -170,15 +170,15 @@
 /* 입력창 */
 .acp-input-area {
   padding: 10px 12px 14px;
-  border-top: 1px solid #1c1f2e;
+  border-top: 1px solid var(--border-subtle);
   flex-shrink: 0;
 }
 
 .acp-input-box {
   display: flex;
   align-items: center;
-  background: #1c2030;
-  border: 1px solid #252b40;
+  background: var(--bubble-assistant-bg);
+  border: 1px solid var(--border-panel);
   border-radius: 10px;
   overflow: hidden;
 }
@@ -188,28 +188,28 @@
   background: none;
   border: none;
   outline: none;
-  color: #cdd2e8;
+  color: var(--bubble-assistant-color);
   font-size: 13px;
   font-family: inherit;
   padding: 13px 14px;
 }
-.acp-input::placeholder { color: #363d58; }
+.acp-input::placeholder { color: var(--text-subtle); }
 .acp-input:disabled { opacity: 0.5; }
                       
 .acp-send-btn {
   width: 46px;
   height: 46px;
-  background: var(--accent, #2e44b8);
+  background: var(--send-btn-bg);
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: #8aa0ff;
+  color: var(--send-btn-icon-color);
   flex-shrink: 0;
   margin: 3px;
   border-radius: 8px;
   transition: background 0.15s, opacity 0.15s;
 }
-.acp-send-btn:hover:not(:disabled) { background: #3d52c4; }
+.acp-send-btn:hover:not(:disabled) { background: var(--send-btn-hover-bg); }
 .acp-send-btn:disabled { opacity: 0.4; cursor: not-allowed; }

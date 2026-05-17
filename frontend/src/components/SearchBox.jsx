@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './SearchBox.css';
 
 export function SearchBox({ onSearch, onKeyIn, searchResults, keyword, onKeywordChange, onCompanySelect }) {
   // 현재 키보드로 포커스된 아이템의 인덱스 (-1은 선택 없음)
@@ -52,73 +53,38 @@ export function SearchBox({ onSearch, onKeyIn, searchResults, keyword, onKeyword
       default:
         break;
     }
-  }
+  };
 
   return (
-    <div style={{ display: 'flex', gap: '10px', width: '100%' }}>
-  
-      {/* 1. Input과 드롭다운을 감싸는 컨테이너 (여기에 position: relative를 줍니다) */}
-      <div style={{ position: 'relative', flex: 1 }}>
-        <input 
-          type="text" 
+    <div className="sb-wrap">
+      <div className="sb-input-wrap">
+        <input
+          className="sb-input"
+          type="text"
           value={keyword}
           placeholder="기업명을 입력하세요"
           onChange={handleInputChange}
           onKeyDown={handleInputKeydown}
-          style={{ 
-            width: '100%',
-            height: '100%',
-            padding: '10px', 
-            borderRadius: '4px', 
-            border: '1px solid #ccc',
-            boxSizing: 'border-box'
-          }}
           maxLength="20"
         />
         {/* 검색 결과가 있을 때만 ul 표시 */}
         {searchResults && searchResults.length > 0 && (
-          <ul style={{ 
-            position: 'absolute', // 아래 컨텐츠를 밀어내지 않음
-            top: '45px', 
-            left: 0, 
-            
-            width: '100%',
-            backgroundColor: '#1e2330', 
-            border: '1px solid #343d52',
-            borderRadius: '4px',
-            zIndex: 100,
-            maxHeight: '200px',
-            overflowY: 'auto',
-            listStyle: 'none',
-            padding: 0,
-            margin: 0,
-            boxShadow: '0 8px 16px rgba(0, 0, 0, 0.4)'
-          }}>
-          {searchResults.map((company, index) => (
-              <li 
-                key={index} 
+          <ul className="sb-dropdown">
+            {searchResults.map((company, index) => (
+              <li
+                key={index}
+                className={`sb-item${focusedIndex === index ? ' focused' : ''}`}
                 onClick={() => handleItemClick(company)}
-                style={{ 
-                  padding: '10px', 
-                  cursor: 'pointer', 
-                  borderBottom: '1px solid #eee',
-                  // 포커스된 아이템 배경색 변경
-                  backgroundColor: focusedIndex === index ? '#f0f0f0' : 'transparent',
-                  textAlign: 'left',
-                  fontSize: '12px',
-                  height: '20px',
-                  color: '#8899bb',
-                }}
                 onMouseOver={() => setFocusedIndex(index)}
               >
-                {company.CORP_NAME} <small style={{ color: '#888' }}>{company.CORP_CODE}</small>
-              </li>
+                {company.CORP_NAME}
+                <small className="sb-item-code">{company.CORP_CODE}</small>              </li>
             ))}
           </ul>
         )}
       </div>
-        <button onClick={() => onSearch(keyword)} style={{ padding: '10px 20px' }}>분석</button>
-    </div>
+      <button className="sb-search-btn" onClick={() => onSearch(keyword)}>분석</button>
+	</div>
     
   );
 }

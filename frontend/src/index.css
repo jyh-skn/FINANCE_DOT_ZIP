@@ -1,8 +1,23 @@
 :root {
+  /* ── 기본 팔레트 (light) ── */
   --text: #6b6375;
   --text-h: #08060d;
+  --text-primary: #1a1b2e;
+  --text-secondary: #4a5568;
+  --text-muted: #718096;
+  --text-subtle: #a0aec0;
+
   --bg: #fff;
+  --bg-card: #f8f9fc;
+  --bg-deep: #f0f1f5;
+  --bg-input: #f0f2fa;
+  --bg-subtle: #f4f5f8;
+
   --border: #e5e4e7;
+  --border-subtle: #e8e8ed;
+  --border-panel: #dddde8;
+  --border-elevated: #d0d0e0;
+
   --code-bg: #f4f3ec;
   --accent: #aa3bff;
   --accent-bg: rgba(170, 59, 255, 0.1);
@@ -10,6 +25,31 @@
   --social-bg: rgba(244, 243, 236, 0.5);
   --shadow:
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+
+    /* ── AI 채팅 패널 (light) ── */
+  --ai-accent: #3b6ff0;
+  --ai-accent-bg: #e8effd;
+  --ai-accent-border: #c5d8fa;
+  --bubble-assistant-bg: #eef0f8;
+  --bubble-assistant-color: #1a1b2e;
+  --bubble-user-bg: #4f6ad0;
+  --bubble-user-color: #ffffff;
+  --avatar-user-bg: #3d52b8;
+  --avatar-user-border: #5566d0;
+  --avatar-user-color: #d0dcff;
+  --dot-color: #8894c0;
+  --scrollbar-color: #c5c8d8;
+  --send-btn-bg: #4f6ad0;
+  --send-btn-hover-bg: #3d52b8;
+  --send-btn-icon-color: #d0dcff;
+
+  /* ── 위험 신호 색상 (light) ── */
+  --warning-high-color: #dc2626;
+  --warning-high-bg: rgba(220, 38, 38, 0.08);
+  --warning-medium-color: #ea580c;
+  --warning-medium-bg: rgba(234, 88, 12, 0.08);
+  --warning-low-color: #16a34a;
+  --warning-low-bg: rgba(22, 163, 74, 0.08);
 
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
   --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
@@ -32,10 +72,24 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
+    /* ── 기본 팔레트 (dark) ── */
     --text: #9ca3af;
     --text-h: #f3f4f6;
+    --text-primary: #d0d8f0;
+    --text-secondary: #8899bb;
+    --text-muted: #5a6680;
+    --text-subtle: #363d58;
+
     --bg: #16171d;
+    --bg-card: #1c2030;
+    --bg-deep: #14161d;
+    --bg-input: #1a2035;
+    --bg-subtle: #141720;
+
     --border: #2e303a;
+    --border-subtle: #1c1f2e;
+    --border-panel: #252b40;
+    --border-elevated: #272e48;
     --code-bg: #1f2028;
     --accent: #c084fc;
     --accent-bg: rgba(192, 132, 252, 0.15);
@@ -43,6 +97,31 @@
     --social-bg: rgba(47, 48, 58, 0.5);
     --shadow:
       rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+    
+    /* ── AI 채팅 패널 (dark) ── */
+    --ai-accent: #7b9fff;
+    --ai-accent-bg: #1d2236;
+    --ai-accent-border: #272e48;
+    --bubble-assistant-bg: #1c2030;
+    --bubble-assistant-color: #cdd2e8;
+    --bubble-user-bg: #3d52c4;
+    --bubble-user-color: #e8ecff;
+    --avatar-user-bg: #263080;
+    --avatar-user-border: #3040a0;
+    --avatar-user-color: #a0b4ff;
+    --dot-color: #5b6a9e;
+    --scrollbar-color: #1e2235;
+    --send-btn-bg: #2e44b8;
+    --send-btn-hover-bg: #3d52c4;
+    --send-btn-icon-color: #8aa0ff;
+
+    /* ── 위험 신호 색상 (dark) ── */
+    --warning-high-color: #f87171;
+    --warning-high-bg: rgba(248, 113, 113, 0.08);
+    --warning-medium-color: #fb923c;
+    --warning-medium-bg: rgba(251, 146, 60, 0.08);
+    --warning-low-color: #4ade80;
+    --warning-low-bg: rgba(74, 222, 128, 0.08);
   }
 
   #social .button-icon {
