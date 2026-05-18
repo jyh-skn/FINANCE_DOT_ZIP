@@ -3,7 +3,7 @@ comprehensive_report_service.py
 
 AI 재무 분석 리포트 파이프라인을 하나로 연결하는 상위 서비스 모듈입니다.
 
-v5 Vector DB RAG 연결 버전:
+v6 Vector DB RAG + News Quality Filter 버전:
 1. Backend/Data 파트에서 ai_input을 받습니다.
 2. 공통 LLM 객체를 가져옵니다.
 3. financial_context_builder.py로 재무 문맥을 생성합니다.
@@ -12,15 +12,23 @@ v5 Vector DB RAG 연결 버전:
    - detected_changes가 있으면 signal 기반 query 생성
    - detected_changes가 없으면 기업 일반 동향 query 생성
 6. Tavily 뉴스 후보를 수집합니다.
-   - 현재 뉴스 Vector DB 실시간 적재 단계는 별도 vector_db/news ingest 쪽에서 담당합니다.
-7. Vector DB에서 공시 근거를 검색합니다.
-8. Vector DB에서 뉴스 근거를 검색합니다.
-9. Vector DB 뉴스 근거가 없으면 기존 Tavily evidence filtering 결과를 fallback으로 사용합니다.
-10. report_writer_chain.py로 최종 리포트 JSON을 생성합니다.
+   - news_search_cache_service.py를 통해 동일 조건 반복 검색은 캐시를 사용합니다.
+7. Tavily 뉴스 후보를 Vector DB에 실시간 적재합니다.
+8. Vector DB에서 공시 근거를 검색합니다.
+9. Vector DB에서 뉴스 근거를 검색합니다.
+10. Vector DB 뉴스 근거에 rule-based 품질 필터를 적용합니다.
+    - 기업명 미포함 기사 제거
+    - 지표 관련성 확인
+    - 분석연도 관련성 확인
+    - 개인 투자자/증시 일반/명품주 등 오프토픽 기사 감점
+11. 품질 필터를 통과한 Vector DB 뉴스 근거가 있으면 우선 사용합니다.
+12. 품질 필터 통과 뉴스가 없으면 기존 Tavily LLM evidence filtering 결과를 fallback으로 사용합니다.
+13. report_writer_chain.py로 최종 리포트 JSON을 생성합니다.
 
 주의:
-- 뉴스 Vector DB가 실시간 적재 후 비워지는 구조라면 evidence_news_count=0이 정상일 수 있습니다.
-- 이 경우 기존 Tavily 검색 결과를 fallback evidence_news로 사용합니다.
+- 일반 DB companies 테이블에 존재하는 기업이라고 해서 Vector DB disclosure/news chunk가 반드시 존재하는 것은 아닙니다.
+- 삼성전자처럼 일반 DB에는 있고 뉴스 chunk는 있으나 disclosure chunk는 없는 케이스가 가능합니다.
+- 뉴스 Vector DB가 실시간 적재 후 비워지는 구조라면, 뉴스 upsert를 생략하면 안 됩니다.
 """
 
 import json
@@ -32,6 +40,10 @@ from src.ai.financial_context_builder import build_financial_context
 from src.ai.industry_analysis_rules import build_industry_analysis_instruction
 from src.ai.llm_client import get_llm
 from src.ai.news_evidence_filter import filter_evidence
+from src.ai.news_evidence_quality_filter import (
+    filter_news_evidence_quality,
+    summarize_quality_filter_result,
+)
 from src.ai.news_query_builder import build_news_queries
 from src.ai.news_search_cache_service import search_news_by_query_groups_cached
 from src.ai.report_writer_chain import generate_report
@@ -154,6 +166,22 @@ def build_empty_news_ingest_result() -> Dict[str, Any]:
     }
 
 
+def build_empty_news_quality_filter_result() -> Dict[str, Any]:
+    """
+    뉴스 품질 필터 미적용 또는 대상 없음 fallback 결과입니다.
+    """
+
+    return {
+        "source": "news_evidence_quality_filter",
+        "applied": False,
+        "before_count": 0,
+        "after_count": 0,
+        "removed_count": 0,
+        "quality_scores": [],
+        "reason": "No quality filter applied.",
+    }
+
+
 def try_upsert_news_to_vector_db(
     searched_news: List[Dict[str, Any]],
     ai_input: Dict[str, Any],
@@ -246,6 +274,55 @@ def try_retrieve_news_context(
         return result
 
 
+def apply_news_quality_filter(
+    evidence_news: List[Dict[str, Any]],
+    ai_input: Dict[str, Any],
+    max_items: int = 3,
+    min_quality_score: float = 3.0,
+    require_company_mention: bool = True,
+) -> Dict[str, Any]:
+    """
+    Vector DB 또는 fallback 뉴스 evidence에 품질 필터를 적용합니다.
+
+    Returns:
+        {
+            "filtered_news": [...],
+            "metadata": {...}
+        }
+    """
+
+    before_news = evidence_news or []
+
+    if not before_news:
+        metadata = build_empty_news_quality_filter_result()
+        metadata["reason"] = "evidence_news is empty."
+        return {
+            "filtered_news": [],
+            "metadata": metadata,
+        }
+
+    filtered_news = filter_news_evidence_quality(
+        evidence_news=before_news,
+        ai_input=ai_input,
+        min_quality_score=min_quality_score,
+        max_items=max_items,
+        require_company_mention=require_company_mention,
+    )
+
+    metadata = summarize_quality_filter_result(
+        before_news=before_news,
+        after_news=filtered_news,
+    )
+    metadata["applied"] = True
+    metadata["min_quality_score"] = min_quality_score
+    metadata["require_company_mention"] = require_company_mention
+
+    return {
+        "filtered_news": filtered_news,
+        "metadata": metadata,
+    }
+
+
 # ---------------------------------------------------------------------
 # 3. 최종 JSON 조립
 # ---------------------------------------------------------------------
@@ -260,6 +337,7 @@ def build_final_report_json(
     disclosure_result: Optional[Dict[str, Any]] = None,
     news_result: Optional[Dict[str, Any]] = None,
     news_ingest_result: Optional[Dict[str, Any]] = None,
+    news_quality_filter_result: Optional[Dict[str, Any]] = None,
     model_name: str = "unknown",
     include_searched_news: bool = True,
     industry_analysis_instruction: Optional[str] = None,
@@ -271,12 +349,30 @@ def build_final_report_json(
     disclosure_result = disclosure_result or build_empty_disclosure_result()
     news_result = news_result or build_empty_news_result()
     news_ingest_result = news_ingest_result or build_empty_news_ingest_result()
+    news_quality_filter_result = news_quality_filter_result or build_empty_news_quality_filter_result()
 
     evidence_news = evidence.get("evidence_news", []) or []
     evidence_disclosures = evidence.get("evidence_disclosures", []) or []
 
     searched_news_for_output = searched_news if include_searched_news else []
     industry_info = get_industry_info(ai_input)
+    evidence_metadata = evidence.get("metadata", {}) or {}
+    news_result_metadata = news_result.get("metadata", {}) or {}
+
+    final_news_source = (
+        evidence_metadata.get("news_source")
+        or evidence_metadata.get("source")
+        or (
+            news_result_metadata.get("source")
+            if news_result.get("evidence_news")
+            else "unknown"
+        )
+    )
+
+    final_news_vector_used = final_news_source in {
+        "vector_db",
+        "vector_db_quality_filtered",
+    }
 
     return {
         "company_info": get_company_info(ai_input),
@@ -302,6 +398,7 @@ def build_final_report_json(
         "disclosure_result": disclosure_result,
         "news_result": news_result,
         "news_ingest_result": news_ingest_result,
+        "news_quality_filter_result": news_quality_filter_result,
 
         "metadata": {
             "model": model_name,
@@ -319,7 +416,7 @@ def build_final_report_json(
             "evidence_news_count": len(evidence_news),
             "evidence_disclosure_count": len(evidence_disclosures),
             "financial_context_source": financial_context.get("source"),
-            "evidence_source": (evidence.get("metadata", {}) or {}).get("source"),
+            "evidence_source": evidence_metadata.get("source"),
             "report_source": report.get("source"),
             "disclosure_attempted": bool(
                 (disclosure_result.get("metadata", {}) or {}).get("enabled")
@@ -327,17 +424,21 @@ def build_final_report_json(
             "disclosure_enabled": bool(disclosure_result.get("evidence_disclosures")),
 
             "news_vector_attempted": bool(
-                (news_result.get("metadata", {}) or {}).get("enabled")
+                news_result_metadata.get("enabled")
             ),
-            "news_vector_enabled": bool(news_result.get("evidence_news")),
-            "news_evidence_source": (
-                (news_result.get("metadata", {}) or {}).get("source")
-                if news_result.get("evidence_news")
-                else (evidence.get("metadata", {}) or {}).get("source")
-            ),
+            "news_vector_retrieved_count": len(news_result.get("evidence_news", []) or []),
+            "news_vector_enabled": bool(final_news_vector_used and evidence_news),
+            "news_evidence_source": final_news_source,
             "news_vector_ingest_enabled": bool(news_ingest_result.get("enabled")),
             "news_vector_upserted_count": news_ingest_result.get("upserted_count", 0),
             "news_vector_chunk_count": news_ingest_result.get("chunk_count", 0),
+
+            "news_quality_filter_applied": bool(news_quality_filter_result.get("applied")),
+            "news_quality_filter_before_count": news_quality_filter_result.get("before_count", 0),
+            "news_quality_filter_after_count": news_quality_filter_result.get("after_count", 0),
+            "news_quality_filter_removed_count": news_quality_filter_result.get("removed_count", 0),
+            "news_quality_scores": news_quality_filter_result.get("quality_scores", []),
+
             "adapter_metadata": ai_input.get("adapter_metadata", {}),
         },
     }
@@ -390,7 +491,6 @@ def create_ai_report(
     log_step_time("news_query_builder", step_start, f"query_group_count={len(query_groups)}")
 
     # 3. Tavily 뉴스 후보 수집
-    # 뉴스 Vector DB 실시간 적재 담당 로직이 별도 모듈에 있다면 이 검색 결과를 upsert에 사용하면 됩니다.
     step_start = time.perf_counter()
     searched_news = search_news_by_query_groups_cached(
         query_groups=query_groups,
@@ -401,6 +501,7 @@ def create_ai_report(
     )
     log_step_time("news_search_service", step_start, f"searched_news_count={len(searched_news)}")
 
+    # 4. 뉴스 Vector DB 실시간 적재
     step_start = time.perf_counter()
     news_ingest_result = try_upsert_news_to_vector_db(
         searched_news=searched_news,
@@ -411,9 +512,11 @@ def create_ai_report(
         step_start,
         f"upserted_count={news_ingest_result.get('upserted_count', 0)}"
     )
+
+    # Pinecone upsert 직후 검색 반영 지연 대응
     time.sleep(3)
 
-    # 4. 공시 Vector DB 검색
+    # 5. 공시 Vector DB 검색
     step_start = time.perf_counter()
     disclosure_result = try_retrieve_disclosure_context(
         ai_input=ai_input,
@@ -427,13 +530,13 @@ def create_ai_report(
         f"evidence_disclosure_count={len(disclosure_result.get('evidence_disclosures', []))}"
     )
 
-    # 5. 뉴스 Vector DB 검색
+    # 6. 뉴스 Vector DB 검색
     step_start = time.perf_counter()
     news_result = try_retrieve_news_context(
         ai_input=ai_input,
         vector_store=vector_store,
         top_k_per_change=3,
-        max_total_results=max_evidence_news,
+        max_total_results=max(max_evidence_news * 2, 5),
     )
     vector_evidence_news = news_result.get("evidence_news", []) or []
     log_step_time(
@@ -442,24 +545,54 @@ def create_ai_report(
         f"evidence_news_count={len(vector_evidence_news)}"
     )
 
-    # 6. 뉴스 evidence 결정
-    # Vector DB 뉴스 근거가 있으면 우선 사용하고, 없으면 기존 Tavily evidence filter를 fallback으로 사용합니다.
-    if vector_evidence_news:
+    # 7. 뉴스 품질 필터 적용
+    # Vector DB 유사도 검색 결과가 있어도 기업명/지표/연도 관련성이 낮으면 제거합니다.
+    step_start = time.perf_counter()
+    vector_quality_filter = apply_news_quality_filter(
+        evidence_news=vector_evidence_news,
+        ai_input=ai_input,
+        max_items=max_evidence_news,
+        min_quality_score=5.0,
+        require_company_mention=True,
+    )
+    quality_filtered_vector_news = vector_quality_filter.get("filtered_news", []) or []
+    news_quality_filter_result = vector_quality_filter.get("metadata", {}) or build_empty_news_quality_filter_result()
+
+    log_step_time(
+        "news_quality_filter",
+        step_start,
+        (
+            f"before={news_quality_filter_result.get('before_count', 0)} "
+            f"after={news_quality_filter_result.get('after_count', 0)} "
+            f"removed={news_quality_filter_result.get('removed_count', 0)}"
+        )
+    )
+
+    # 8. 뉴스 evidence 결정
+    # 품질 필터를 통과한 Vector DB 뉴스가 있으면 우선 사용하고,
+    # 없으면 기존 Tavily LLM evidence filter를 fallback으로 사용합니다.
+    if quality_filtered_vector_news:
         evidence = {
-            "evidence_news": vector_evidence_news[:max_evidence_news],
+            "evidence_news": quality_filtered_vector_news[:max_evidence_news],
             "evidence_disclosures": disclosure_result.get("evidence_disclosures", []) or [],
             "metadata": {
-                "source": "vector_db",
-                "news_source": "vector_db",
+                "source": "vector_db_quality_filtered",
+                "news_source": "vector_db_quality_filtered",
                 "disclosure_source": (
                     (disclosure_result.get("metadata", {}) or {}).get("source")
                 ),
-                "evidence_news_count": len(vector_evidence_news[:max_evidence_news]),
+                "evidence_news_count": len(quality_filtered_vector_news[:max_evidence_news]),
                 "evidence_disclosure_count": len(disclosure_result.get("evidence_disclosures", []) or []),
+                "news_quality_filter": news_quality_filter_result,
             },
         }
-        log_step_time("news_evidence_filter", time.perf_counter(), "skipped=vector_db_news_used")
+        log_step_time(
+            "news_evidence_filter",
+            time.perf_counter(),
+            "skipped=quality_filtered_vector_db_news_used"
+        )
     else:
+        # Vector DB 결과가 없거나 품질 필터를 모두 통과하지 못하면 Tavily 후보 기반 LLM 필터로 fallback
         step_start = time.perf_counter()
         evidence = filter_evidence(
             llm=llm,
@@ -475,18 +608,45 @@ def create_ai_report(
             f"evidence_news_count={len(evidence.get('evidence_news', []))}"
         )
 
+        # fallback 결과에도 동일 품질 필터를 한 번 더 적용하되,
+        # 전부 제거되는 경우에는 기존 fallback 결과를 유지하여 리포트 생성이 비지 않도록 합니다.
+        fallback_news = evidence.get("evidence_news", []) or []
+        fallback_quality_filter = apply_news_quality_filter(
+            evidence_news=fallback_news,
+            ai_input=ai_input,
+            max_items=max_evidence_news,
+            min_quality_score=4.5,
+            require_company_mention=True,
+        )
+        quality_filtered_fallback_news = fallback_quality_filter.get("filtered_news", []) or []
+
+        if quality_filtered_fallback_news:
+            evidence["evidence_news"] = quality_filtered_fallback_news
+            news_quality_filter_result = fallback_quality_filter.get("metadata", {}) or news_quality_filter_result
+            fallback_news_source = "tavily_fallback_quality_filtered"
+        else:
+            # 중요:
+            # LLM 기반 fallback이 관련 없는 기사를 골랐는데 rule-based 품질 필터를 모두 통과하지 못한 경우,
+            # 품질이 낮은 fallback 결과를 억지로 유지하지 않습니다.
+            # 이 경우 리포트에는 "신뢰할 수 있는 뉴스 근거 부족"으로 반영되게 둡니다.
+            evidence["evidence_news"] = []
+            news_quality_filter_result = fallback_quality_filter.get("metadata", {}) or news_quality_filter_result
+            fallback_news_source = "tavily_fallback_quality_filtered_empty"
+
         evidence["metadata"] = {
             **(evidence.get("metadata", {}) or {}),
-            "news_source": "tavily_fallback",
+            "source": fallback_news_source,
+            "news_source": fallback_news_source,
             "disclosure_source": (
                 (disclosure_result.get("metadata", {}) or {}).get("source")
             ),
+            "news_quality_filter": news_quality_filter_result,
         }
 
     # 공시는 Vector DB 검색 결과를 사용합니다.
     evidence["evidence_disclosures"] = disclosure_result.get("evidence_disclosures", []) or []
 
-    # 7. 최종 리포트 생성
+    # 9. 최종 리포트 생성
     step_start = time.perf_counter()
     report = generate_report(
         llm=llm,
@@ -498,7 +658,7 @@ def create_ai_report(
     )
     log_step_time("report_writer_chain", step_start)
 
-    # 8. 최종 JSON 조립
+    # 10. 최종 JSON 조립
     step_start = time.perf_counter()
     final_json = build_final_report_json(
         ai_input=ai_input,
@@ -510,6 +670,7 @@ def create_ai_report(
         disclosure_result=disclosure_result,
         news_result=news_result,
         news_ingest_result=news_ingest_result,
+        news_quality_filter_result=news_quality_filter_result,
         model_name=model_name,
         include_searched_news=include_searched_news,
         industry_analysis_instruction=industry_analysis_instruction,
@@ -569,7 +730,7 @@ if __name__ == "__main__":
         include_searched_news=False,
     )
 
-    print("[Comprehensive Report Service Vector RAG Test]")
+    print("[Comprehensive Report Service Vector RAG + News Quality Filter Test]")
     print("company:", result.get("company_info", {}).get("company_name"))
     print("industry_group:", result.get("industry_info", {}).get("industry_group"))
     print("analysis_year:", result.get("analysis_year"))
@@ -579,6 +740,10 @@ if __name__ == "__main__":
     print("evidence_disclosure_count:", result.get("metadata", {}).get("evidence_disclosure_count"))
     print("news_evidence_source:", result.get("metadata", {}).get("news_evidence_source"))
     print("news_vector_enabled:", result.get("metadata", {}).get("news_vector_enabled"))
+    print("news_quality_filter_applied:", result.get("metadata", {}).get("news_quality_filter_applied"))
+    print("news_quality_filter_before_count:", result.get("metadata", {}).get("news_quality_filter_before_count"))
+    print("news_quality_filter_after_count:", result.get("metadata", {}).get("news_quality_filter_after_count"))
+    print("news_quality_filter_removed_count:", result.get("metadata", {}).get("news_quality_filter_removed_count"))
     print("disclosure_enabled:", result.get("metadata", {}).get("disclosure_enabled"))
 
     print("\n[Final AI Report JSON]")
