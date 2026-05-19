@@ -1,5 +1,4 @@
 import BasicInfo from './components/BasicInfo';
-import PriceSignal from './components/PriceSignal';
 import RevenueChart from './components/RevenueChart';
 import FinancialTable from './components/FinancialTable';
 import './Report.css';
@@ -19,7 +18,6 @@ export default function Report({ reportData }) {
         <div className="rp-top">
           <div className="rp-left-col">
             <BasicInfo reportData={reportData} />
-            <PriceSignal />
           </div>
           <div className="rp-right-col">
             <RevenueChart reportData={reportData} />
