@@ -19,9 +19,10 @@
 8. [데이터 설계](#8-데이터-설계)
 9. [설계 선택 이유](#9-설계-선택-이유)
 10. [프로젝트 구조](#10-프로젝트-구조)
-11. [서비스 시나리오](#11-서비스-시나리오)
-12. [한계 및 향후 개선 방향](#12-한계-및-향후-개선-방향)
-13. [동료 회고](#13-동료-회고)
+11. [실행 방법](#11-실행-방법)
+12. [서비스 시나리오](#12-서비스-시나리오)
+13. [한계 및 향후 개선 방향](#13-한계-및-향후-개선-방향)
+14. [동료 회고](#14-동료-회고)
 
 ---
 
@@ -48,7 +49,8 @@
 - 기업 재무제표 수집 및 전처리 자동화
 - 기업별 재무상태와 위험 신호를 빠르게 확인
 - 공시, 뉴스, 재무지표를 함께 반영한 종합 분석 가능
-- 투자 판단, 기업 리서치, 팀 프로젝트 분석 자료 생성 시간 단축
+- 기업 리서치, 취업·면접 준비, 팀 프로젝트 분석 자료 생성 시간 단축
+- 투자 추천이 아닌, 공시·뉴스·재무지표 기반 기업 분석 보조 정보 제공
 
 ---
 
@@ -92,14 +94,14 @@
   </tr>
 </table>
 
-| 이름 | 역할 | 담당                                                                                                                                                                           |
-| --- | --- |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 김이선 | UI & 시각화 - 프론트엔드 | Plotly.js 기반 재무 추이 차트 및 동적 대시보드 구현, 분석 리포트형 HTML/CSS 레이아웃 설계                                                                                                                 |
-| 김지윤 | AI & Agent | MySQL 수치 데이터와 Vector DB 맥락을 결합하는 Hybrid Chain 설계, Tavily Search 연동, 프롬프트 엔지니어링 및 LLM 분석 로직 구현                                                                                |
-| 박소윤 | Data Engineering - DB/Infra & Retrieval | MySQL·Vector DB 기반 Hybrid Retrieval 구조 설계, metadata filtering 및 disclosure/news retrieval 구현, signals·detected_changes 기반 AI 검색 입력 및 API schema 설계, Frontend·AI 연동 인터페이스 안정화 |
-| 박은지 | PM/문서화/API 명세 | 일정 관리, 문서화 총괄, API 명세 관리, 리포트 논리 구조 설계, 재무 데이터 거버넌스 및 뉴스 검색 임계치 기준 수립                                                                                                        |
-| 위희찬 | Data Engineering - 수집/가공 | OpenDART 재무제표 수집, 핵심 재무계정 기반 5개년 데이터 수집, 재무비율 산출 및 MySQL 적재 준비, 공시 텍스트 청킹                                                                                                    |
-| 홍지윤 | UI & 시각화 - 웹 프레임워크/연동 | FastAPI/Django 기반 백엔드 서버 초안 구성, AI 로직 및 DB 데이터를 프론트엔드로 전달하는 API 연동, 비동기 로딩 화면 구현                                                                                             |
+| 이름 | 역할 | 담당 |
+| --- | --- | --- |
+| 김이선 | UI & 시각화 - 프론트엔드 | - Plotly.js 기반 재무 추이 차트 구현<br>- 동적 대시보드 구현<br>- 분석 리포트형 HTML/CSS 레이아웃 설계 |
+| 김지윤 | AI & Agent | - LangChain 기반 AI 리포트 생성 파이프라인 설계<br>- MySQL 재무 데이터와 Vector DB 근거를 결합한 Hybrid Chain 구현<br>- Tavily 뉴스 검색 및 Evidence Filter 연동<br>- AI 리포트 생성 Chain과 리포트 챗봇 Chain 구현<br>- 재무 용어 응답 및 챗봇 안전 필터링 로직 보강 |
+| 박소윤 | Data Engineering - DB/Infra & Retrieval | - MySQL·Vector DB 기반 Hybrid Retrieval 구조 설계<br>- metadata filtering 및 disclosure/news retrieval 구현<br>- signals·detected_changes 기반 AI 검색 입력 및 API schema 설계<br>- Frontend·AI 연동 인터페이스 안정화 |
+| 박은지 | PM/문서화/API 명세 | - 일정 관리 및 문서화 총괄<br>- API 명세 관리<br>- 리포트 논리 구조 설계<br>- 재무 데이터 거버넌스 및 뉴스 검색 임계치 기준 수립 |
+| 위희찬 | Data Engineering - 수집/가공 | - OpenDART 재무제표 수집<br>- 핵심 재무계정 기반 5개년 데이터 수집<br>- 재무비율 산출 및 MySQL 적재 준비<br>- 공시 텍스트 청킹 |
+| 홍지윤 | UI & 시각화 - 웹 프레임워크/연동 | - FastAPI/Django 기반 백엔드 서버 초안 구성<br>- AI 로직 및 DB 데이터를 프론트엔드로 전달하는 API 연동<br>- 비동기 로딩 화면 구현 |
 
 ---
 
@@ -111,7 +113,9 @@
 - API 실험/보조 모듈: FastAPI, Uvicorn
 - Language: Python
 - Data Processing: pandas, csv, json, zipfile, XML parser
+- LLM Framework: LangChain
 - LLM: OpenAI 계열 LLM
+- Prompt Engineering: Report Writer Prompt, News Evidence Filter Prompt, Chat Prompt
 
 ### Data & API
 
@@ -418,29 +422,29 @@ rate_limited
 
 수익성 지표:
 
-- 영업이익률 = 영업이익 / 매출액 * 100
-- ROE = 당기순이익 / 자본총계 * 100
-- ROA = 당기순이익 / 자산총계 * 100
-- 순이익률 = 당기순이익 / 매출액 * 100
+- $ 영업이익률 = \frac{영업이익}{매출액} \times 100 $
+- $ ROE = \frac{당기순이익}{자본총계} \times 100 $
+- $ ROA = \frac{당기순이익}{자산총계} \times 100 $
+- $ 순이익률 = \frac{당기순이익}{매출액} \times 100 $
 
 안정성 지표:
 
-- 부채비율 = 부채총계 / 자본총계 * 100
-- 자기자본비율 = 자본총계 / 자산총계 * 100
-- 차입금의존도 = 단기차입금 + 장기차입금 + 사채 / 자산총계 * 100
-- 이자보상배율 = 영업이익 / 이자비용
+- $ 부채비율 = \frac{부채총계}{자본총계} \times 100 $
+- $ 자기자본비율 = \frac{자본총계}{자산총계} \times 100 $
+- $ 차입금의존도 = \frac{단기차입금 + 장기차입금 + 사채}{자산총계} * 100 $
+- $ 이자보상배율 = \frac{영업이익}{이자비용} $
 
 유동성/활동성 지표:
 
-- 유동비율 = 유동자산 / 유동부채 * 100
-- 당좌비율 = 유동자산 - 재고자산 / 유동부채 * 100
-- 매출채권회전율 = 매출액 / 매출채권
-- 재고자산회전율 = 매출액 / 재고자산
+- $ 유동비율 = \frac{유동자산}{유동부채} \times 100 $
+- $ 당좌비율 = \frac{유동자산 - 재고자산}{유동부채} \times 100 $
+- $ 매출채권회전율 = \frac{매출액}{매출채권} $
+- $ 재고자산회전율 = \frac{매출액}{재고자산} $
 
 성장성 지표:
 
-- 매출액증가율 = 현재 매출액 - 전기 매출액 / 전기 매출액 * 100
-- 영업이익증가율 = 현재 영업이익 - 전기 영업이익 / 전기 영업이익 * 100
+- $ 매출액증가율 = \frac{현재 매출액 - 전기 매출액}{전기 매출액} \times 100 $
+- $ 영업이익증가율 = \frac{현재 영업이익 - 전기 영업이익}{전기 영업이익} \times 100 $
 
 ### 10. Warning Signal 및 M&A 이벤트 분석
 
@@ -520,11 +524,21 @@ flowchart TD
 
 ### 주요 AI 모듈
 
-- `financial_context_builder.py`: 재무제표와 재무비율을 LLM 입력 구조로 변환
-- `news_query_builder.py`: 기업 분석에 필요한 뉴스 검색 질의 생성
-- `news_evidence_filter.py`: 뉴스 후보 중 리포트 근거로 사용할 항목 선별
-- `report_writer_chain.py`: 재무, 공시, 뉴스, 산업 정보를 종합하여 최종 분석 JSON 생성
-- `report_chat_chain.py`: 리포트 context와 chat history 기반 답변 생성
+| 파일 | 역할 |
+|---|---|
+| `comprehensive_report_service.py` | 재무 데이터, 공시 근거, 뉴스 근거, LLM 리포트 생성을 연결하는 AI 파이프라인 오케스트레이터 |
+| `financial_context_builder.py` | MySQL 기반 재무제표·재무비율 데이터를 LLM 입력용 구조로 변환 |
+| `news_query_builder.py` | `detected_changes`를 기반으로 기업·연도·지표 변화가 반영된 뉴스 검색 질의 생성 |
+| `news_search_cache_service.py` | Tavily 검색 결과 캐싱 및 중복 검색 최소화 |
+| `news_evidence_filter.py` | 검색된 뉴스 중 리포트 근거로 사용할 수 있는 기사 선별 |
+| `news_vector_ingest_service.py` | 선별된 뉴스 근거를 Vector DB 적재 후보로 변환 |
+| `vector_evidence_retriever.py` | Pinecone에서 공시·뉴스 근거를 metadata 기반으로 검색 |
+| `chat_context_builder.py` | 챗봇 응답에 필요한 리포트 context 구성 |
+| `chat_history_builder.py` | 최근 대화 기록을 제한적으로 정리하여 후속 질문 문맥 유지 |
+| `report_writer_chain.py` | 재무, 공시, 뉴스, 산업 정보를 종합하여 최종 AI 리포트 JSON 생성 |
+| `report_chat_chain.py` | 리포트 context와 chat history 기반 후속 질문 답변 생성 |
+| `financial_term_glossary.py` | 리포트 챗봇에서 재무·회계 용어 질문에 답변하기 위한 용어 사전 |
+| `chat_safety_filter.py` | 욕설 및 부적절한 입력을 감지하여 챗봇 응답 안정성 보강 |
 
 ### Vector DB 기준
 
@@ -544,8 +558,6 @@ flowchart TD
 Vector DB 검색 결과는 LangChain `Document` 원본이 아니라 프론트/AI 파트에서 바로 사용할 수 있도록 `list[dict]` 구조로 반환됩니다.
 
 ```json
-
-0
 {
   "content": "공시 또는 뉴스 본문",
   "metadata": {
@@ -579,7 +591,39 @@ Vector DB 검색 결과는 LangChain `Document` 원본이 아니라 프론트/AI
 
 ### 핵심 구현 포인트
 
-MySQL의 정량 재무 데이터와 Pinecone의 공시/뉴스 정성 데이터를 연결하기 위해 `detected_changes` 기반 검색 입력 구조와 metadata filtering 기반 Retriever를 구현했습니다.
+### AI Chain 설계 방식
+
+본 프로젝트의 AI 분석 파이프라인은 하나의 LLM을 여러 번 새로 선언하는 방식이 아니라, 동일한 LLM 객체를 기반으로 목적별 Prompt와 Chain을 분리하여 구성했습니다.
+
+- `financial_context_builder`: MySQL에서 조회한 정량 재무 데이터를 LLM이 해석하기 쉬운 구조화 입력으로 변환
+- `news_query_builder`: `detected_changes`를 기반으로 기업명, 연도, 지표 변화가 반영된 뉴스 검색 질의 생성
+- `news_evidence_filter`: Tavily 검색 결과 중 기업·연도·재무지표 변화와 관련 있는 기사만 선별
+- `report_writer_chain`: 재무지표, 공시 근거, 뉴스 근거, 산업 정보를 종합해 최종 AI 리포트 생성
+- `report_chat_chain`: 생성된 리포트와 최근 대화 기록을 기반으로 후속 질문에 답변
+
+이 구조를 통해 LLM은 수치 계산을 직접 수행하지 않고, 이미 계산된 재무지표와 선별된 근거를 바탕으로 해석과 요약에 집중하도록 설계했습니다.
+
+### 뉴스 품질 필터링 및 정렬 정책
+
+뉴스 검색 결과는 단순히 최신순으로 사용하지 않고, 리포트 근거로 적합한지를 기준으로 필터링합니다.
+
+- 기업명, 분석 연도, 재무지표 변화와의 관련성 확인
+- 부정적 리스크 뉴스 우선 선별
+- 긍정적 뉴스는 보완 근거로 후순위 배치
+- 동일하거나 유사한 URL 기반 중복 제거
+- 근거로 사용하기 어려운 일반 시장 뉴스 제외
+
+이를 통해 리포트가 단순 뉴스 요약이 아니라, 재무 변화와 연결 가능한 근거 중심 분석이 되도록 구성했습니다.
+
+### 리포트 챗봇 응답 제어
+
+리포트 챗봇은 생성된 AI 리포트, 사용 근거, 최근 대화 기록을 기반으로 답변합니다. 또한 금융 용어 질문에 대응할 수 있도록 용어 설명 로직을 보강하고, 부적절한 입력에 대해서는 안전 필터를 적용했습니다.
+
+- 리포트 context 기반 후속 질문 답변
+- 최근 chat history를 활용한 문맥 의존 질문 처리
+- 재무·회계 용어 질문 응답 지원
+- 욕설 및 부적절한 입력 필터링
+- 근거가 부족한 내용은 단정하지 않고 한계 명시
 
 ---
 
@@ -714,6 +758,9 @@ rcept_no
 - MySQL + Pinecone Hybrid 구조: 정량 재무 데이터는 MySQL, 정성 공시/뉴스 문맥은 Vector DB로 분리해 검색과 분석 목적을 나눕니다.
 - Evidence 기반 LLM 응답: LLM이 임의로 판단하지 않도록 공시와 뉴스 근거를 선별한 뒤 리포트와 챗봇 입력으로 사용합니다.
 - Chat history 처리: 후속 질문에서 "방금 답변", "두 번째 뉴스" 같은 문맥 의존 질의를 처리하기 위해 최근 대화 기록을 제한적으로 사용합니다.
+- 단일 LLM + 목적별 Chain 분리: 동일한 LLM을 사용하되 재무 context 구성, 뉴스 질의 생성, 근거 필터링, 리포트 작성, 챗봇 응답을 각각 별도 Chain으로 분리하여 유지보수성과 프롬프트 실험 효율을 높였습니다.
+- 구조화된 JSON 기반 LLM 입출력: LLM 입력을 재무지표, detected_changes, evidence_news, evidence_disclosures 등으로 분리하여 전달함으로써 응답 품질을 안정화하고 프론트엔드 연동을 쉽게 했습니다.
+- 수치 계산과 LLM 해석 분리: 재무비율과 변화 감지는 Python/DB 로직에서 처리하고, LLM은 계산 결과와 근거를 바탕으로 해석·요약·질의응답에 집중하도록 설계했습니다.
 
 ---
 
@@ -797,7 +844,63 @@ FINANCE_DOT_ZIP/
 
 ---
 
-## 11. 서비스 시나리오
+## 11. 실행 방법
+
+### Backend 실행
+
+```bash
+cd backend
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
+```
+
+Backend 서버는 기본적으로 `http://127.0.0.1:8000`에서 실행됩니다.
+
+### Frontend 실행
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Frontend 개발 서버는 기본적으로 `http://localhost:5173`에서 실행됩니다.
+
+### 환경 변수 설정
+
+프로젝트 실행을 위해 `.env` 파일에 아래 API Key 및 DB 정보를 설정해야 합니다.
+
+```env
+OPENAI_API_KEY=
+TAVILY_API_KEY=
+PINECONE_API_KEY=
+DART_API_KEY=
+DB_HOST=
+DB_USER=
+DB_PASSWORD=
+DB_NAME=
+```
+
+### 회사 메타데이터 적재
+
+```bash
+cd backend
+python -m src.db.seed_companies
+```
+
+### 주요 API
+
+```text
+GET  /api/v1/report/comprehensive/{stock_code}
+GET  /api/v1/report/comprehensive/{stock_code}/ai
+POST /api/v1/report/comprehensive/{stock_code}/chat
+```
+
+
+---
+
+## 12. 서비스 시나리오
 
 입력:
 
@@ -830,7 +933,7 @@ FINANCE_DOT_ZIP/
 
 ---
 
-## 12. 한계 및 향후 개선 방향
+## 13. 한계 및 향후 개선 방향
 
 - 전체 재무제표 API에서도 기업별로 일부 계정이 누락될 수 있습니다.
 - `amount` 빈 값에 대한 처리 정책이 필요합니다.
@@ -843,10 +946,14 @@ FINANCE_DOT_ZIP/
 - Vector DB 기반 공시/사업보고서/뉴스 검색 품질 검증이 필요합니다.
 - 뉴스 Vector DB 실시간 적재와 Tavily fallback의 우선순위 정책을 더 정교화해야 합니다.
 - LLM 리포트 생성 시 hallucination 방지를 위한 evidence 기반 응답 규칙을 강화해야 합니다.
+- 뉴스와 재무지표의 시간적 연관성이 실제 인과관계를 보장하지 않으므로, 리포트에서는 원인을 단정하지 않고 가능한 배경 요인으로 표현해야 합니다.
+- 금융업은 재무제표 구조와 지표 해석 방식이 일반 제조·서비스업과 다르므로, 산업별 분석 기준 분리가 필요합니다.
+- AI 리포트의 문체, 근거 인용 방식, 위험/긍정 요인 정렬 기준을 지속적으로 튜닝해야 합니다.
+- 챗봇이 리포트 범위를 벗어난 질문을 받았을 때의 응답 정책을 더 정교화해야 합니다.
 
 ---
 
-## 13. 동료 회고
+## 14. 동료 회고
 
 <div>
 <!-- 김이선 -->
