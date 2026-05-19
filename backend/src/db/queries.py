@@ -62,14 +62,21 @@ def search_companies(keyword: str, limit: int = 20):
             cursor.execute(
                 """
                 SELECT
-                    stock_code,
-                    corp_code,
-                    company_name,
-                    induty_code
-                FROM companies
-                WHERE company_name LIKE %s
-                   OR stock_code LIKE %s
-                ORDER BY company_name ASC
+                    c.stock_code,
+                    c.corp_code,
+                    c.company_name,
+                    c.induty_code
+                FROM companies c
+                WHERE EXISTS (
+                    SELECT 1
+                    FROM financials f
+                    WHERE f.stock_code = c.stock_code
+                )
+                  AND (
+                    c.company_name LIKE %s
+                    OR c.stock_code LIKE %s
+                  )
+                ORDER BY c.company_name ASC
                 LIMIT %s
                 """,
                 (like_keyword, like_keyword, limit)
@@ -97,9 +104,15 @@ def search_origin_companies():
             cursor.execute(
                 """
                 SELECT
-                    stock_code,
-                    company_name
-                FROM companies
+                    c.stock_code,
+                    c.company_name
+                FROM companies c
+                WHERE EXISTS (
+                    SELECT 1
+                    FROM financials f
+                    WHERE f.stock_code = c.stock_code
+                )
+                ORDER BY c.company_name ASC
                 """,
             )
             rows = cursor.fetchall()
