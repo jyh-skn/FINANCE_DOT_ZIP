@@ -20,6 +20,7 @@ python -m tests.test_report_chat_history_api
 """
 
 import json
+import time
 from typing import Any, Dict, List, Optional
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
@@ -129,6 +130,7 @@ def print_chat_turn(
     print("generated_ai_report_inside_chat:", metadata.get("generated_ai_report_inside_chat"))
     print("chat_history_used:", metadata.get("chat_history_used"))
     print("chat_history_count:", metadata.get("chat_history_count"))
+    print("prompt_compaction_applied:", metadata.get("prompt_compaction_applied"))
 
     print("\n[Used Sources]")
     for idx, source in enumerate(used_sources, start=1):
@@ -173,12 +175,17 @@ def main() -> None:
     ]
 
     for question in questions:
+        start_time = time.perf_counter()
+
         response = post_report_chat(
             stock_code=stock_code,
             question=question,
             ai_report_result=ai_report_result,
             chat_history=chat_history,
         )
+
+        elapsed = time.perf_counter() - start_time
+        print(f"\n[CHAT_API_TIME] {elapsed:.2f}s")
 
         validate_chat_response(response)
         print_chat_turn(question, response)

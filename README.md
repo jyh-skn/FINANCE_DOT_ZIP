@@ -4,23 +4,24 @@
 
 상장기업의 재무제표, 공시, 뉴스 데이터를 수집하고 재무지표와 시그널을 분석하여 AI 기반 종합 리포트와 챗봇 응답을 생성하는 금융 분석 플랫폼입니다.
 
+
 ---
 
 ## 목차
 
-1. 프로젝트 개요
-2. 팀 소개
-3. 기술 스택
-4. 시스템 아키텍처
-5. 데이터 흐름
-6. 주요 기능
-7. AI 분석 및 Vector RAG 구조
-8. 데이터 설계
-9. 설계 선택 이유
-10. 프로젝트 구조
-11. 서비스 시나리오
-12. 한계 및 향후 개선 방향
-13. 동료 회고
+1. [프로젝트 개요](#1-프로젝트-개요)
+2. [팀 소개](#2-팀-소개)
+3. [기술 스택](#3-기술-스택)
+4. [시스템 아키텍처](#4-시스템-아키텍처)
+5. [데이터 흐름](#5-데이터-흐름)
+6. [주요 기능](#6-주요-기능)
+7. [AI 분석 및 Vector RAG 구조](#7-ai-분석-및-vector-rag-구조)
+8. [데이터 설계](#8-데이터-설계)
+9. [설계 선택 이유](#9-설계-선택-이유)
+10. [프로젝트 구조](#10-프로젝트-구조)
+11. [서비스 시나리오](#11-서비스-시나리오)
+12. [한계 및 향후 개선 방향](#12-한계-및-향후-개선-방향)
+13. [동료 회고](#13-동료-회고)
 
 ---
 
@@ -53,17 +54,52 @@
 
 ## 2. 팀 소개
 
-**Team Finance Dot ZIP**
+**Team Finance Dot ZIP**  
 기업의 숫자와 공시를 압축해서 읽기 쉬운 리포트로 풀어내는 금융 분석 팀입니다.
 
-| 이름 | 역할 | 담당 |
-| --- | --- | --- |
-| 박은지 | PM/문서화/API 명세 | 일정 관리, 문서화 총괄, API 명세 관리, 리포트 논리 구조 설계, 재무 데이터 거버넌스 및 뉴스 검색 임계치 기준 수립 |
-| 위희찬 | Data Engineering - 수집/가공 | OpenDART 재무제표 수집, 핵심 재무계정 기반 5개년 데이터 수집, 재무비율 산출 및 MySQL 적재 준비, 공시 텍스트 청킹 |
-| 박소윤 | Data Engineering - DB/인프라 | MySQL 정량 데이터와 Vector DB 정성 데이터 기반 하이브리드 저장소 구성, 프론트엔드/AI 파트용 DB API 제공 |
-| 김지윤 | AI & Agent | MySQL 수치 데이터와 Vector DB 맥락을 결합하는 Hybrid Chain 설계, Tavily Search 연동, 프롬프트 엔지니어링 및 LLM 분석 로직 구현 |
-| 김이선 | UI & 시각화 - 프론트엔드 | Plotly.js 기반 재무 추이 차트 및 동적 대시보드 구현, 분석 리포트형 HTML/CSS 레이아웃 설계 |
-| 홍지윤 | UI & 시각화 - 웹 프레임워크/연동 | FastAPI/Django 기반 백엔드 서버 초안 구성, AI 로직 및 DB 데이터를 프론트엔드로 전달하는 API 연동, 비동기 로딩 화면 구현 |
+<table align="center">
+  <tr>
+    <td align="center" width="160">
+      <img src="./assets/team/gary.jpg" width="100" height="110" style="object-fit:contain; border-radius:10px;"><br>
+      <b>김이선</b><br>
+      <a href="https://github.com/kysuniv-cyber">@kysuniv-cyber</a>
+    </td>
+    <td align="center" width="160">
+      <img src="./assets/team/little_judith.jpg" width="100" height="110" style="object-fit:contain; border-radius:10px;"><br>
+      <b>김지윤</b><br>
+      <a href="https://github.com/JiyounKim-EllyKim">@JiyounKim-EllyKim</a>
+    </td>
+    <td align="center" width="160">
+      <img src="./assets/team/judy_hopps.jpg" width="100" height="110" style="object-fit:contain; border-radius:10px;"><br>
+      <b>박소윤</b><br>
+      <a href="https://github.com/parksoyun9084-cloud">@parksoyun9084-cloud</a>
+    </td>
+    <td align="center" width="160">
+      <img src="./assets/team/nick.jpg" width="100" height="110" style="object-fit:contain; border-radius:10px;"><br>
+      <b>박은지</b><br>
+      <a href="https://github.com/lo1f0306">@lo1f0306</a>
+    </td>
+    <td align="center" width="160">
+      <img src="./assets/team/clawhauser.jpg" width="100" height="110" style="object-fit:contain; border-radius:10px;"><br>
+      <b>위희찬</b><br>
+      <a href="https://github.com/dnlgmlcks">@dnlgmlcks</a>
+    </td>
+    <td align="center" width="160">
+      <img src="./assets/team/flash.jpg" width="100" height="110" style="object-fit:contain; border-radius:10px;"><br>
+      <b>홍지윤</b><br>
+      <a href="https://github.com/jyh-skn">@jyh-skn</a>
+    </td>
+  </tr>
+</table>
+
+| 이름 | 역할 | 담당                                                                                                                                                                           |
+| --- | --- |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 김이선 | UI & 시각화 - 프론트엔드 | Plotly.js 기반 재무 추이 차트 및 동적 대시보드 구현, 분석 리포트형 HTML/CSS 레이아웃 설계                                                                                                                 |
+| 김지윤 | AI & Agent | MySQL 수치 데이터와 Vector DB 맥락을 결합하는 Hybrid Chain 설계, Tavily Search 연동, 프롬프트 엔지니어링 및 LLM 분석 로직 구현                                                                                |
+| 박소윤 | Data Engineering - DB/Infra & Retrieval | MySQL·Vector DB 기반 Hybrid Retrieval 구조 설계, metadata filtering 및 disclosure/news retrieval 구현, signals·detected_changes 기반 AI 검색 입력 및 API schema 설계, Frontend·AI 연동 인터페이스 안정화 |
+| 박은지 | PM/문서화/API 명세 | 일정 관리, 문서화 총괄, API 명세 관리, 리포트 논리 구조 설계, 재무 데이터 거버넌스 및 뉴스 검색 임계치 기준 수립                                                                                                        |
+| 위희찬 | Data Engineering - 수집/가공 | OpenDART 재무제표 수집, 핵심 재무계정 기반 5개년 데이터 수집, 재무비율 산출 및 MySQL 적재 준비, 공시 텍스트 청킹                                                                                                    |
+| 홍지윤 | UI & 시각화 - 웹 프레임워크/연동 | FastAPI/Django 기반 백엔드 서버 초안 구성, AI 로직 및 DB 데이터를 프론트엔드로 전달하는 API 연동, 비동기 로딩 화면 구현                                                                                             |
 
 ---
 
@@ -254,11 +290,15 @@ OpenDART 기업개황 API 기반 상장사 master를 생성하고, 시장별 bat
 수집 기준:
 
 ```text
-years: 2019~2023
+years: recent5
 reprt_code: 11011
-fs_div: CFS
+fs_div: CFS 우선, no_data 시 OFS fallback
 source_api: fnlttSinglAcntAll.json
 ```
+
+`recent5`는 실행일 기준 최근 5개 사업연도를 자동 계산합니다.
+사업보고서 공시 시점을 고려하여 4월 이후에는 전년도까지, 1~3월에는 전전년도까지를 최신 사업연도로 봅니다.
+예를 들어 2026년 5월 실행 시 수집 대상은 2021~2025년입니다.
 
 생성된 batch:
 
@@ -291,15 +331,15 @@ source_api: fnlttSinglAcntAll.json
 | 항목 | 건수 |
 | --- | ---: |
 | 전체 회사 수 | 2,765 |
-| collection_log rows | 13,825 |
-| success | 8,715 |
-| no_data | 5,110 |
+| collection_log rows | 17,983 |
+| success | 12,031 |
+| no_data | 5,952 |
 | failed | 0 |
 | rate_limited | 0 |
-| reports rows | 8,715 |
-| financial_accounts_raw rows | 1,195,205 |
-| financial_accounts_standard rows | 113,449 |
-| standard amount 빈 값 | 968 |
+| reports rows | 12,031 |
+| financial_accounts_raw rows | 2,135,144 |
+| financial_accounts_standard rows | 331,236 |
+| standard amount 빈 값 | 2,992 |
 | fs_div 빈 값 | 0 |
 
 ### 5. 표준계정 매핑 및 전처리
@@ -343,6 +383,8 @@ python -m src.db.seed_companies
 ```
 
 해당 스크립트는 `data/company_master/companies_for_db.csv`를 읽어 MySQL `companies` 테이블에 `stock_code`, `corp_code`, `company_name`, `induty_code`를 upsert합니다.
+
+실행 결과 MySQL `companies` 테이블에 3,963건의 기업 메타데이터를 적재하였으며, 이를 통해 종합 리포트 API의 `company_info`, `industry_info`, `detected_changes.query_hint` 생성에 필요한 기업명과 업종코드 누락 문제를 해결했습니다.
 
 ### 7. Account Availability 생성
 
@@ -480,15 +522,8 @@ flowchart TD
 
 - `financial_context_builder.py`: 재무제표와 재무비율을 LLM 입력 구조로 변환
 - `news_query_builder.py`: 기업 분석에 필요한 뉴스 검색 질의 생성
-- `news_search_cache_service.py`: Tavily 검색 결과 캐싱
 - `news_evidence_filter.py`: 뉴스 후보 중 리포트 근거로 사용할 항목 선별
-- `news_vector_ingest_service.py`: Tavily 검색 결과를 Pinecone에 실시간 적재
-- `disclosure_retriever.py`: Vector DB에서 공시/사업보고서 근거 검색
-- `news_retriever.py`: Vector DB에서 뉴스 근거 검색
-- `vector_evidence_retriever.py`: Vector DB 검색 결과를 AI 리포트 evidence 형식으로 변환
 - `report_writer_chain.py`: 재무, 공시, 뉴스, 산업 정보를 종합하여 최종 분석 JSON 생성
-- `chat_context_builder.py`: 리포트 결과를 챗봇 context로 변환
-- `chat_history_builder.py`: 후속 질문 처리를 위한 대화 기록 정리
 - `report_chat_chain.py`: 리포트 context와 chat history 기반 답변 생성
 
 ### Vector DB 기준
@@ -497,11 +532,54 @@ flowchart TD
 - 기본 index: `finance-dot-news`
 - Embedding model: `text-embedding-3-small`
 - Dimension: 1536
-- 주요 검색 기준: `stock_code`, `company_name`, `year`, `signal_code`, `data_type`
-- 관련 문서:
-  - `docs/VECTOR_DB_GUIDE.md`
-  - `docs/vector_db_schema.md`
-  - `docs/SIGNAL_CODE_GUIDE.md`
+- 주요 검색 기준:
+  - `stock_code`
+  - `company_name`
+  - `year`
+  - `signal_code`
+  - `data_type`
+
+### Retriever 반환 구조
+
+Vector DB 검색 결과는 LangChain `Document` 원본이 아니라 프론트/AI 파트에서 바로 사용할 수 있도록 `list[dict]` 구조로 반환됩니다.
+
+```json
+
+0
+{
+  "content": "공시 또는 뉴스 본문",
+  "metadata": {
+    "stock_code": "091700",
+    "company_name": "파트론",
+    "year": 2022,
+    "data_type": "disclosure",
+    "source": "cmpMgDecsn.json",
+    "source_url": "https://dart.fss.or.kr/..."
+  },
+  "score": 0.4678
+}
+```
+
+- 본문 위치: `content`
+- metadata 위치: `metadata`
+- URL 필드: `source_url`
+- 연도 필드: `year`
+- 반환 타입: `list[dict]`
+- 중복 결과는 `source_url` 기준 deduplication 처리
+
+### Vector DB Retrieval 검증 결과
+
+| 테스트 항목 | 결과 |
+|---|---|
+| `data_type="disclosure"` 전체 검색 | 성공 |
+| `stock_code="091700"` + `data_type="disclosure"` 검색 | 파트론 공시 반환 성공 |
+| 존재하지 않는 `stock_code="999999"` 검색 | 결과 없음 처리 성공 |
+| `stock_code="005930"` + data_type 미지정 검색 | 삼성전자 뉴스 chunk 반환 성공 |
+| `stock_code="005930"` + `data_type="disclosure"` 검색 | 결과 없음 확인(disclosure 미적재 케이스) |
+
+### 핵심 구현 포인트
+
+MySQL의 정량 재무 데이터와 Pinecone의 공시/뉴스 정성 데이터를 연결하기 위해 `detected_changes` 기반 검색 입력 구조와 metadata filtering 기반 Retriever를 구현했습니다.
 
 ---
 
@@ -771,6 +849,45 @@ FINANCE_DOT_ZIP/
 ## 13. 동료 회고
 
 <div>
+<!-- 김이선 -->
+<table style="width:100%; border-collapse: collapse; border:1px solid #ddd;">
+<thead><tr style="background-color:#f2f2f2;"><th style="border:1px solid #ddd; padding:8px;">대상자</th><th style="border:1px solid #ddd; padding:8px;">작성자</th><th style="border:1px solid #ddd; padding:8px;">회고 내용</th></tr></thead>
+<tbody>
+<tr><td rowspan="5" style="text-align:center; border:1px solid #ddd;"><b>김이선</b></td><td style="text-align:center; border:1px solid #ddd;">박은지</td><td style="border:1px solid #ddd;"></td></tr>
+<tr><td style="text-align:center; border:1px solid #ddd;">위희찬</td><td style="border:1px solid #ddd;"></td></tr>
+<tr><td style="text-align:center; border:1px solid #ddd;">박소윤</td><td style="border:1px solid #ddd;"></td></tr>
+<tr><td style="text-align:center; border:1px solid #ddd;">김지윤</td><td style="border:1px solid #ddd;"></td></tr>
+<tr><td style="text-align:center; border:1px solid #ddd;">홍지윤</td><td style="border:1px solid #ddd;"></td></tr>
+</tbody>
+</table>
+<br>
+
+<!-- 김지윤 -->
+<table style="width:100%; border-collapse: collapse; border:1px solid #ddd;">
+<thead><tr style="background-color:#f2f2f2;"><th style="border:1px solid #ddd; padding:8px;">대상자</th><th style="border:1px solid #ddd; padding:8px;">작성자</th><th style="border:1px solid #ddd; padding:8px;">회고 내용</th></tr></thead>
+<tbody>
+<tr><td rowspan="5" style="text-align:center; border:1px solid #ddd;"><b>김지윤</b></td><td style="text-align:center; border:1px solid #ddd;">박은지</td><td style="border:1px solid #ddd;"></td></tr>
+<tr><td style="text-align:center; border:1px solid #ddd;">위희찬</td><td style="border:1px solid #ddd;"></td></tr>
+<tr><td style="text-align:center; border:1px solid #ddd;">박소윤</td><td style="border:1px solid #ddd;"></td></tr>
+<tr><td style="text-align:center; border:1px solid #ddd;">김이선</td><td style="border:1px solid #ddd;"></td></tr>
+<tr><td style="text-align:center; border:1px solid #ddd;">홍지윤</td><td style="border:1px solid #ddd;"></td></tr>
+</tbody>
+</table>
+<br>
+
+<!-- 박소윤 -->
+<table style="width:100%; border-collapse: collapse; border:1px solid #ddd;">
+<thead><tr style="background-color:#f2f2f2;"><th style="border:1px solid #ddd; padding:8px;">대상자</th><th style="border:1px solid #ddd; padding:8px;">작성자</th><th style="border:1px solid #ddd; padding:8px;">회고 내용</th></tr></thead>
+<tbody>
+<tr><td rowspan="5" style="text-align:center; border:1px solid #ddd;"><b>박소윤</b></td><td style="text-align:center; border:1px solid #ddd;">박은지</td><td style="border:1px solid #ddd;"></td></tr>
+<tr><td style="text-align:center; border:1px solid #ddd;">위희찬</td><td style="border:1px solid #ddd;"></td></tr>
+<tr><td style="text-align:center; border:1px solid #ddd;">김지윤</td><td style="border:1px solid #ddd;"></td></tr>
+<tr><td style="text-align:center; border:1px solid #ddd;">김이선</td><td style="border:1px solid #ddd;"></td></tr>
+<tr><td style="text-align:center; border:1px solid #ddd;">홍지윤</td><td style="border:1px solid #ddd;"></td></tr>
+</tbody>
+</table>
+<br>
+
 <!-- 박은지 -->
 <table style="width:100%; border-collapse: collapse; border:1px solid #ddd;">
 <thead><tr style="background-color:#f2f2f2;"><th style="border:1px solid #ddd; padding:8px;">대상자</th><th style="border:1px solid #ddd; padding:8px;">작성자</th><th style="border:1px solid #ddd; padding:8px;">회고 내용</th></tr></thead>
@@ -792,45 +909,6 @@ FINANCE_DOT_ZIP/
 <tr><td style="text-align:center; border:1px solid #ddd;">박소윤</td><td style="border:1px solid #ddd;"></td></tr>
 <tr><td style="text-align:center; border:1px solid #ddd;">김지윤</td><td style="border:1px solid #ddd;"></td></tr>
 <tr><td style="text-align:center; border:1px solid #ddd;">김이선</td><td style="border:1px solid #ddd;"></td></tr>
-<tr><td style="text-align:center; border:1px solid #ddd;">홍지윤</td><td style="border:1px solid #ddd;"></td></tr>
-</tbody>
-</table>
-<br>
-
-<!-- 박소윤 -->
-<table style="width:100%; border-collapse: collapse; border:1px solid #ddd;">
-<thead><tr style="background-color:#f2f2f2;"><th style="border:1px solid #ddd; padding:8px;">대상자</th><th style="border:1px solid #ddd; padding:8px;">작성자</th><th style="border:1px solid #ddd; padding:8px;">회고 내용</th></tr></thead>
-<tbody>
-<tr><td rowspan="5" style="text-align:center; border:1px solid #ddd;"><b>박소윤</b></td><td style="text-align:center; border:1px solid #ddd;">박은지</td><td style="border:1px solid #ddd;"></td></tr>
-<tr><td style="text-align:center; border:1px solid #ddd;">위희찬</td><td style="border:1px solid #ddd;"></td></tr>
-<tr><td style="text-align:center; border:1px solid #ddd;">김지윤</td><td style="border:1px solid #ddd;"></td></tr>
-<tr><td style="text-align:center; border:1px solid #ddd;">김이선</td><td style="border:1px solid #ddd;"></td></tr>
-<tr><td style="text-align:center; border:1px solid #ddd;">홍지윤</td><td style="border:1px solid #ddd;"></td></tr>
-</tbody>
-</table>
-<br>
-
-<!-- 김지윤 -->
-<table style="width:100%; border-collapse: collapse; border:1px solid #ddd;">
-<thead><tr style="background-color:#f2f2f2;"><th style="border:1px solid #ddd; padding:8px;">대상자</th><th style="border:1px solid #ddd; padding:8px;">작성자</th><th style="border:1px solid #ddd; padding:8px;">회고 내용</th></tr></thead>
-<tbody>
-<tr><td rowspan="5" style="text-align:center; border:1px solid #ddd;"><b>김지윤</b></td><td style="text-align:center; border:1px solid #ddd;">박은지</td><td style="border:1px solid #ddd;"></td></tr>
-<tr><td style="text-align:center; border:1px solid #ddd;">위희찬</td><td style="border:1px solid #ddd;"></td></tr>
-<tr><td style="text-align:center; border:1px solid #ddd;">박소윤</td><td style="border:1px solid #ddd;"></td></tr>
-<tr><td style="text-align:center; border:1px solid #ddd;">김이선</td><td style="border:1px solid #ddd;"></td></tr>
-<tr><td style="text-align:center; border:1px solid #ddd;">홍지윤</td><td style="border:1px solid #ddd;"></td></tr>
-</tbody>
-</table>
-<br>
-
-<!-- 김이선 -->
-<table style="width:100%; border-collapse: collapse; border:1px solid #ddd;">
-<thead><tr style="background-color:#f2f2f2;"><th style="border:1px solid #ddd; padding:8px;">대상자</th><th style="border:1px solid #ddd; padding:8px;">작성자</th><th style="border:1px solid #ddd; padding:8px;">회고 내용</th></tr></thead>
-<tbody>
-<tr><td rowspan="5" style="text-align:center; border:1px solid #ddd;"><b>김이선</b></td><td style="text-align:center; border:1px solid #ddd;">박은지</td><td style="border:1px solid #ddd;"></td></tr>
-<tr><td style="text-align:center; border:1px solid #ddd;">위희찬</td><td style="border:1px solid #ddd;"></td></tr>
-<tr><td style="text-align:center; border:1px solid #ddd;">박소윤</td><td style="border:1px solid #ddd;"></td></tr>
-<tr><td style="text-align:center; border:1px solid #ddd;">김지윤</td><td style="border:1px solid #ddd;"></td></tr>
 <tr><td style="text-align:center; border:1px solid #ddd;">홍지윤</td><td style="border:1px solid #ddd;"></td></tr>
 </tbody>
 </table>

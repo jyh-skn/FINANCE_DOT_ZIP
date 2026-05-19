@@ -157,6 +157,9 @@ def run_ai_report_api_test(stock_code: str, label: str) -> Dict[str, Any]:
         print("  url:", item.get("url") or item.get("source_url"))
         print("  metric:", item.get("metric_label"))
         print("  score:", item.get("relevance_score"))
+        print(f"  evidence_level: {item.get('evidence_level')}")
+        print(f"  evidence_role: {item.get('evidence_role')}")
+        print(f"  quality_score: {item.get('quality_score')}")
 
     print("\n[Evidence Disclosure Preview]")
     for idx, item in enumerate(evidence_disclosures[:3], start=1):

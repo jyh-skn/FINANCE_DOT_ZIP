@@ -437,7 +437,11 @@ def build_final_report_json(
             "news_quality_filter_before_count": news_quality_filter_result.get("before_count", 0),
             "news_quality_filter_after_count": news_quality_filter_result.get("after_count", 0),
             "news_quality_filter_removed_count": news_quality_filter_result.get("removed_count", 0),
+            "news_quality_filter_direct_count": news_quality_filter_result.get("direct_count", 0),
+            "news_quality_filter_supporting_count": news_quality_filter_result.get("supporting_count", 0),
+            "news_quality_filter_excluded_count": news_quality_filter_result.get("excluded_count", 0),
             "news_quality_scores": news_quality_filter_result.get("quality_scores", []),
+            "news_evidence_levels": news_quality_filter_result.get("evidence_levels", []),
 
             "adapter_metadata": ai_input.get("adapter_metadata", {}),
         },
@@ -535,8 +539,8 @@ def create_ai_report(
     news_result = try_retrieve_news_context(
         ai_input=ai_input,
         vector_store=vector_store,
-        top_k_per_change=3,
-        max_total_results=max(max_evidence_news * 2, 5),
+        top_k_per_change=5,
+        max_total_results=10,
     )
     vector_evidence_news = news_result.get("evidence_news", []) or []
     log_step_time(
@@ -552,7 +556,7 @@ def create_ai_report(
         evidence_news=vector_evidence_news,
         ai_input=ai_input,
         max_items=max_evidence_news,
-        min_quality_score=5.0,
+        min_quality_score=4.0,
         require_company_mention=True,
     )
     quality_filtered_vector_news = vector_quality_filter.get("filtered_news", []) or []
@@ -569,8 +573,8 @@ def create_ai_report(
     )
 
     # 8. 뉴스 evidence 결정
-    # 품질 필터를 통과한 Vector DB 뉴스가 있으면 우선 사용하고,
-    # 없으면 기존 Tavily LLM evidence filter를 fallback으로 사용합니다.
+    # evidence_news는 프론트 뉴스 출처와 리포트 작성 근거를 동시에 담당합니다.
+    # 따라서 direct/supporting으로 분류된 뉴스만 최대 3개 사용하고, hard reject 뉴스는 절대 포함하지 않습니다.
     if quality_filtered_vector_news:
         evidence = {
             "evidence_news": quality_filtered_vector_news[:max_evidence_news],
@@ -589,10 +593,32 @@ def create_ai_report(
         log_step_time(
             "news_evidence_filter",
             time.perf_counter(),
-            "skipped=quality_filtered_vector_db_news_used"
+            "skipped=direct_supporting_vector_db_news_used"
+        )
+    elif vector_evidence_news:
+        # Vector DB 후보가 있었지만 품질 필터에서 모두 excluded 된 경우입니다.
+        # 이때 LLM fallback을 돌리면 관련 없는 뉴스를 다시 고를 수 있고 시간이 많이 걸리므로 생략합니다.
+        evidence = {
+            "evidence_news": [],
+            "evidence_disclosures": disclosure_result.get("evidence_disclosures", []) or [],
+            "metadata": {
+                "source": "vector_db_quality_filtered_empty",
+                "news_source": "vector_db_quality_filtered_empty",
+                "disclosure_source": (
+                    (disclosure_result.get("metadata", {}) or {}).get("source")
+                ),
+                "evidence_news_count": 0,
+                "evidence_disclosure_count": len(disclosure_result.get("evidence_disclosures", []) or []),
+                "news_quality_filter": news_quality_filter_result,
+            },
+        }
+        log_step_time(
+            "news_evidence_filter",
+            time.perf_counter(),
+            "skipped=all_vector_news_excluded_by_quality_filter"
         )
     else:
-        # Vector DB 결과가 없거나 품질 필터를 모두 통과하지 못하면 Tavily 후보 기반 LLM 필터로 fallback
+        # Vector DB 뉴스 후보 자체가 없는 경우에만 Tavily LLM evidence filter를 fallback으로 사용합니다.
         step_start = time.perf_counter()
         evidence = filter_evidence(
             llm=llm,
@@ -608,14 +634,12 @@ def create_ai_report(
             f"evidence_news_count={len(evidence.get('evidence_news', []))}"
         )
 
-        # fallback 결과에도 동일 품질 필터를 한 번 더 적용하되,
-        # 전부 제거되는 경우에는 기존 fallback 결과를 유지하여 리포트 생성이 비지 않도록 합니다.
         fallback_news = evidence.get("evidence_news", []) or []
         fallback_quality_filter = apply_news_quality_filter(
             evidence_news=fallback_news,
             ai_input=ai_input,
             max_items=max_evidence_news,
-            min_quality_score=4.5,
+            min_quality_score=3.2,
             require_company_mention=True,
         )
         quality_filtered_fallback_news = fallback_quality_filter.get("filtered_news", []) or []
@@ -625,10 +649,6 @@ def create_ai_report(
             news_quality_filter_result = fallback_quality_filter.get("metadata", {}) or news_quality_filter_result
             fallback_news_source = "tavily_fallback_quality_filtered"
         else:
-            # 중요:
-            # LLM 기반 fallback이 관련 없는 기사를 골랐는데 rule-based 품질 필터를 모두 통과하지 못한 경우,
-            # 품질이 낮은 fallback 결과를 억지로 유지하지 않습니다.
-            # 이 경우 리포트에는 "신뢰할 수 있는 뉴스 근거 부족"으로 반영되게 둡니다.
             evidence["evidence_news"] = []
             news_quality_filter_result = fallback_quality_filter.get("metadata", {}) or news_quality_filter_result
             fallback_news_source = "tavily_fallback_quality_filtered_empty"
