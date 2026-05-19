@@ -1,5 +1,5 @@
 """
-tavily_test.py
+test_tavily.py
 
 Tavily API 연결 및 한국어/국내 뉴스 검색 결과 확인용 테스트 파일입니다.
 """
