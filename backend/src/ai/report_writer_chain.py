@@ -4,19 +4,22 @@ report_writer_chain.py
 재무 문맥, 뉴스 근거, 공시 근거, 산업별 분석 가이드를 바탕으로
 최종 AI 재무 분석 리포트를 생성하는 Report Writer Chain 모듈입니다.
 
-성능 개선 버전:
-- LLM에 financial_context 전체 dict를 그대로 넣지 않고 핵심 필드만 압축해 전달합니다.
-- evidence_news / evidence_disclosures는 최대 3개만 사용하고, 긴 본문 대신 summary 중심으로 전달합니다.
-- JSON dump는 indent 없이 compact format으로 전달해 prompt 길이를 줄입니다.
-- 최종 반환 JSON schema와 generate_report() 함수 시그니처는 기존과 동일하게 유지합니다.
+역할:
+1. financial_context_builder.py의 financial_context를 입력받습니다.
+2. news_evidence_filter.py의 evidence_news를 입력받습니다.
+3. 추후 disclosure_retriever.py의 evidence_disclosures를 함께 입력받을 수 있도록 구조를 열어둡니다.
+4. industry_analysis_rules.py의 industry_analysis_instruction을 받아 업종별 해석 기준을 반영합니다.
+5. 공통 LLM 객체를 사용해 최종 분석 리포트를 JSON 형태로 생성합니다.
 
 주의:
+- disclosure_retriever.py는 아직 구현되지 않았으므로 evidence_disclosures는 빈 리스트일 수 있습니다.
 - 투자 추천, 매수, 매도, 보유 판단을 하지 않습니다.
 - 뉴스와 재무 변화의 관계를 단정적인 인과관계로 표현하지 않습니다.
-- "가능한 요인", "관련 배경", "검토할 수 있다", "추가 확인이 필요하다" 중심으로 작성합니다.
+- "가능한 요인", "관련 배경", "추정된다", "추가 확인이 필요하다" 중심으로 작성합니다.
 """
 
 import json
+import re
 from datetime import datetime
 from typing import Any, Dict, List, Optional
 
@@ -27,50 +30,6 @@ try:
     from src.ai.industry_analysis_rules import build_industry_analysis_instruction
 except ModuleNotFoundError:
     from industry_analysis_rules import build_industry_analysis_instruction
-
-
-# ---------------------------------------------------------------------
-# 1. 공통 유틸
-# ---------------------------------------------------------------------
-
-def safe_text(value: Any) -> str:
-    """
-    None 또는 비문자열 값을 안전하게 문자열로 변환합니다.
-    """
-
-    if value is None:
-        return ""
-
-    return str(value)
-
-
-def shorten_text(text: Any, max_length: int = 600) -> str:
-    """
-    LLM 입력이 너무 길어지지 않도록 텍스트를 자릅니다.
-    """
-
-    text = safe_text(text).strip()
-
-    if not text:
-        return ""
-
-    if len(text) <= max_length:
-        return text
-
-    return text[:max_length] + "...(truncated)"
-
-
-def compact_json(value: Any) -> str:
-    """
-    prompt 길이를 줄이기 위해 indent 없는 compact JSON 문자열로 변환합니다.
-    """
-
-    return json.dumps(
-        value,
-        ensure_ascii=False,
-        default=str,
-        separators=(",", ":"),
-    )
 
 
 def extract_json_from_llm_output(output: str) -> Dict[str, Any]:
@@ -94,18 +53,6 @@ def extract_json_from_llm_output(output: str) -> Dict[str, Any]:
     return json.loads(cleaned)
 
 
-def get_model_name(llm: Any) -> str:
-    """
-    ChatOpenAI 객체에서 모델명을 추출합니다.
-    """
-
-    return (
-        getattr(llm, "model_name", None)
-        or getattr(llm, "model", None)
-        or "unknown"
-    )
-
-
 def get_company_name_from_context(financial_context: Dict[str, Any]) -> str:
     """
     financial_context에서 기업명을 추출합니다.
@@ -117,6 +64,43 @@ def get_company_name_from_context(financial_context: Dict[str, Any]) -> str:
         company_info.get("company_name")
         or financial_context.get("company_name")
         or "기업"
+    )
+
+
+def safe_text(value: Any) -> str:
+    """
+    None 또는 비문자열 값을 안전하게 문자열로 변환합니다.
+    """
+
+    if value is None:
+        return ""
+
+    return str(value)
+
+
+def shorten_text(text: str, max_length: int = 1500) -> str:
+    """
+    LLM 입력이 너무 길어지지 않도록 텍스트를 자릅니다.
+    """
+
+    if not text:
+        return ""
+
+    if len(text) <= max_length:
+        return text
+
+    return text[:max_length] + "...(truncated)"
+
+
+def get_model_name(llm: Any) -> str:
+    """
+    ChatOpenAI 객체에서 모델명을 추출합니다.
+    """
+
+    return (
+        getattr(llm, "model_name", None)
+        or getattr(llm, "model", None)
+        or "unknown"
     )
 
 
@@ -143,134 +127,9 @@ def resolve_industry_instruction(
 """.strip()
 
 
-def trim_industry_instruction(text: str, max_length: int = 1400) -> str:
-    """
-    산업별 분석 가이드가 너무 길어질 경우 핵심만 남깁니다.
-    """
-
-    return shorten_text(text, max_length=max_length)
-
-
-# ---------------------------------------------------------------------
-# 2. Prompt 입력 압축
-# ---------------------------------------------------------------------
-
-def prepare_financial_context_for_prompt(
-    financial_context: Dict[str, Any],
-    max_changes: int = 3,
-    max_finance_years: int = 3,
-    max_signals: int = 5,
-) -> Dict[str, Any]:
-    """
-    LLM prompt에 넣을 financial_context를 핵심 필드 중심으로 압축합니다.
-    """
-
-    company_info = financial_context.get("company_info", {}) or {}
-    industry_info = financial_context.get("industry_info", {}) or {}
-
-    metric_highlights = financial_context.get("metric_highlights", []) or []
-    detected_changes = financial_context.get("detected_changes", []) or []
-    signals = financial_context.get("signals", []) or []
-    finance_summary = financial_context.get("finance_summary", []) or []
-
-    if not metric_highlights:
-        metric_highlights = detected_changes
-
-    prepared_changes = []
-
-    for item in (metric_highlights or [])[:max_changes]:
-        if not isinstance(item, dict):
-            continue
-
-        prepared_changes.append(
-            {
-                "metric_key": item.get("metric_key"),
-                "metric_label": item.get("metric_label"),
-                "year": item.get("year"),
-                "base_year": item.get("base_year"),
-                "current_value": item.get("current_value"),
-                "base_value": item.get("base_value"),
-                "yoy_change_rate": item.get("yoy_change_rate"),
-                "change_type": item.get("change_type"),
-                "direction": item.get("direction"),
-                "severity": item.get("severity"),
-                "signal_type": item.get("signal_type"),
-                "description": shorten_text(item.get("description"), max_length=220),
-            }
-        )
-
-    prepared_finance_summary = []
-
-    for row in (finance_summary or [])[:max_finance_years]:
-        if not isinstance(row, dict):
-            continue
-
-        prepared_finance_summary.append(
-            {
-                "year": row.get("year"),
-                "revenue": row.get("revenue"),
-                "operating_income": row.get("operating_income"),
-                "net_income": row.get("net_income"),
-                "total_assets": row.get("total_assets"),
-                "total_liabilities": row.get("total_liabilities"),
-                "total_equity": row.get("total_equity"),
-                "debt_ratio": row.get("debt_ratio"),
-                "current_ratio": row.get("current_ratio"),
-                "operating_cash_flow": row.get("operating_cash_flow"),
-            }
-        )
-
-    prepared_signals = []
-
-    for item in (signals or [])[:max_signals]:
-        if not isinstance(item, dict):
-            continue
-
-        prepared_signals.append(
-            {
-                "year": item.get("year"),
-                "type": item.get("type") or item.get("signal_type"),
-                "severity": item.get("severity"),
-                "signal": item.get("signal") or item.get("signal_code"),
-                "description": shorten_text(item.get("description"), max_length=180),
-            }
-        )
-
-    return {
-        "company_info": {
-            "company_name": company_info.get("company_name"),
-            "stock_code": company_info.get("stock_code"),
-        },
-        "industry_info": {
-            "industry_group": industry_info.get("industry_group"),
-            "industry_group_name": industry_info.get("industry_group_name"),
-        },
-        "analysis_year": financial_context.get("analysis_year"),
-        "base_year": financial_context.get("base_year"),
-        "summary": shorten_text(
-            financial_context.get("summary")
-            or financial_context.get("overall_summary")
-            or financial_context.get("financial_summary"),
-            max_length=450,
-        ),
-        "financial_change_summary": shorten_text(
-            financial_context.get("financial_change_summary")
-            or financial_context.get("detected_change_summary"),
-            max_length=900,
-        ),
-        "yearly_finance_summary": shorten_text(
-            financial_context.get("yearly_finance_summary"),
-            max_length=900,
-        ),
-        "metric_highlights": prepared_changes,
-        "finance_summary": prepared_finance_summary,
-        "signals": prepared_signals,
-    }
-
-
 def prepare_evidence_news_for_prompt(
     evidence_news: List[Dict[str, Any]],
-    max_items: int = 3,
+    max_items: int = 5,
 ) -> List[Dict[str, Any]]:
     """
     LLM 프롬프트에 넣을 뉴스 근거를 간결하게 정리합니다.
@@ -279,32 +138,27 @@ def prepare_evidence_news_for_prompt(
     prepared = []
 
     for item in evidence_news[:max_items]:
-        summary = (
-            item.get("evidence_summary")
-            or item.get("summary")
-            or item.get("content")
-            or item.get("reason")
-            or ""
-        )
-
         prepared.append(
             {
                 "metric_key": item.get("metric_key"),
                 "metric_label": item.get("metric_label"),
                 "year": item.get("year"),
+                "base_year": item.get("base_year"),
                 "change_type": item.get("change_type"),
                 "direction": item.get("direction"),
                 "severity": item.get("severity"),
                 "yoy_change_rate": item.get("yoy_change_rate"),
                 "title": item.get("title", ""),
-                "url": item.get("url") or item.get("source_url") or "",
+                "url": item.get("url", ""),
+                "content": shorten_text(
+                    safe_text(item.get("content")),
+                    max_length=800,
+                ),
                 "published_date": item.get("published_date", ""),
-                "evidence_summary": shorten_text(summary, max_length=450),
+                "evidence_summary": item.get("evidence_summary", ""),
                 "relevance_score": item.get("relevance_score"),
-                "quality_score": item.get("quality_score"),
-                "evidence_level": item.get("evidence_level", "direct"),
-                "evidence_role": item.get("evidence_role", "핵심 근거"),
-                "evidence_usage_note": item.get("evidence_usage_note", ""),
+                "reason": item.get("reason", ""),
+                "source": item.get("source", ""),
             }
         )
 
@@ -313,7 +167,7 @@ def prepare_evidence_news_for_prompt(
 
 def prepare_evidence_disclosures_for_prompt(
     evidence_disclosures: Optional[List[Dict[str, Any]]] = None,
-    max_items: int = 3,
+    max_items: int = 5,
 ) -> List[Dict[str, Any]]:
     """
     LLM 프롬프트에 넣을 공시 근거를 간결하게 정리합니다.
@@ -325,13 +179,6 @@ def prepare_evidence_disclosures_for_prompt(
     prepared = []
 
     for item in evidence_disclosures[:max_items]:
-        summary = (
-            item.get("evidence_summary")
-            or item.get("summary")
-            or item.get("chunk_text")
-            or ""
-        )
-
         prepared.append(
             {
                 "metric_key": item.get("metric_key"),
@@ -339,21 +186,20 @@ def prepare_evidence_disclosures_for_prompt(
                 "year": item.get("year"),
                 "source_type": item.get("source_type", "disclosure"),
                 "source": item.get("source", ""),
-                "source_url": item.get("source_url", ""),
                 "report_type": item.get("report_type", ""),
                 "page": item.get("page", ""),
                 "section": item.get("section", ""),
-                "evidence_summary": shorten_text(summary, max_length=500),
+                "chunk_text": shorten_text(
+                    safe_text(item.get("chunk_text")),
+                    max_length=900,
+                ),
+                "evidence_summary": item.get("evidence_summary", ""),
                 "relevance_score": item.get("relevance_score"),
             }
         )
 
     return prepared
 
-
-# ---------------------------------------------------------------------
-# 3. fallback
-# ---------------------------------------------------------------------
 
 def build_fallback_report(
     financial_context: Dict[str, Any],
@@ -369,50 +215,50 @@ def build_fallback_report(
     analysis_year = financial_context.get("analysis_year")
     base_year = financial_context.get("base_year")
 
-    detected_change_summary = (
-        financial_context.get("detected_change_summary")
-        or financial_context.get("financial_change_summary")
-        or ""
-    )
-    metric_summary_text = (
-        financial_context.get("summary")
-        or financial_context.get("overall_summary")
-        or financial_context.get("financial_summary")
-        or detected_change_summary
-        or "주요 재무 변동이 확인되었습니다."
-    )
+    detected_change_summary = financial_context.get("detected_change_summary", "")
+    metric_summary = financial_context.get("metric_summary", "")
+
+    if isinstance(metric_summary, dict):
+        metric_summary_text = "\n".join(
+            f"- {key}: {value}"
+            for key, value in metric_summary.items()
+        )
+    else:
+        metric_summary_text = safe_text(metric_summary)
 
     news_lines = []
 
-    for item in evidence_news[:3]:
+    for item in evidence_news[:5]:
         metric_label = item.get("metric_label", "재무 지표")
         title = item.get("title", "")
-        summary = item.get("evidence_summary", "") or item.get("summary", "")
+        summary = item.get("evidence_summary", "")
 
         news_lines.append(
-            f"- [{metric_label}] {title}: {shorten_text(summary, max_length=250)}"
+            f"- [{metric_label}] {title}: {summary}"
         )
 
-    news_summary = (
-        "\n".join(news_lines)
-        if news_lines
-        else "현재 리포트 작성에 사용할 선별 뉴스 근거가 없습니다."
-    )
+    if not news_lines:
+        news_summary = "현재 리포트 작성에 사용할 선별 뉴스 근거가 없습니다."
+    else:
+        news_summary = "\n".join(news_lines)
 
     disclosure_count = len(evidence_disclosures or [])
 
     if disclosure_count == 0:
-        disclosure_summary = "현재 공시/사업보고서 근거는 확인되지 않았습니다."
+        disclosure_summary = (
+            "현재 공시/사업보고서 기반 RAG 근거는 연결되지 않았습니다. "
+            "Vector DB 연결 후 공시 근거가 추가될 수 있습니다."
+        )
     else:
         disclosure_lines = []
 
-        for item in (evidence_disclosures or [])[:3]:
+        for item in (evidence_disclosures or [])[:5]:
             metric_label = item.get("metric_label", "재무 지표")
             source = item.get("source", "")
-            summary = item.get("evidence_summary", "") or item.get("summary", "")
+            summary = item.get("evidence_summary", "")
 
             disclosure_lines.append(
-                f"- [{metric_label}] {source}: {shorten_text(summary, max_length=250)}"
+                f"- [{metric_label}] {source}: {summary}"
             )
 
         disclosure_summary = "\n".join(disclosure_lines)
@@ -423,7 +269,7 @@ def build_fallback_report(
         industry_group_name = industry_info.get("industry_group_name", "")
 
     industry_phrase = (
-        f" {industry_group_name} 특성을 함께 고려해야 합니다."
+        f" 또한 {industry_group_name} 특성을 고려한 해석이 필요합니다."
         if industry_group_name
         else ""
     )
@@ -431,17 +277,18 @@ def build_fallback_report(
     return {
         "executive_summary": (
             f"{company_name}의 {analysis_year}년 재무 지표에서는 "
-            f"{metric_summary_text} "
-            "다만 제공된 재무 수치와 선별 근거를 기반으로 한 요약이므로 "
-            f"단정적인 인과관계 판단은 제한됩니다.{industry_phrase}"
+            f"{detected_change_summary or '일부 주요 변동이 확인되었습니다.'} "
+            "다만 현재 리포트는 제공된 재무 수치와 선별된 근거를 기반으로 한 요약이며, "
+            "단정적인 인과관계 판단은 제한됩니다."
+            f"{industry_phrase}"
         ),
-        "financial_change_summary": safe_text(detected_change_summary or metric_summary_text),
+        "financial_change_summary": metric_summary_text,
         "news_evidence_summary": news_summary,
         "disclosure_evidence_summary": disclosure_summary,
         "possible_causes": (
-            "선별된 뉴스 및 공시 근거를 종합하면, 업황 변화, 수요 변화, 제품/사업 전략 등이 "
+            "선별된 뉴스 및 공시 근거를 종합하면, 업황 변화, 수요 둔화, 수익성 악화 등이 "
             "재무 변화와 관련된 가능한 배경 요인으로 검토될 수 있습니다. "
-            "다만 직접적인 원인으로 단정할 수 없으며 추가 검증이 필요합니다."
+            "다만 이는 직접적인 원인으로 단정할 수 없으며 추가 검증이 필요합니다."
         ),
         "interview_point": (
             "발표 또는 질의응답에서는 재무 수치 변화와 뉴스/공시 근거를 연결하되, "
@@ -449,7 +296,8 @@ def build_fallback_report(
         ),
         "limitations": (
             "본 리포트는 제공된 재무 데이터와 선별 근거를 기반으로 생성되었습니다. "
-            "뉴스 또는 공시 근거가 제한적일 수 있으며, 실제 공시 문서와 추가 자료 확인이 필요합니다."
+            "공시 RAG 근거가 부족하거나 연결되지 않은 경우, 최종 분석에서는 실제 공시 문서와 "
+            "뉴스 전처리 결과를 함께 검토해야 합니다."
         ),
         "source": "fallback",
         "metadata": {
@@ -464,27 +312,38 @@ def build_fallback_report(
     }
 
 
-# ---------------------------------------------------------------------
-# 4. Prompt / Chain
-# ---------------------------------------------------------------------
-
 REPORT_WRITER_SYSTEM_PROMPT = """
-당신은 재무 분석 리포트를 작성하는 AI입니다.
-반드시 JSON만 반환하세요. 마크다운, 코드블록, 설명 문장은 금지입니다.
+당신은 재무 분석 리포트를 작성하는 전문가입니다.
 
-원칙:
-- 제공된 재무 문맥, 뉴스 근거, 공시 근거, 산업 가이드 안의 정보만 사용하세요.
-- 재무 수치를 새로 계산하지 마세요.
-- 뉴스/공시와 재무 변화의 관계를 직접 인과로 단정하지 마세요.
-- 뉴스 근거의 evidence_level이 supporting이면 직접 원인으로 단정하지 말고 산업/그룹/업황 배경 근거로만 사용하세요.
-- evidence_level이 direct인 뉴스는 핵심 근거로 사용할 수 있으나, 이 경우에도 단정적 인과 표현은 피하세요.
-- 재고회전율, 재고자산, 가동률 관련 뉴스는 자산회전율과 완전히 같은 지표로 간주하지 말고, 관련 업황/운영 효율 배경으로만 신중하게 해석하세요.
-- "가능한 배경", "관련 요인", "검토할 수 있다", "추가 확인이 필요하다"처럼 신중하게 표현하세요.
-- 투자 추천, 매수, 매도, 보유, 목표주가 판단은 절대 작성하지 마세요.
-- 공시 근거가 없으면 없다고 쓰고, 리포트 생성은 계속하세요.
-- 산업 가이드에 언급된 지표가 입력에 없으면 "추가 확인 필요"라고 쓰세요.
+목표:
+- 제공된 재무 문맥, 뉴스 근거, 공시 근거, 산업별 분석 가이드를 바탕으로 최종 재무 분석 리포트를 작성합니다.
+- 리포트는 백엔드와 프론트엔드에서 바로 사용할 수 있는 JSON 형태로 반환합니다.
 
-JSON 형식:
+중요 원칙:
+1. 반드시 JSON만 반환하세요.
+2. 마크다운, 설명 문장, 코드블록은 출력하지 마세요.
+3. 제공된 financial_context, evidence_news, evidence_disclosures, industry_analysis_instruction 안의 정보만 사용하세요.
+4. 재무 수치를 새로 계산하지 마세요.
+5. 뉴스와 공시, 재무 변화의 관계를 직접적인 인과관계로 단정하지 마세요.
+6. "가능한 요인", "관련 배경", "추정된다", "검토할 수 있다", "추가 확인이 필요하다"와 같은 표현을 사용하세요.
+7. 투자 추천, 매수, 매도, 보유, 목표주가 판단을 절대 작성하지 마세요.
+8. 공시 근거가 없으면 없다고 명확히 쓰되, 리포트 생성을 중단하지 마세요.
+9. 뉴스 근거가 부족하면 한계점에 명시하세요.
+10. 과도하게 단정적이거나 과장된 표현을 피하세요.
+11. 산업별 분석 가이드는 해석 우선순위로만 사용하세요.
+12. 산업별 분석 가이드에 언급된 지표가 입력 데이터에 없으면 임의로 추정하지 말고 추가 확인이 필요하다고 작성하세요.
+13. 수치 또는 변화율이 N/A, None, null인 경우 증가/감소로 단정하지 말고 "정확한 변화율은 제공되지 않았습니다"라고 작성하세요.
+
+작성 형식:
+- executive_summary: 전체 요약
+- financial_change_summary: 주요 재무 변화 요약
+- news_evidence_summary: 뉴스 근거 요약
+- disclosure_evidence_summary: 공시 근거 요약
+- possible_causes: 가능한 배경 요인
+- interview_point: 발표나 질의응답에서 강조할 포인트
+- limitations: 한계 및 주의사항
+
+반환 JSON 형식:
 {{
   "executive_summary": "",
   "financial_change_summary": "",
@@ -508,21 +367,21 @@ def build_report_writer_chain(llm):
             (
                 "human",
                 """
-아래 입력만 사용해 최종 재무 분석 리포트 JSON을 생성하세요.
+다음 정보를 바탕으로 최종 재무 분석 리포트 JSON을 생성하세요.
 
-[재무 문맥]
+재무 문맥:
 {financial_context_json}
 
-[뉴스 근거]
+뉴스 근거:
 {evidence_news_json}
 
-[공시 근거]
+공시 근거:
 {evidence_disclosures_json}
 
-[산업 정보]
+산업 정보:
 {industry_info_json}
 
-[산업 가이드]
+산업별 분석 가이드:
 {industry_analysis_instruction}
 """,
             ),
@@ -550,14 +409,10 @@ def clean_report_output(report: Dict[str, Any]) -> Dict[str, Any]:
     cleaned = {}
 
     for field in required_fields:
-        cleaned[field] = safe_text(report.get(field, "")).strip()
+        cleaned[field] = safe_text(report.get(field, ""))
 
     return cleaned
 
-
-# ---------------------------------------------------------------------
-# 5. 대표 함수
-# ---------------------------------------------------------------------
 
 def generate_report(
     llm,
@@ -579,19 +434,14 @@ def generate_report(
         industry_analysis_instruction=industry_analysis_instruction,
     )
 
-    compact_financial_context = prepare_financial_context_for_prompt(
-        financial_context=financial_context,
-        max_changes=3,
-        max_finance_years=3,
-        max_signals=5,
-    )
     prepared_news = prepare_evidence_news_for_prompt(
         evidence_news=evidence_news,
-        max_items=3,
+        max_items=5,
     )
+
     prepared_disclosures = prepare_evidence_disclosures_for_prompt(
         evidence_disclosures=evidence_disclosures,
-        max_items=3,
+        max_items=5,
     )
 
     chain = build_report_writer_chain(llm)
@@ -599,14 +449,31 @@ def generate_report(
     try:
         raw_output = chain.invoke(
             {
-                "financial_context_json": compact_json(compact_financial_context),
-                "evidence_news_json": compact_json(prepared_news),
-                "evidence_disclosures_json": compact_json(prepared_disclosures),
-                "industry_info_json": compact_json(industry_info),
-                "industry_analysis_instruction": trim_industry_instruction(
-                    resolved_industry_instruction,
-                    max_length=1400,
+                "financial_context_json": json.dumps(
+                    financial_context,
+                    ensure_ascii=False,
+                    indent=2,
+                    default=str,
                 ),
+                "evidence_news_json": json.dumps(
+                    prepared_news,
+                    ensure_ascii=False,
+                    indent=2,
+                    default=str,
+                ),
+                "evidence_disclosures_json": json.dumps(
+                    prepared_disclosures,
+                    ensure_ascii=False,
+                    indent=2,
+                    default=str,
+                ),
+                "industry_info_json": json.dumps(
+                    industry_info,
+                    ensure_ascii=False,
+                    indent=2,
+                    default=str,
+                ),
+                "industry_analysis_instruction": resolved_industry_instruction,
             }
         )
 
@@ -621,11 +488,6 @@ def generate_report(
             "industry_group": industry_info.get("industry_group"),
             "industry_group_name": industry_info.get("industry_group_name"),
             "industry_instruction_applied": bool(resolved_industry_instruction),
-            "prompt_compaction_applied": True,
-            "prompt_news_count": len(prepared_news),
-            "prompt_direct_news_count": sum(1 for item in prepared_news if item.get("evidence_level") == "direct"),
-            "prompt_supporting_news_count": sum(1 for item in prepared_news if item.get("evidence_level") == "supporting"),
-            "prompt_disclosure_count": len(prepared_disclosures),
         }
 
         return report
@@ -643,7 +505,6 @@ def generate_report(
         fallback_report["metadata"]["generated_at"] = datetime.now().isoformat(timespec="seconds")
         fallback_report["metadata"]["model"] = get_model_name(llm)
         fallback_report["metadata"]["industry_instruction_applied"] = bool(resolved_industry_instruction)
-        fallback_report["metadata"]["prompt_compaction_applied"] = True
 
         return fallback_report
 
@@ -670,24 +531,20 @@ def write_report(
     )
 
 
-# ---------------------------------------------------------------------
-# 6. 단독 실행 테스트
-# ---------------------------------------------------------------------
-
 if __name__ == "__main__":
     try:
         from src.ai.llm_client import get_llm
         from src.ai.sample_report_data import get_sample_ai_input
         from src.ai.financial_context_builder import build_financial_context
         from src.ai.news_query_builder import build_news_queries
-        from src.ai.news_search_cache_service import search_news_by_query_groups_cached
+        from src.ai.news_search_service import search_news_by_query_groups
         from src.ai.news_evidence_filter import filter_evidence
     except ModuleNotFoundError:
         from llm_client import get_llm
         from sample_report_data import get_sample_ai_input
         from financial_context_builder import build_financial_context
         from news_query_builder import build_news_queries
-        from news_search_cache_service import search_news_by_query_groups_cached
+        from news_search_service import search_news_by_query_groups
         from news_evidence_filter import filter_evidence
 
     llm = get_llm()
@@ -719,11 +576,10 @@ if __name__ == "__main__":
         llm=llm,
     )
 
-    searched_news = search_news_by_query_groups_cached(
+    searched_news = search_news_by_query_groups(
         query_groups=query_groups,
-        ai_input=sample_ai_input,
-        max_results_per_query=3,
-        max_total_results=10,
+        max_results_per_query=5,
+        max_total_results=20,
     )
 
     evidence = filter_evidence(
@@ -741,10 +597,9 @@ if __name__ == "__main__":
         industry_info=sample_ai_input.get("industry_info", {}),
     )
 
-    print("[Fast Report Writer Chain Test]")
+    print("[Report Writer Chain Test]")
     print("evidence_news_count:", len(evidence.get("evidence_news", [])))
     print("evidence_disclosure_count:", len(evidence.get("evidence_disclosures", [])))
-    print("prompt_compaction_applied:", report.get("metadata", {}).get("prompt_compaction_applied"))
 
     print("\n[Report]")
     print(json.dumps(report, ensure_ascii=False, indent=2))

@@ -647,6 +647,73 @@ def report_chat(request, stock_code):
             data=None
         )
 
+    try:
+        from src.ai.chat_safety_filter import check_chat_safety, build_safety_block_response
+
+        safety_result = check_chat_safety(question)
+
+        if safety_result.get("blocked"):
+            blocked_answer = build_safety_block_response(
+                question=question,
+                safety_result=safety_result,
+            )
+            response_data = {
+                "company_info": {},
+                "industry_info": {},
+                "analysis_year": None,
+                "base_year": None,
+                "question": question,
+                "answer": blocked_answer.get("answer", ""),
+                "used_sources": blocked_answer.get("used_sources", []),
+                "limitations": blocked_answer.get("limitations", ""),
+                "metadata": {
+                    **(blocked_answer.get("metadata", {}) or {}),
+                    "received_ai_report_result": False,
+                    "generated_ai_report_inside_chat": False,
+                },
+            }
+            return success_response(
+                data=response_data,
+                message="부적절한 표현이 감지되어 챗봇 답변을 차단했습니다.",
+            )
+    except Exception as e:
+        print("[WARN] chat_safety_filter 실행 실패", type(e).__name__, str(e))
+
+    try:
+        from src.ai.financial_term_glossary import (
+            detect_financial_term_question,
+            build_financial_term_response,
+        )
+
+        term_result = detect_financial_term_question(question)
+
+        if term_result.get("matched"):
+            term_answer = build_financial_term_response(
+                question=question,
+                term_result=term_result,
+            )
+            response_data = {
+                "company_info": {},
+                "industry_info": {},
+                "analysis_year": None,
+                "base_year": None,
+                "question": question,
+                "answer": term_answer.get("answer", ""),
+                "used_sources": term_answer.get("used_sources", []),
+                "limitations": term_answer.get("limitations", ""),
+                "metadata": {
+                    **(term_answer.get("metadata", {}) or {}),
+                    "received_ai_report_result": False,
+                    "generated_ai_report_inside_chat": False,
+                },
+            }
+            return success_response(
+                data=response_data,
+                message="경제·재무 용어 설명 답변 생성 성공",
+            )
+    except Exception as e:
+        print("[WARN] financial_term_glossary 실행 실패", type(e).__name__, str(e))
+
     chat_history = get_chat_history_from_request(request)
 
     use_mock_disclosures = to_bool(
