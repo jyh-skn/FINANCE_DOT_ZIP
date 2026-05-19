@@ -35,7 +35,7 @@
 }
 
 .na-model-select {
-  background: var(--bg-card, #1c2030);
+  background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 8px;
   color: var(--text-h);
@@ -186,9 +186,9 @@
   font-weight: 500;
   padding: 4px 11px;
   border-radius: 20px;
-  border: 1px solid var(--tag-color, #c084fc);
-  background: var(--tag-bg, rgba(192,132,252,0.15));
-  color: var(--tag-color, #c084fc);
+  border: 1px solid var(--tag-color);
+  background: var(--tag-bg);
+  color: var(--tag-color);
   cursor: pointer;
   transition: opacity 0.15s, transform 0.1s;
   font-family: inherit;
@@ -200,12 +200,12 @@
 }
 
 .ns-tag.active {
-  box-shadow: 0 0 0 2px var(--tag-color, #c084fc);
+  box-shadow: 0 0 0 2px var(--tag-color);
 }
 
 /* Signal 상세 패널 (SignalDetail) */
 .sd-wrap {
-  background: #141720;
+  background: var(--bg-subtle);
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 14px 16px;
@@ -299,7 +299,7 @@
   font-weight: 600;
   padding: 2px 8px;
   border-radius: 4px;
-  color: #fff;
+  color: var(--bg);
   flex-shrink: 0;
   width: 90px;
   text-align: center;
