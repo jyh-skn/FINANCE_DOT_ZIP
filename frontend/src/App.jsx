@@ -191,10 +191,15 @@ function App() {
 
   const handleKeyIn = (keyword) => {
     if (!keyword) { setFilteredData([]); return; }
+    const normalizedKeyword = keyword.toLowerCase();
+
     setFilteredData(
-      allCompanies.filter(
-        (c) => c.CORP_NAME.includes(keyword) || c.CORP_CODE?.includes(keyword)
-      )
+      allCompanies.filter((c) => {
+        const corpName = String(c.CORP_NAME ?? '').toLowerCase();
+        const corpCode = String(c.CORP_CODE ?? '').toLowerCase();
+
+        return corpName.includes(normalizedKeyword) || corpCode.includes(normalizedKeyword);
+      })
     );
   };
 

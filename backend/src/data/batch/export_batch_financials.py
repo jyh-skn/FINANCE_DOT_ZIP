@@ -15,7 +15,7 @@ import os
 import re
 import sys
 import time
-from datetime import datetime
+from datetime import date, datetime
 from pathlib import Path
 from typing import Any
 
@@ -44,9 +44,34 @@ DART_API_BASE = "https://opendart.fss.or.kr/api"
 SOURCE_API = "fnlttSinglAcntAll.json"
 
 
+def latest_available_business_year(run_date: date | None = None) -> int:
+    """Return the latest business year whose annual report is usually available."""
+    run_date = run_date or date.today()
+    if run_date.month >= 4:
+        return run_date.year - 1
+    return run_date.year - 2
+
+
+def recent_business_years(count: int = 5, run_date: date | None = None) -> list[int]:
+    """Return recent business years for annual-report based collection."""
+    if count <= 0:
+        raise ValueError("year count must be greater than 0.")
+
+    end_year = latest_available_business_year(run_date)
+    start_year = end_year - count + 1
+    return list(range(start_year, end_year + 1))
+
+
 def parse_years(years_value: str) -> list[int]:
-    """2019-2023 또는 2019,2020 같은 입력을 연도 목록으로 변환합니다."""
-    value = years_value.strip()
+    """Parse year input such as recent5, 2021-2025, or 2021,2022."""
+    value = (years_value or "").strip().lower()
+    if value in {"", "recent", "latest", "recent5", "last5"}:
+        return recent_business_years(5)
+    if value in {"recent3", "last3"}:
+        return recent_business_years(3)
+    if value in {"recent4", "last4"}:
+        return recent_business_years(4)
+
     if "-" in value:
         start_text, end_text = value.split("-", 1)
         start_year = int(start_text)
@@ -340,6 +365,19 @@ def classify_api_failure(response: dict[str, Any] | None) -> tuple[str, str, str
     return "failed", status_code, message
 
 
+def build_fs_div_attempts(fs_div: str) -> list[str]:
+    """Return financial statement divisions to try for one company/year.
+
+    The default collection target is CFS, but some listed companies only expose
+    OFS data. In that case, try OFS after CFS returns no_data.
+    """
+    requested_fs_div = (fs_div or "").strip().upper() or "CFS"
+    attempts = [requested_fs_div]
+    if requested_fs_div == "CFS":
+        attempts.append("OFS")
+    return attempts
+
+
 def collect_batch_financials(
     batch_id: str,
     years: list[int],
@@ -381,38 +419,43 @@ def collect_batch_financials(
         company_raw_data: dict[str, Any] = {"data": {}}
 
         for year in years:
-            key = (company.get("stock_code", ""), str(year), reprt_code, fs_div)
-            if key in success_keys:
+            fs_div_attempts = build_fs_div_attempts(fs_div)
+            if any((company.get("stock_code", ""), str(year), reprt_code, attempt_fs_div) in success_keys for attempt_fs_div in fs_div_attempts):
                 counters["skipped"] += 1
                 continue
 
-            started_at = datetime.now().isoformat(timespec="seconds")
-            response: dict[str, Any] | None = None
-            exception_message = ""
-            try:
-                response = fetch_single_company_all_accounts(
-                    corp_code=company.get("corp_code", ""),
-                    bsns_year=year,
-                    reprt_code=reprt_code,
-                    fs_div=fs_div,
-                )
-            except requests.RequestException as exc:
-                exception_message = sanitize_error_message(str(exc))
-            finished_at = datetime.now().isoformat(timespec="seconds")
-            collected_at = finished_at
+            for attempt_index, attempt_fs_div in enumerate(fs_div_attempts):
+                started_at = datetime.now().isoformat(timespec="seconds")
+                response: dict[str, Any] | None = None
+                exception_message = ""
+                try:
+                    response = fetch_single_company_all_accounts(
+                        corp_code=company.get("corp_code", ""),
+                        bsns_year=year,
+                        reprt_code=reprt_code,
+                        fs_div=attempt_fs_div,
+                    )
+                except requests.RequestException as exc:
+                    exception_message = sanitize_error_message(str(exc))
+                finished_at = datetime.now().isoformat(timespec="seconds")
+                collected_at = finished_at
 
-            if response and response.get("status") == "000":
-                items = response.get("list", [])
-                if items:
-                    company_raw_data["data"][str(year)] = items
-                    raw_rows.extend(build_raw_rows(batch_id, company, year, reprt_code, fs_div, items, collected_at))
-                    report_rows.extend(build_report_rows(batch_id, company, year, reprt_code, fs_div, items, collected_at))
-                    log_rows.append(build_log_row(batch_id, company, year, reprt_code, fs_div, "success", started_at, finished_at))
-                    counters["success"] += 1
-                else:
-                    log_rows.append(build_log_row(batch_id, company, year, reprt_code, fs_div, "no_data", started_at, finished_at))
-                    counters["no_data"] += 1
-            else:
+                if response and response.get("status") == "000":
+                    items = [
+                        {**item, "fs_div": item.get("fs_div") or attempt_fs_div}
+                        for item in response.get("list", [])
+                    ]
+                    if items:
+                        company_raw_data["data"][str(year)] = items
+                        raw_rows.extend(build_raw_rows(batch_id, company, year, reprt_code, attempt_fs_div, items, collected_at))
+                        report_rows.extend(build_report_rows(batch_id, company, year, reprt_code, attempt_fs_div, items, collected_at))
+                        log_rows.append(build_log_row(batch_id, company, year, reprt_code, attempt_fs_div, "success", started_at, finished_at))
+                        counters["success"] += 1
+                    else:
+                        log_rows.append(build_log_row(batch_id, company, year, reprt_code, attempt_fs_div, "no_data", started_at, finished_at))
+                        counters["no_data"] += 1
+                    break
+
                 if exception_message:
                     status, error_code, error_message = "failed", "exception", exception_message
                 else:
@@ -423,7 +466,7 @@ def collect_batch_financials(
                         company,
                         year,
                         reprt_code,
-                        fs_div,
+                        attempt_fs_div,
                         status,
                         started_at,
                         finished_at,
@@ -432,6 +475,17 @@ def collect_batch_financials(
                     )
                 )
                 counters[status] = counters.get(status, 0) + 1
+
+                should_try_ofs = (
+                    status == "no_data"
+                    and attempt_fs_div == "CFS"
+                    and attempt_index + 1 < len(fs_div_attempts)
+                )
+                if not should_try_ofs:
+                    break
+
+                if sleep_interval > 0:
+                    time.sleep(sleep_interval)
 
             print(
                 "[progress] "
@@ -463,37 +517,49 @@ def collect_batch_financials(
                 company,
             ))
 
-    merge_csv_rows(
+    def persist_csv_rows(
+        path: Path,
+        fieldnames: list[str],
+        rows: list[dict[str, Any]],
+        key_fields: list[str],
+    ) -> None:
+        if limit is None and not skip_existing:
+            write_csv_rows(path, fieldnames, rows)
+            return
+
+        merge_csv_rows(path, fieldnames, rows, key_fields)
+
+    persist_csv_rows(
         batch_dir / "reports.csv",
         CSV_HEADERS["reports.csv"],
         report_rows,
         ["batch_id", "stock_code", "bsns_year", "reprt_code", "fs_div", "rcept_no"],
     )
-    merge_csv_rows(
+    persist_csv_rows(
         batch_dir / "financial_accounts_raw.csv",
         CSV_HEADERS["financial_accounts_raw.csv"],
         raw_rows,
         ["batch_id", "stock_code", "bsns_year", "reprt_code", "fs_div", "sj_div", "account_id", "account_nm", "ord"],
     )
-    merge_csv_rows(
+    persist_csv_rows(
         batch_dir / "financial_accounts_standard.csv",
         CSV_HEADERS["financial_accounts_standard.csv"],
         standard_rows,
         ["batch_id", "stock_code", "bsns_year", "reprt_code", "fs_div", "sj_div", "standard_account", "account_id", "account_nm"],
     )
-    merge_csv_rows(
+    persist_csv_rows(
         batch_dir / "account_availability.csv",
         CSV_HEADERS["account_availability.csv"],
         account_rows,
         ["batch_id", "stock_code", "standard_account"],
     )
-    merge_csv_rows(
+    persist_csv_rows(
         batch_dir / "signal_account_availability.csv",
         CSV_HEADERS["signal_account_availability.csv"],
         signal_rows,
         ["batch_id", "stock_code", "signal_name", "required_account"],
     )
-    merge_csv_rows(
+    persist_csv_rows(
         batch_dir / "collection_log.csv",
         CSV_HEADERS["collection_log.csv"],
         log_rows,
@@ -521,6 +587,8 @@ def update_batch_summary(
         f"- years: {years[0]}-{years[-1] if years else ''}",
         f"- reprt_code: {reprt_code}",
         f"- fs_div: {fs_div}",
+        "- fs_div fallback: CFS no_data 시 OFS를 추가 조회합니다.",
+        "- write policy: limit/skip-existing 없이 전체 실행하면 이번 실행 결과로 CSV를 덮어씁니다.",
         f"- success: {counters.get('success', 0)}",
         f"- failed: {counters.get('failed', 0)}",
         f"- no_data: {counters.get('no_data', 0)}",
@@ -544,7 +612,7 @@ def parse_args() -> argparse.Namespace:
         description="Export OpenDART fnlttSinglAcntAll.json results into one batch folder."
     )
     parser.add_argument("--batch-id", required=True, help="처리할 batch_id입니다. 예: kospi_001")
-    parser.add_argument("--years", default="2019-2023", help="수집 연도입니다. 예: 2019-2023 또는 2019,2020")
+    parser.add_argument("--years", default="recent5", help="Collection years. Use recent5/recent4/recent3, 2021-2025, or 2021,2022.")
     parser.add_argument("--reprt-code", default="11011", help="보고서 코드입니다. 기본값은 사업보고서 11011입니다.")
     parser.add_argument("--fs-div", default="CFS", help="재무제표 구분입니다. 기본값은 CFS입니다.")
     parser.add_argument("--limit", type=int, default=None, help="처리할 회사 수 제한입니다.")

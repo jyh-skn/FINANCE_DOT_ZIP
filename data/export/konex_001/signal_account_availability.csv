@@ -1,364 +1,596 @@
 ﻿batch_id,corp_code,stock_code,corp_name,signal_name,required_account,found,matched_account_nm,matched_account_id,years_found,sj_divs,fs_divs,status,recommended_action
-konex_001,01063556,233990,(주)질경이,부채 과다,부채총계,true,부채총계,ifrs-full_Liabilities,"2019, 2020, 2021",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01063556,233990,(주)질경이,부채 과다,자본총계,true,자본총계,ifrs-full_Equity,"2019, 2020, 2021",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01063556,233990,(주)질경이,실적 급락,매출액,true,매출액,ifrs-full_Revenue,"2019, 2020, 2021",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01063556,233990,(주)질경이,실적 급락,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01063556,233990,(주)질경이,수익성 악화,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01063556,233990,(주)질경이,수익성 악화2,당기순이익,true,당기순손실,-표준계정코드 미사용-,2019,SCE,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01063556,233990,(주)질경이,영업현금흐름 적자 지속,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,"2019, 2020, 2021",CF,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01063556,233990,(주)질경이,매출채권 회수 지연,매출액,true,매출액,ifrs-full_Revenue,"2019, 2020, 2021",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00523176,086220,광동헬스바이오(주),부채 과다,부채총계,true,부채총계,ifrs-full_Liabilities,"2021, 2022, 2023, 2024, 2025",BS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00523176,086220,광동헬스바이오(주),부채 과다,자본총계,true,"기말자본, 자본총계",ifrs-full_Equity,"2021, 2022, 2023, 2024, 2025","BS, SCE",OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00523176,086220,광동헬스바이오(주),실적 급락,매출액,true,매출액,ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00523176,086220,광동헬스바이오(주),실적 급락,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025",CIS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00523176,086220,광동헬스바이오(주),수익성 악화,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025",CIS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00523176,086220,광동헬스바이오(주),수익성 악화2,당기순이익,true,당기순이익(손실),"dart_ProfitLossForStatementOfCashFlows, ifrs-full_ProfitLoss","2021, 2022, 2023, 2024, 2025","CF, CIS, SCE",OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00523176,086220,광동헬스바이오(주),영업현금흐름 적자 지속,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,"2021, 2022, 2023, 2024, 2025",CF,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00523176,086220,광동헬스바이오(주),매출채권 회수 지연,매출액,true,매출액,ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00523176,086220,광동헬스바이오(주),매출채권 회수 지연,매출채권,true,매출채권,ifrs-full_AdjustmentsForDecreaseIncreaseInTradeAccountReceivable,"2021, 2022",CF,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00523176,086220,광동헬스바이오(주),재고 적체,매출액,true,매출액,ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00523176,086220,광동헬스바이오(주),재고 적체,재고자산,true,"유동재고자산, 재고자산","ifrs-full_AdjustmentsForDecreaseIncreaseInInventories, ifrs-full_Inventories","2021, 2022, 2023, 2024, 2025","BS, CF",OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00523176,086220,광동헬스바이오(주),단기 상환 압박,현금및현금성자산,true,현금및현금성자산,ifrs-full_CashAndCashEquivalents,"2021, 2022, 2023, 2024, 2025",BS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00523176,086220,광동헬스바이오(주),단기 상환 압박,유동부채,true,유동부채,ifrs-full_CurrentLiabilities,"2021, 2022, 2023, 2024, 2025",BS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00523176,086220,광동헬스바이오(주),이자 부담 능력,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025",CIS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00523176,086220,광동헬스바이오(주),이자 부담 능력,이자비용,true,"이자비용, 이자지급, 이자지급(영업)","-표준계정코드 미사용-, dart_AdjustmentsForInterestExpenses, ifrs-full_InterestPaidClassifiedAsOperatingActivities","2021, 2022, 2023, 2024, 2025",CF,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00523176,086220,광동헬스바이오(주),비용 레버리지 위험,매출액,true,매출액,ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00523176,086220,광동헬스바이오(주),비용 레버리지 위험,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025",CIS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00523176,086220,광동헬스바이오(주),매출 퀀텀 점프,매출액,true,매출액,ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00523176,086220,광동헬스바이오(주),어닝 서프라이즈,매출액,true,매출액,ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00523176,086220,광동헬스바이오(주),어닝 서프라이즈,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025",CIS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00523176,086220,광동헬스바이오(주),흑자 전환,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025",CIS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00523176,086220,광동헬스바이오(주),자산 가동률 상승,매출액,true,매출액,ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00523176,086220,광동헬스바이오(주),자산 가동률 상승,재고자산,true,"유동재고자산, 재고자산","ifrs-full_AdjustmentsForDecreaseIncreaseInInventories, ifrs-full_Inventories","2021, 2022, 2023, 2024, 2025","BS, CF",OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00523176,086220,광동헬스바이오(주),자산 가동률 상승,매출채권,true,매출채권,ifrs-full_AdjustmentsForDecreaseIncreaseInTradeAccountReceivable,"2021, 2022",CF,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00523176,086220,광동헬스바이오(주),Capa 확대,유형자산,true,유형자산,ifrs-full_PropertyPlantAndEquipment,"2021, 2022, 2023, 2024, 2025",BS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00523176,086220,광동헬스바이오(주),M&A 및 신사업 진출,주요사항보고서/원문 키워드,false,,,,,,needs_manual_review,재무제표 계정이 아니라 주요사항보고서 또는 사업보고서 원문 키워드 기반으로 확인해야 합니다.
+konex_001,00523176,086220,광동헬스바이오(주),재무 구조 개선,부채총계,true,부채총계,ifrs-full_Liabilities,"2021, 2022, 2023, 2024, 2025",BS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00523176,086220,광동헬스바이오(주),재무 구조 개선,자본총계,true,"기말자본, 자본총계",ifrs-full_Equity,"2021, 2022, 2023, 2024, 2025","BS, SCE",OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00523176,086220,광동헬스바이오(주),현금 창출력 강화,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,"2021, 2022, 2023, 2024, 2025",CF,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00523176,086220,광동헬스바이오(주),이자 부담 해소,단기차입금,false,,,,,,not_found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,00523176,086220,광동헬스바이오(주),이자 부담 해소,장기차입금,false,,,,,,not_found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,00523176,086220,광동헬스바이오(주),이자 부담 해소,사채,false,,,,,,not_found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,00523176,086220,광동헬스바이오(주),이자 부담 해소,자산총계,true,자산총계,ifrs-full_Assets,"2021, 2022, 2023, 2024, 2025",BS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00677334,102950,(주)아하,부채 과다,부채총계,true,부채총계,ifrs-full_Liabilities,"2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00677334,102950,(주)아하,부채 과다,자본총계,true,자본총계,ifrs-full_Equity,"2024, 2025","BS, SCE",CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00677334,102950,(주)아하,실적 급락,매출액,true,매출액,ifrs-full_Revenue,"2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00677334,102950,(주)아하,실적 급락,영업이익,true,"영업이익, 영업이익(손실)",dart_OperatingIncomeLoss,"2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00677334,102950,(주)아하,수익성 악화,영업이익,true,"영업이익, 영업이익(손실)",dart_OperatingIncomeLoss,"2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00677334,102950,(주)아하,수익성 악화2,당기순이익,true,"당기순이익, 당기순이익(손실)",ifrs-full_ProfitLoss,"2024, 2025","CIS, SCE",CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00677334,102950,(주)아하,영업현금흐름 적자 지속,영업활동현금흐름,true,"영업에서 창출된 현금흐름, 영업활동으로 인한 현금흐름","ifrs-full_CashFlowsFromUsedInOperatingActivities, ifrs-full_CashFlowsFromUsedInOperations","2024, 2025",CF,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00677334,102950,(주)아하,매출채권 회수 지연,매출액,true,매출액,ifrs-full_Revenue,"2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00677334,102950,(주)아하,매출채권 회수 지연,매출채권,true,매출채권,"dart_ShortTermTradeReceivable, ifrs-full_CurrentTradeReceivables","2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00677334,102950,(주)아하,재고 적체,매출액,true,매출액,ifrs-full_Revenue,"2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00677334,102950,(주)아하,재고 적체,재고자산,true,재고자산,ifrs-full_InventoriesTotal,"2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00677334,102950,(주)아하,단기 상환 압박,현금및현금성자산,true,현금및현금성자산,ifrs-full_CashAndCashEquivalents,"2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00677334,102950,(주)아하,단기 상환 압박,유동부채,true,유동부채,ifrs-full_CurrentLiabilities,"2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00677334,102950,(주)아하,이자 부담 능력,영업이익,true,"영업이익, 영업이익(손실)",dart_OperatingIncomeLoss,"2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00677334,102950,(주)아하,이자 부담 능력,이자비용,true,이자지급,ifrs-full_InterestPaidClassifiedAsOperatingActivities,"2024, 2025",CF,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00677334,102950,(주)아하,비용 레버리지 위험,매출액,true,매출액,ifrs-full_Revenue,"2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00677334,102950,(주)아하,비용 레버리지 위험,영업이익,true,"영업이익, 영업이익(손실)",dart_OperatingIncomeLoss,"2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00677334,102950,(주)아하,매출 퀀텀 점프,매출액,true,매출액,ifrs-full_Revenue,"2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00677334,102950,(주)아하,어닝 서프라이즈,매출액,true,매출액,ifrs-full_Revenue,"2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00677334,102950,(주)아하,어닝 서프라이즈,영업이익,true,"영업이익, 영업이익(손실)",dart_OperatingIncomeLoss,"2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00677334,102950,(주)아하,흑자 전환,영업이익,true,"영업이익, 영업이익(손실)",dart_OperatingIncomeLoss,"2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00677334,102950,(주)아하,자산 가동률 상승,매출액,true,매출액,ifrs-full_Revenue,"2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00677334,102950,(주)아하,자산 가동률 상승,재고자산,true,재고자산,ifrs-full_InventoriesTotal,"2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00677334,102950,(주)아하,자산 가동률 상승,매출채권,true,매출채권,"dart_ShortTermTradeReceivable, ifrs-full_CurrentTradeReceivables","2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00677334,102950,(주)아하,Capa 확대,유형자산,true,유형자산,ifrs-full_PropertyPlantAndEquipment,"2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00677334,102950,(주)아하,M&A 및 신사업 진출,주요사항보고서/원문 키워드,false,,,,,,needs_manual_review,재무제표 계정이 아니라 주요사항보고서 또는 사업보고서 원문 키워드 기반으로 확인해야 합니다.
+konex_001,00677334,102950,(주)아하,재무 구조 개선,부채총계,true,부채총계,ifrs-full_Liabilities,"2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00677334,102950,(주)아하,재무 구조 개선,자본총계,true,자본총계,ifrs-full_Equity,"2024, 2025","BS, SCE",CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00677334,102950,(주)아하,현금 창출력 강화,영업활동현금흐름,true,"영업에서 창출된 현금흐름, 영업활동으로 인한 현금흐름","ifrs-full_CashFlowsFromUsedInOperatingActivities, ifrs-full_CashFlowsFromUsedInOperations","2024, 2025",CF,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00677334,102950,(주)아하,이자 부담 해소,단기차입금,true,단기차입금,-표준계정코드 미사용-,"2024, 2025",BS,CFS,found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,00677334,102950,(주)아하,이자 부담 해소,장기차입금,true,장기차입금,ifrs-full_NoncurrentPortionOfNoncurrentLoansReceived,"2024, 2025",BS,CFS,found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,00677334,102950,(주)아하,이자 부담 해소,사채,true,사채,dart_BondsIssuedNominalValue,2025,BS,CFS,found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,00677334,102950,(주)아하,이자 부담 해소,자산총계,true,자산총계,ifrs-full_Assets,"2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00677334,102950,(주)아하,이자 부담 해소,차입금의존도,true,자산총계,ifrs-full_Assets,"2024, 2025",BS,CFS,calculated_from_components,"차입금 단일 계정은 없어도 단기차입금, 장기차입금, 사채, 자산총계 조합으로 계산 가능합니다."
+konex_001,00537221,216400,인바이츠바이오코아(주),부채 과다,부채총계,true,부채총계,ifrs-full_Liabilities,"2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),부채 과다,자본총계,true,자본총계,ifrs-full_Equity,"2024, 2025","BS, SCE",CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),실적 급락,매출액,true,수익(매출액),ifrs-full_Revenue,"2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),실적 급락,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),수익성 악화,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),수익성 악화2,당기순이익,true,당기순이익(손실),ifrs-full_ProfitLoss,"2024, 2025","CIS, SCE",CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),영업현금흐름 적자 지속,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,"2024, 2025",CF,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),매출채권 회수 지연,매출액,true,수익(매출액),ifrs-full_Revenue,"2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),매출채권 회수 지연,매출채권,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
+konex_001,00537221,216400,인바이츠바이오코아(주),재고 적체,매출액,true,수익(매출액),ifrs-full_Revenue,"2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),재고 적체,재고자산,true,유동재고자산,ifrs-full_Inventories,"2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),단기 상환 압박,현금및현금성자산,true,현금및현금성자산,ifrs-full_CashAndCashEquivalents,"2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),단기 상환 압박,유동부채,true,유동부채,ifrs-full_CurrentLiabilities,"2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),이자 부담 능력,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),이자 부담 능력,이자비용,true,이자지급(영업),ifrs-full_InterestPaidClassifiedAsOperatingActivities,"2024, 2025",CF,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),비용 레버리지 위험,매출액,true,수익(매출액),ifrs-full_Revenue,"2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),비용 레버리지 위험,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),매출 퀀텀 점프,매출액,true,수익(매출액),ifrs-full_Revenue,"2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),어닝 서프라이즈,매출액,true,수익(매출액),ifrs-full_Revenue,"2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),어닝 서프라이즈,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),흑자 전환,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),자산 가동률 상승,매출액,true,수익(매출액),ifrs-full_Revenue,"2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),자산 가동률 상승,재고자산,true,유동재고자산,ifrs-full_Inventories,"2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),자산 가동률 상승,매출채권,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
+konex_001,00537221,216400,인바이츠바이오코아(주),Capa 확대,유형자산,true,유형자산,ifrs-full_PropertyPlantAndEquipment,"2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),M&A 및 신사업 진출,주요사항보고서/원문 키워드,false,,,,,,needs_manual_review,재무제표 계정이 아니라 주요사항보고서 또는 사업보고서 원문 키워드 기반으로 확인해야 합니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),재무 구조 개선,부채총계,true,부채총계,ifrs-full_Liabilities,"2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),재무 구조 개선,자본총계,true,자본총계,ifrs-full_Equity,"2024, 2025","BS, SCE",CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),현금 창출력 강화,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,"2024, 2025",CF,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),이자 부담 해소,단기차입금,true,단기차입금,-표준계정코드 미사용-,"2024, 2025",BS,CFS,found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,00537221,216400,인바이츠바이오코아(주),이자 부담 해소,장기차입금,false,,,,,,not_found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,00537221,216400,인바이츠바이오코아(주),이자 부담 해소,사채,false,,,,,,not_found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,00537221,216400,인바이츠바이오코아(주),이자 부담 해소,자산총계,true,자산총계,ifrs-full_Assets,"2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00976615,217880,(주)틸론,부채 과다,부채총계,true,부채총계,ifrs-full_Liabilities,2024,BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00976615,217880,(주)틸론,부채 과다,자본총계,true,자본총계,ifrs-full_Equity,2024,"BS, SCE",CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00976615,217880,(주)틸론,실적 급락,매출액,true,매출액,ifrs-full_Revenue,2024,CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00976615,217880,(주)틸론,실적 급락,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,2024,CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00976615,217880,(주)틸론,수익성 악화,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,2024,CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00976615,217880,(주)틸론,수익성 악화2,당기순이익,true,당기순이익(손실),ifrs-full_ProfitLoss,2024,"CF, CIS, SCE",CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00976615,217880,(주)틸론,영업현금흐름 적자 지속,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,2024,CF,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00976615,217880,(주)틸론,매출채권 회수 지연,매출액,true,매출액,ifrs-full_Revenue,2024,CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00976615,217880,(주)틸론,매출채권 회수 지연,매출채권,true,매출채권,dart_ShortTermTradeReceivable,2024,BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00976615,217880,(주)틸론,재고 적체,매출액,true,매출액,ifrs-full_Revenue,2024,CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00976615,217880,(주)틸론,재고 적체,재고자산,true,재고자산,ifrs-full_Inventories,2024,BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00976615,217880,(주)틸론,단기 상환 압박,현금및현금성자산,true,현금및현금성자산,ifrs-full_CashAndCashEquivalents,2024,BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00976615,217880,(주)틸론,단기 상환 압박,유동부채,true,유동부채,ifrs-full_CurrentLiabilities,2024,BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00976615,217880,(주)틸론,이자 부담 능력,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,2024,CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00976615,217880,(주)틸론,이자 부담 능력,이자비용,true,이자지급(영업),ifrs-full_InterestPaidClassifiedAsOperatingActivities,2024,CF,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00976615,217880,(주)틸론,비용 레버리지 위험,매출액,true,매출액,ifrs-full_Revenue,2024,CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00976615,217880,(주)틸론,비용 레버리지 위험,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,2024,CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00976615,217880,(주)틸론,매출 퀀텀 점프,매출액,true,매출액,ifrs-full_Revenue,2024,CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00976615,217880,(주)틸론,어닝 서프라이즈,매출액,true,매출액,ifrs-full_Revenue,2024,CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00976615,217880,(주)틸론,어닝 서프라이즈,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,2024,CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00976615,217880,(주)틸론,흑자 전환,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,2024,CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00976615,217880,(주)틸론,자산 가동률 상승,매출액,true,매출액,ifrs-full_Revenue,2024,CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00976615,217880,(주)틸론,자산 가동률 상승,재고자산,true,재고자산,ifrs-full_Inventories,2024,BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00976615,217880,(주)틸론,자산 가동률 상승,매출채권,true,매출채권,dart_ShortTermTradeReceivable,2024,BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00976615,217880,(주)틸론,Capa 확대,유형자산,true,유형자산,ifrs-full_PropertyPlantAndEquipment,2024,BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00976615,217880,(주)틸론,M&A 및 신사업 진출,주요사항보고서/원문 키워드,false,,,,,,needs_manual_review,재무제표 계정이 아니라 주요사항보고서 또는 사업보고서 원문 키워드 기반으로 확인해야 합니다.
+konex_001,00976615,217880,(주)틸론,재무 구조 개선,부채총계,true,부채총계,ifrs-full_Liabilities,2024,BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00976615,217880,(주)틸론,재무 구조 개선,자본총계,true,자본총계,ifrs-full_Equity,2024,"BS, SCE",CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00976615,217880,(주)틸론,현금 창출력 강화,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,2024,CF,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00976615,217880,(주)틸론,이자 부담 해소,단기차입금,true,단기차입금,ifrs-full_ShorttermBorrowings,2024,BS,CFS,found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,00976615,217880,(주)틸론,이자 부담 해소,장기차입금,true,장기차입금,dart_LongTermBorrowingsGross,2024,BS,CFS,found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,00976615,217880,(주)틸론,이자 부담 해소,사채,false,,,,,,not_found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,00976615,217880,(주)틸론,이자 부담 해소,자산총계,true,자산총계,ifrs-full_Assets,2024,BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01066058,217950,(주)파마리서치바이오,부채 과다,부채총계,true,부채총계,ifrs-full_Liabilities,"2021, 2022, 2023, 2024, 2025",BS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01066058,217950,(주)파마리서치바이오,부채 과다,자본총계,true,"기말자본, 자본총계",ifrs-full_Equity,"2021, 2022, 2023, 2024, 2025","BS, SCE",OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01066058,217950,(주)파마리서치바이오,실적 급락,매출액,true,"매출액, 수익(매출액)",ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01066058,217950,(주)파마리서치바이오,실적 급락,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025",CIS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01066058,217950,(주)파마리서치바이오,수익성 악화,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025",CIS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01066058,217950,(주)파마리서치바이오,수익성 악화2,당기순이익,true,당기순이익(손실),"dart_ProfitLossForStatementOfCashFlows, ifrs-full_ProfitLoss","2021, 2022, 2023, 2024, 2025","CF, CIS, SCE",OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01066058,217950,(주)파마리서치바이오,영업현금흐름 적자 지속,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,"2021, 2022, 2023, 2024, 2025",CF,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01066058,217950,(주)파마리서치바이오,매출채권 회수 지연,매출액,true,"매출액, 수익(매출액)",ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01066058,217950,(주)파마리서치바이오,매출채권 회수 지연,매출채권,true,매출채권,dart_ShortTermTradeReceivable,"2021, 2022, 2023, 2024, 2025",BS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01066058,217950,(주)파마리서치바이오,재고 적체,매출액,true,"매출액, 수익(매출액)",ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01066058,217950,(주)파마리서치바이오,재고 적체,재고자산,true,재고자산,ifrs-full_Inventories,"2021, 2022, 2023, 2024, 2025",BS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01066058,217950,(주)파마리서치바이오,단기 상환 압박,현금및현금성자산,true,현금및현금성자산,ifrs-full_CashAndCashEquivalents,"2021, 2022, 2023, 2024, 2025",BS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01066058,217950,(주)파마리서치바이오,단기 상환 압박,유동부채,true,유동부채,ifrs-full_CurrentLiabilities,"2021, 2022, 2023, 2024, 2025",BS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01066058,217950,(주)파마리서치바이오,이자 부담 능력,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025",CIS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01066058,217950,(주)파마리서치바이오,이자 부담 능력,이자비용,true,이자지급(영업),ifrs-full_InterestPaidClassifiedAsOperatingActivities,"2021, 2022, 2023, 2024, 2025",CF,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01066058,217950,(주)파마리서치바이오,비용 레버리지 위험,매출액,true,"매출액, 수익(매출액)",ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01066058,217950,(주)파마리서치바이오,비용 레버리지 위험,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025",CIS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01066058,217950,(주)파마리서치바이오,매출 퀀텀 점프,매출액,true,"매출액, 수익(매출액)",ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01066058,217950,(주)파마리서치바이오,어닝 서프라이즈,매출액,true,"매출액, 수익(매출액)",ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01066058,217950,(주)파마리서치바이오,어닝 서프라이즈,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025",CIS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01066058,217950,(주)파마리서치바이오,흑자 전환,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025",CIS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01066058,217950,(주)파마리서치바이오,자산 가동률 상승,매출액,true,"매출액, 수익(매출액)",ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01066058,217950,(주)파마리서치바이오,자산 가동률 상승,재고자산,true,재고자산,ifrs-full_Inventories,"2021, 2022, 2023, 2024, 2025",BS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01066058,217950,(주)파마리서치바이오,자산 가동률 상승,매출채권,true,매출채권,dart_ShortTermTradeReceivable,"2021, 2022, 2023, 2024, 2025",BS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01066058,217950,(주)파마리서치바이오,Capa 확대,유형자산,true,유형자산,ifrs-full_PropertyPlantAndEquipment,"2021, 2022, 2023, 2024, 2025",BS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01066058,217950,(주)파마리서치바이오,M&A 및 신사업 진출,주요사항보고서/원문 키워드,false,,,,,,needs_manual_review,재무제표 계정이 아니라 주요사항보고서 또는 사업보고서 원문 키워드 기반으로 확인해야 합니다.
+konex_001,01066058,217950,(주)파마리서치바이오,재무 구조 개선,부채총계,true,부채총계,ifrs-full_Liabilities,"2021, 2022, 2023, 2024, 2025",BS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01066058,217950,(주)파마리서치바이오,재무 구조 개선,자본총계,true,"기말자본, 자본총계",ifrs-full_Equity,"2021, 2022, 2023, 2024, 2025","BS, SCE",OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01066058,217950,(주)파마리서치바이오,현금 창출력 강화,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,"2021, 2022, 2023, 2024, 2025",CF,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01066058,217950,(주)파마리서치바이오,이자 부담 해소,단기차입금,false,,,,,,not_found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,01066058,217950,(주)파마리서치바이오,이자 부담 해소,장기차입금,true,장기차입금,dart_LongTermBorrowingsGross,"2021, 2022",BS,OFS,found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,01066058,217950,(주)파마리서치바이오,이자 부담 해소,사채,false,,,,,,not_found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,01066058,217950,(주)파마리서치바이오,이자 부담 해소,자산총계,true,자산총계,ifrs-full_Assets,"2021, 2022, 2023, 2024, 2025",BS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01063556,233990,(주)질경이,부채 과다,부채총계,true,부채총계,ifrs-full_Liabilities,2021,BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01063556,233990,(주)질경이,부채 과다,자본총계,true,"기말자본, 자본총계",ifrs-full_Equity,2021,"BS, SCE",CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01063556,233990,(주)질경이,실적 급락,매출액,true,매출액,ifrs-full_Revenue,2021,CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01063556,233990,(주)질경이,실적 급락,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,2021,CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01063556,233990,(주)질경이,수익성 악화,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,2021,CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01063556,233990,(주)질경이,수익성 악화2,당기순이익,true,당기순이익(손실),ifrs-full_ProfitLoss,2021,"CIS, SCE",CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01063556,233990,(주)질경이,영업현금흐름 적자 지속,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,2021,CF,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01063556,233990,(주)질경이,매출채권 회수 지연,매출액,true,매출액,ifrs-full_Revenue,2021,CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
 konex_001,01063556,233990,(주)질경이,매출채권 회수 지연,매출채권,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01063556,233990,(주)질경이,재고 적체,매출액,true,매출액,ifrs-full_Revenue,"2019, 2020, 2021",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01063556,233990,(주)질경이,재고 적체,재고자산,true,재고자산,ifrs-full_Inventories,"2019, 2020, 2021",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01063556,233990,(주)질경이,단기 상환 압박,현금및현금성자산,true,현금및현금성자산,ifrs-full_CashAndCashEquivalents,"2019, 2020, 2021",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01063556,233990,(주)질경이,단기 상환 압박,유동부채,true,유동부채,ifrs-full_CurrentLiabilities,"2019, 2020, 2021",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01063556,233990,(주)질경이,이자 부담 능력,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01063556,233990,(주)질경이,이자 부담 능력,이자비용,true,금융비용,ifrs-full_FinanceCosts,"2019, 2020, 2021",CIS,,proxy_candidate,이자비용 직접 계정은 없고 금융비용만 확인됩니다. 실제 계산 사용 여부는 사람이 결정해야 합니다.
-konex_001,01063556,233990,(주)질경이,비용 레버리지 위험,매출액,true,매출액,ifrs-full_Revenue,"2019, 2020, 2021",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01063556,233990,(주)질경이,비용 레버리지 위험,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01063556,233990,(주)질경이,매출 퀀텀 점프,매출액,true,매출액,ifrs-full_Revenue,"2019, 2020, 2021",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01063556,233990,(주)질경이,어닝 서프라이즈,매출액,true,매출액,ifrs-full_Revenue,"2019, 2020, 2021",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01063556,233990,(주)질경이,어닝 서프라이즈,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01063556,233990,(주)질경이,흑자 전환,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01063556,233990,(주)질경이,자산 가동률 상승,매출액,true,매출액,ifrs-full_Revenue,"2019, 2020, 2021",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01063556,233990,(주)질경이,자산 가동률 상승,재고자산,true,재고자산,ifrs-full_Inventories,"2019, 2020, 2021",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01063556,233990,(주)질경이,재고 적체,매출액,true,매출액,ifrs-full_Revenue,2021,CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01063556,233990,(주)질경이,재고 적체,재고자산,true,재고자산,ifrs-full_Inventories,2021,BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01063556,233990,(주)질경이,단기 상환 압박,현금및현금성자산,true,현금및현금성자산,ifrs-full_CashAndCashEquivalents,2021,BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01063556,233990,(주)질경이,단기 상환 압박,유동부채,true,유동부채,ifrs-full_CurrentLiabilities,2021,BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01063556,233990,(주)질경이,이자 부담 능력,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,2021,CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01063556,233990,(주)질경이,이자 부담 능력,이자비용,true,이자지급,ifrs-full_InterestPaidClassifiedAsOperatingActivities,2021,CF,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01063556,233990,(주)질경이,비용 레버리지 위험,매출액,true,매출액,ifrs-full_Revenue,2021,CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01063556,233990,(주)질경이,비용 레버리지 위험,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,2021,CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01063556,233990,(주)질경이,매출 퀀텀 점프,매출액,true,매출액,ifrs-full_Revenue,2021,CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01063556,233990,(주)질경이,어닝 서프라이즈,매출액,true,매출액,ifrs-full_Revenue,2021,CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01063556,233990,(주)질경이,어닝 서프라이즈,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,2021,CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01063556,233990,(주)질경이,흑자 전환,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,2021,CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01063556,233990,(주)질경이,자산 가동률 상승,매출액,true,매출액,ifrs-full_Revenue,2021,CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01063556,233990,(주)질경이,자산 가동률 상승,재고자산,true,재고자산,ifrs-full_Inventories,2021,BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
 konex_001,01063556,233990,(주)질경이,자산 가동률 상승,매출채권,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01063556,233990,(주)질경이,Capa 확대,유형자산,true,유형자산,ifrs-full_PropertyPlantAndEquipment,"2019, 2020, 2021",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01063556,233990,(주)질경이,Capa 확대,유형자산,true,유형자산,ifrs-full_PropertyPlantAndEquipment,2021,BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
 konex_001,01063556,233990,(주)질경이,M&A 및 신사업 진출,주요사항보고서/원문 키워드,false,,,,,,needs_manual_review,재무제표 계정이 아니라 주요사항보고서 또는 사업보고서 원문 키워드 기반으로 확인해야 합니다.
-konex_001,01063556,233990,(주)질경이,재무 구조 개선,부채총계,true,부채총계,ifrs-full_Liabilities,"2019, 2020, 2021",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01063556,233990,(주)질경이,재무 구조 개선,자본총계,true,자본총계,ifrs-full_Equity,"2019, 2020, 2021",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01063556,233990,(주)질경이,현금 창출력 강화,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,"2019, 2020, 2021",CF,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01063556,233990,(주)질경이,이자 부담 해소,단기차입금,true,단기차입금,ifrs-full_ShorttermBorrowings,"2019, 2020, 2021",BS,,found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
-konex_001,01063556,233990,(주)질경이,이자 부담 해소,장기차입금,true,장기차입금,dart_LongTermBorrowingsGross,"2019, 2020, 2021",BS,,found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,01063556,233990,(주)질경이,재무 구조 개선,부채총계,true,부채총계,ifrs-full_Liabilities,2021,BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01063556,233990,(주)질경이,재무 구조 개선,자본총계,true,"기말자본, 자본총계",ifrs-full_Equity,2021,"BS, SCE",CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01063556,233990,(주)질경이,현금 창출력 강화,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,2021,CF,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01063556,233990,(주)질경이,이자 부담 해소,단기차입금,true,단기차입금,ifrs-full_ShorttermBorrowings,2021,BS,CFS,found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,01063556,233990,(주)질경이,이자 부담 해소,장기차입금,true,장기차입금,dart_LongTermBorrowingsGross,2021,BS,CFS,found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
 konex_001,01063556,233990,(주)질경이,이자 부담 해소,사채,false,,,,,,not_found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
-konex_001,01063556,233990,(주)질경이,이자 부담 해소,자산총계,true,자산총계,ifrs-full_Assets,"2019, 2020, 2021",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,부채 과다,부채총계,true,부채총계,ifrs-full_Liabilities,2020,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,부채 과다,자본총계,true,자본총계,ifrs-full_Equity,2020,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,실적 급락,매출액,true,수익(매출액),ifrs-full_Revenue,2020,CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,실적 급락,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01023822,236340,(주)메디젠휴먼케어,수익성 악화,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01023822,236340,(주)메디젠휴먼케어,수익성 악화2,당기순이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01023822,236340,(주)메디젠휴먼케어,영업현금흐름 적자 지속,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,2020,CF,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,매출채권 회수 지연,매출액,true,수익(매출액),ifrs-full_Revenue,2020,CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,매출채권 회수 지연,매출채권,true,매출채권,dart_ShortTermTradeReceivable,2020,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,재고 적체,매출액,true,수익(매출액),ifrs-full_Revenue,2020,CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,재고 적체,재고자산,true,재고자산,ifrs-full_Inventories,2020,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,단기 상환 압박,현금및현금성자산,true,현금및현금성자산,ifrs-full_CashAndCashEquivalents,2020,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,단기 상환 압박,유동부채,true,유동부채,ifrs-full_CurrentLiabilities,2020,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,이자 부담 능력,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01023822,236340,(주)메디젠휴먼케어,이자 부담 능력,이자비용,true,이자비용,dart_AdjustmentsForInterestExpenses,2020,CF,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,비용 레버리지 위험,매출액,true,수익(매출액),ifrs-full_Revenue,2020,CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,비용 레버리지 위험,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01023822,236340,(주)메디젠휴먼케어,매출 퀀텀 점프,매출액,true,수익(매출액),ifrs-full_Revenue,2020,CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,어닝 서프라이즈,매출액,true,수익(매출액),ifrs-full_Revenue,2020,CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,어닝 서프라이즈,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01023822,236340,(주)메디젠휴먼케어,흑자 전환,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01023822,236340,(주)메디젠휴먼케어,자산 가동률 상승,매출액,true,수익(매출액),ifrs-full_Revenue,2020,CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,자산 가동률 상승,재고자산,true,재고자산,ifrs-full_Inventories,2020,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,자산 가동률 상승,매출채권,true,매출채권,dart_ShortTermTradeReceivable,2020,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,Capa 확대,유형자산,true,유형자산,ifrs-full_PropertyPlantAndEquipment,2020,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,M&A 및 신사업 진출,주요사항보고서/원문 키워드,false,,,,,,needs_manual_review,재무제표 계정이 아니라 주요사항보고서 또는 사업보고서 원문 키워드 기반으로 확인해야 합니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,재무 구조 개선,부채총계,true,부채총계,ifrs-full_Liabilities,2020,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,재무 구조 개선,자본총계,true,자본총계,ifrs-full_Equity,2020,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,현금 창출력 강화,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,2020,CF,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,이자 부담 해소,단기차입금,true,단기차입금,ifrs-full_ShorttermBorrowings,2020,BS,,found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
-konex_001,01023822,236340,(주)메디젠휴먼케어,이자 부담 해소,장기차입금,false,,,,,,not_found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
-konex_001,01023822,236340,(주)메디젠휴먼케어,이자 부담 해소,사채,false,,,,,,not_found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
-konex_001,01023822,236340,(주)메디젠휴먼케어,이자 부담 해소,자산총계,true,자산총계,ifrs-full_Assets,2020,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01158632,250030,주식회사 진코스텍,부채 과다,부채총계,true,부채총계,ifrs-full_Liabilities,"2020, 2021, 2022",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01158632,250030,주식회사 진코스텍,부채 과다,자본총계,true,자본총계,ifrs-full_Equity,"2020, 2021, 2022",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01158632,250030,주식회사 진코스텍,실적 급락,매출액,true,매출액,ifrs-full_Revenue,"2020, 2021, 2022",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01158632,250030,주식회사 진코스텍,실적 급락,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01158632,250030,주식회사 진코스텍,수익성 악화,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01158632,250030,주식회사 진코스텍,수익성 악화2,당기순이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01158632,250030,주식회사 진코스텍,영업현금흐름 적자 지속,영업활동현금흐름,true,영업활동으로 인한 현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,"2020, 2021, 2022",CF,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01158632,250030,주식회사 진코스텍,매출채권 회수 지연,매출액,true,매출액,ifrs-full_Revenue,"2020, 2021, 2022",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01063556,233990,(주)질경이,이자 부담 해소,자산총계,true,자산총계,ifrs-full_Assets,2021,BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01118643,238500,(주)솔루믹스,부채 과다,부채총계,true,부채총계,ifrs-full_Liabilities,"2022, 2023",BS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01118643,238500,(주)솔루믹스,부채 과다,자본총계,true,"기말자본, 자본총계",ifrs-full_Equity,"2022, 2023","BS, SCE",OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01118643,238500,(주)솔루믹스,실적 급락,매출액,true,매출액,ifrs-full_Revenue,"2022, 2023",CIS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01118643,238500,(주)솔루믹스,실적 급락,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2022, 2023",CIS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01118643,238500,(주)솔루믹스,수익성 악화,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2022, 2023",CIS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01118643,238500,(주)솔루믹스,수익성 악화2,당기순이익,true,당기순이익(손실),"-표준계정코드 미사용-, dart_ProfitLossForStatementOfCashFlows, ifrs-full_ProfitLoss","2022, 2023","CF, CIS, SCE",OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01118643,238500,(주)솔루믹스,영업현금흐름 적자 지속,영업활동현금흐름,true,영업활동으로 인한 현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,"2022, 2023",CF,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01118643,238500,(주)솔루믹스,매출채권 회수 지연,매출액,true,매출액,ifrs-full_Revenue,"2022, 2023",CIS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01118643,238500,(주)솔루믹스,매출채권 회수 지연,매출채권,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
+konex_001,01118643,238500,(주)솔루믹스,재고 적체,매출액,true,매출액,ifrs-full_Revenue,"2022, 2023",CIS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01118643,238500,(주)솔루믹스,재고 적체,재고자산,true,"유동재고자산, 재고자산",ifrs-full_Inventories,"2022, 2023",BS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01118643,238500,(주)솔루믹스,단기 상환 압박,현금및현금성자산,true,현금및현금성자산,"ifrs-full_CashAndCashEquivalents, ifrs-full_CashEquivalents","2022, 2023",BS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01118643,238500,(주)솔루믹스,단기 상환 압박,유동부채,true,유동부채,ifrs-full_CurrentLiabilities,"2022, 2023",BS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01118643,238500,(주)솔루믹스,이자 부담 능력,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2022, 2023",CIS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01118643,238500,(주)솔루믹스,이자 부담 능력,이자비용,true,"이자의 지급, 이자지급(영업)",ifrs-full_InterestPaidClassifiedAsOperatingActivities,"2022, 2023",CF,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01118643,238500,(주)솔루믹스,비용 레버리지 위험,매출액,true,매출액,ifrs-full_Revenue,"2022, 2023",CIS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01118643,238500,(주)솔루믹스,비용 레버리지 위험,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2022, 2023",CIS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01118643,238500,(주)솔루믹스,매출 퀀텀 점프,매출액,true,매출액,ifrs-full_Revenue,"2022, 2023",CIS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01118643,238500,(주)솔루믹스,어닝 서프라이즈,매출액,true,매출액,ifrs-full_Revenue,"2022, 2023",CIS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01118643,238500,(주)솔루믹스,어닝 서프라이즈,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2022, 2023",CIS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01118643,238500,(주)솔루믹스,흑자 전환,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2022, 2023",CIS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01118643,238500,(주)솔루믹스,자산 가동률 상승,매출액,true,매출액,ifrs-full_Revenue,"2022, 2023",CIS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01118643,238500,(주)솔루믹스,자산 가동률 상승,재고자산,true,"유동재고자산, 재고자산",ifrs-full_Inventories,"2022, 2023",BS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01118643,238500,(주)솔루믹스,자산 가동률 상승,매출채권,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
+konex_001,01118643,238500,(주)솔루믹스,Capa 확대,유형자산,true,유형자산,ifrs-full_PropertyPlantAndEquipment,"2022, 2023",BS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01118643,238500,(주)솔루믹스,M&A 및 신사업 진출,주요사항보고서/원문 키워드,false,,,,,,needs_manual_review,재무제표 계정이 아니라 주요사항보고서 또는 사업보고서 원문 키워드 기반으로 확인해야 합니다.
+konex_001,01118643,238500,(주)솔루믹스,재무 구조 개선,부채총계,true,부채총계,ifrs-full_Liabilities,"2022, 2023",BS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01118643,238500,(주)솔루믹스,재무 구조 개선,자본총계,true,"기말자본, 자본총계",ifrs-full_Equity,"2022, 2023","BS, SCE",OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01118643,238500,(주)솔루믹스,현금 창출력 강화,영업활동현금흐름,true,영업활동으로 인한 현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,"2022, 2023",CF,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01118643,238500,(주)솔루믹스,이자 부담 해소,단기차입금,true,"단기차입금, 유동 차입금",ifrs-full_ShorttermBorrowings,"2022, 2023",BS,OFS,found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,01118643,238500,(주)솔루믹스,이자 부담 해소,장기차입금,false,,,,,,not_found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,01118643,238500,(주)솔루믹스,이자 부담 해소,사채,true,사채,dart_LongTermTradeAndOtherNonCurrentPayables,"2022, 2023",BS,OFS,found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,01118643,238500,(주)솔루믹스,이자 부담 해소,자산총계,true,자산총계,ifrs-full_Assets,"2022, 2023",BS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01158632,250030,주식회사 진코스텍,부채 과다,부채총계,true,부채총계,ifrs-full_Liabilities,"2021, 2022, 2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01158632,250030,주식회사 진코스텍,부채 과다,자본총계,true,"기말자본, 자본총계",ifrs-full_Equity,"2021, 2022, 2023, 2024, 2025","BS, SCE","CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01158632,250030,주식회사 진코스텍,실적 급락,매출액,true,매출액,ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01158632,250030,주식회사 진코스텍,실적 급락,영업이익,true,"영업이익, 영업이익(손실)",dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01158632,250030,주식회사 진코스텍,수익성 악화,영업이익,true,"영업이익, 영업이익(손실)",dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01158632,250030,주식회사 진코스텍,수익성 악화2,당기순이익,true,당기순이익(손실),ifrs-full_ProfitLoss,"2021, 2022, 2023, 2024, 2025","CIS, SCE","CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01158632,250030,주식회사 진코스텍,영업현금흐름 적자 지속,영업활동현금흐름,true,영업활동으로 인한 현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,"2021, 2022, 2023, 2024, 2025",CF,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01158632,250030,주식회사 진코스텍,매출채권 회수 지연,매출액,true,매출액,ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
 konex_001,01158632,250030,주식회사 진코스텍,매출채권 회수 지연,매출채권,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01158632,250030,주식회사 진코스텍,재고 적체,매출액,true,매출액,ifrs-full_Revenue,"2020, 2021, 2022",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01158632,250030,주식회사 진코스텍,재고 적체,재고자산,true,재고자산,ifrs-full_Inventories,"2020, 2021, 2022",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01158632,250030,주식회사 진코스텍,단기 상환 압박,현금및현금성자산,true,현금및현금성자산,ifrs-full_CashAndCashEquivalents,"2020, 2021, 2022",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01158632,250030,주식회사 진코스텍,단기 상환 압박,유동부채,true,유동부채,ifrs-full_CurrentLiabilities,"2020, 2021, 2022",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01158632,250030,주식회사 진코스텍,이자 부담 능력,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01158632,250030,주식회사 진코스텍,이자 부담 능력,이자비용,true,이자비용,dart_AdjustmentsForInterestExpenses,"2020, 2021",CF,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01158632,250030,주식회사 진코스텍,비용 레버리지 위험,매출액,true,매출액,ifrs-full_Revenue,"2020, 2021, 2022",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01158632,250030,주식회사 진코스텍,비용 레버리지 위험,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01158632,250030,주식회사 진코스텍,매출 퀀텀 점프,매출액,true,매출액,ifrs-full_Revenue,"2020, 2021, 2022",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01158632,250030,주식회사 진코스텍,어닝 서프라이즈,매출액,true,매출액,ifrs-full_Revenue,"2020, 2021, 2022",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01158632,250030,주식회사 진코스텍,어닝 서프라이즈,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01158632,250030,주식회사 진코스텍,흑자 전환,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01158632,250030,주식회사 진코스텍,자산 가동률 상승,매출액,true,매출액,ifrs-full_Revenue,"2020, 2021, 2022",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01158632,250030,주식회사 진코스텍,자산 가동률 상승,재고자산,true,재고자산,ifrs-full_Inventories,"2020, 2021, 2022",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01158632,250030,주식회사 진코스텍,재고 적체,매출액,true,매출액,ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01158632,250030,주식회사 진코스텍,재고 적체,재고자산,true,재고자산,ifrs-full_Inventories,"2021, 2022, 2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01158632,250030,주식회사 진코스텍,단기 상환 압박,현금및현금성자산,true,현금및현금성자산,ifrs-full_CashAndCashEquivalents,"2021, 2022, 2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01158632,250030,주식회사 진코스텍,단기 상환 압박,유동부채,true,유동부채,ifrs-full_CurrentLiabilities,"2021, 2022, 2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01158632,250030,주식회사 진코스텍,이자 부담 능력,영업이익,true,"영업이익, 영업이익(손실)",dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01158632,250030,주식회사 진코스텍,이자 부담 능력,이자비용,true,"이자비용, 이자지급, 이자지급(영업)","dart_AdjustmentsForInterestExpenses, ifrs-full_InterestPaidClassifiedAsOperatingActivities","2021, 2023, 2024, 2025",CF,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01158632,250030,주식회사 진코스텍,비용 레버리지 위험,매출액,true,매출액,ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01158632,250030,주식회사 진코스텍,비용 레버리지 위험,영업이익,true,"영업이익, 영업이익(손실)",dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01158632,250030,주식회사 진코스텍,매출 퀀텀 점프,매출액,true,매출액,ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01158632,250030,주식회사 진코스텍,어닝 서프라이즈,매출액,true,매출액,ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01158632,250030,주식회사 진코스텍,어닝 서프라이즈,영업이익,true,"영업이익, 영업이익(손실)",dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01158632,250030,주식회사 진코스텍,흑자 전환,영업이익,true,"영업이익, 영업이익(손실)",dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01158632,250030,주식회사 진코스텍,자산 가동률 상승,매출액,true,매출액,ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01158632,250030,주식회사 진코스텍,자산 가동률 상승,재고자산,true,재고자산,ifrs-full_Inventories,"2021, 2022, 2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
 konex_001,01158632,250030,주식회사 진코스텍,자산 가동률 상승,매출채권,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01158632,250030,주식회사 진코스텍,Capa 확대,유형자산,true,유형자산,ifrs-full_PropertyPlantAndEquipment,"2020, 2021, 2022",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01158632,250030,주식회사 진코스텍,Capa 확대,유형자산,true,유형자산,ifrs-full_PropertyPlantAndEquipment,"2021, 2022, 2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
 konex_001,01158632,250030,주식회사 진코스텍,M&A 및 신사업 진출,주요사항보고서/원문 키워드,false,,,,,,needs_manual_review,재무제표 계정이 아니라 주요사항보고서 또는 사업보고서 원문 키워드 기반으로 확인해야 합니다.
-konex_001,01158632,250030,주식회사 진코스텍,재무 구조 개선,부채총계,true,부채총계,ifrs-full_Liabilities,"2020, 2021, 2022",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01158632,250030,주식회사 진코스텍,재무 구조 개선,자본총계,true,자본총계,ifrs-full_Equity,"2020, 2021, 2022",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01158632,250030,주식회사 진코스텍,현금 창출력 강화,영업활동현금흐름,true,영업활동으로 인한 현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,"2020, 2021, 2022",CF,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01158632,250030,주식회사 진코스텍,이자 부담 해소,단기차입금,true,단기차입금,ifrs-full_ShorttermBorrowings,"2020, 2021, 2022",BS,,found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
-konex_001,01158632,250030,주식회사 진코스텍,이자 부담 해소,장기차입금,true,장기차입금,dart_LongTermBorrowingsGross,"2020, 2021, 2022",BS,,found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,01158632,250030,주식회사 진코스텍,재무 구조 개선,부채총계,true,부채총계,ifrs-full_Liabilities,"2021, 2022, 2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01158632,250030,주식회사 진코스텍,재무 구조 개선,자본총계,true,"기말자본, 자본총계",ifrs-full_Equity,"2021, 2022, 2023, 2024, 2025","BS, SCE","CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01158632,250030,주식회사 진코스텍,현금 창출력 강화,영업활동현금흐름,true,영업활동으로 인한 현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,"2021, 2022, 2023, 2024, 2025",CF,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01158632,250030,주식회사 진코스텍,이자 부담 해소,단기차입금,true,단기차입금,ifrs-full_ShorttermBorrowings,"2021, 2022, 2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,01158632,250030,주식회사 진코스텍,이자 부담 해소,장기차입금,true,장기차입금,dart_LongTermBorrowingsGross,"2021, 2022, 2023, 2025",BS,"CFS, OFS",found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
 konex_001,01158632,250030,주식회사 진코스텍,이자 부담 해소,사채,false,,,,,,not_found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
-konex_001,01158632,250030,주식회사 진코스텍,이자 부담 해소,자산총계,true,자산총계,ifrs-full_Assets,"2020, 2021, 2022",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,00425254,257990,(주)나우코스,부채 과다,부채총계,true,부채총계,ifrs-full_Liabilities,"2020, 2021, 2022, 2023",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,00425254,257990,(주)나우코스,부채 과다,자본총계,true,자본총계,ifrs-full_Equity,"2020, 2021, 2022, 2023","BS, SCE",,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,00425254,257990,(주)나우코스,실적 급락,매출액,true,"매출액, 수익(매출액)",ifrs-full_Revenue,"2020, 2021, 2022, 2023",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,00425254,257990,(주)나우코스,실적 급락,영업이익,true,영업이익,dart_OperatingIncomeLoss,2021,CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,00425254,257990,(주)나우코스,수익성 악화,영업이익,true,영업이익,dart_OperatingIncomeLoss,2021,CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,00425254,257990,(주)나우코스,수익성 악화2,당기순이익,true,당기순이익,ifrs-full_ProfitLoss,2021,"CIS, SCE",,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,00425254,257990,(주)나우코스,영업현금흐름 적자 지속,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,"2020, 2021, 2022, 2023",CF,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,00425254,257990,(주)나우코스,매출채권 회수 지연,매출액,true,"매출액, 수익(매출액)",ifrs-full_Revenue,"2020, 2021, 2022, 2023",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01158632,250030,주식회사 진코스텍,이자 부담 해소,자산총계,true,자산총계,ifrs-full_Assets,"2021, 2022, 2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00425254,257990,(주)나우코스,부채 과다,부채총계,true,부채총계,ifrs-full_Liabilities,"2021, 2022, 2023, 2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00425254,257990,(주)나우코스,부채 과다,자본총계,true,"기말자본, 자본총계",ifrs-full_Equity,"2021, 2022, 2023, 2024, 2025","BS, SCE",CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00425254,257990,(주)나우코스,실적 급락,매출액,true,"매출액, 수익(매출액)",ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00425254,257990,(주)나우코스,실적 급락,영업이익,true,"영업이익, 영업이익(손실)",dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00425254,257990,(주)나우코스,수익성 악화,영업이익,true,"영업이익, 영업이익(손실)",dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00425254,257990,(주)나우코스,수익성 악화2,당기순이익,true,"당기순이익, 당기순이익(손실)",ifrs-full_ProfitLoss,"2021, 2022, 2023, 2024, 2025","CIS, SCE",CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00425254,257990,(주)나우코스,영업현금흐름 적자 지속,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,"2021, 2022, 2023, 2024, 2025",CF,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00425254,257990,(주)나우코스,매출채권 회수 지연,매출액,true,"매출액, 수익(매출액)",ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
 konex_001,00425254,257990,(주)나우코스,매출채권 회수 지연,매출채권,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,00425254,257990,(주)나우코스,재고 적체,매출액,true,"매출액, 수익(매출액)",ifrs-full_Revenue,"2020, 2021, 2022, 2023",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,00425254,257990,(주)나우코스,재고 적체,재고자산,true,재고자산,ifrs-full_Inventories,"2020, 2021, 2022, 2023",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,00425254,257990,(주)나우코스,단기 상환 압박,현금및현금성자산,true,현금및현금성자산,ifrs-full_CashAndCashEquivalents,"2020, 2021, 2022, 2023",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,00425254,257990,(주)나우코스,단기 상환 압박,유동부채,true,유동부채,ifrs-full_CurrentLiabilities,"2020, 2021, 2022, 2023",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,00425254,257990,(주)나우코스,이자 부담 능력,영업이익,true,영업이익,dart_OperatingIncomeLoss,2021,CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,00425254,257990,(주)나우코스,이자 부담 능력,이자비용,true,"금융비용, 금융원가",ifrs-full_FinanceCosts,"2020, 2021, 2022, 2023",CIS,,proxy_candidate,이자비용 직접 계정은 없고 금융비용만 확인됩니다. 실제 계산 사용 여부는 사람이 결정해야 합니다.
-konex_001,00425254,257990,(주)나우코스,비용 레버리지 위험,매출액,true,"매출액, 수익(매출액)",ifrs-full_Revenue,"2020, 2021, 2022, 2023",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,00425254,257990,(주)나우코스,비용 레버리지 위험,영업이익,true,영업이익,dart_OperatingIncomeLoss,2021,CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,00425254,257990,(주)나우코스,매출 퀀텀 점프,매출액,true,"매출액, 수익(매출액)",ifrs-full_Revenue,"2020, 2021, 2022, 2023",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,00425254,257990,(주)나우코스,어닝 서프라이즈,매출액,true,"매출액, 수익(매출액)",ifrs-full_Revenue,"2020, 2021, 2022, 2023",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,00425254,257990,(주)나우코스,어닝 서프라이즈,영업이익,true,영업이익,dart_OperatingIncomeLoss,2021,CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,00425254,257990,(주)나우코스,흑자 전환,영업이익,true,영업이익,dart_OperatingIncomeLoss,2021,CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,00425254,257990,(주)나우코스,자산 가동률 상승,매출액,true,"매출액, 수익(매출액)",ifrs-full_Revenue,"2020, 2021, 2022, 2023",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,00425254,257990,(주)나우코스,자산 가동률 상승,재고자산,true,재고자산,ifrs-full_Inventories,"2020, 2021, 2022, 2023",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00425254,257990,(주)나우코스,재고 적체,매출액,true,"매출액, 수익(매출액)",ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00425254,257990,(주)나우코스,재고 적체,재고자산,true,"유동재고자산, 재고자산",ifrs-full_Inventories,"2021, 2022, 2023, 2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00425254,257990,(주)나우코스,단기 상환 압박,현금및현금성자산,true,현금및현금성자산,ifrs-full_CashAndCashEquivalents,"2021, 2022, 2023, 2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00425254,257990,(주)나우코스,단기 상환 압박,유동부채,true,유동부채,ifrs-full_CurrentLiabilities,"2021, 2022, 2023, 2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00425254,257990,(주)나우코스,이자 부담 능력,영업이익,true,"영업이익, 영업이익(손실)",dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00425254,257990,(주)나우코스,이자 부담 능력,이자비용,true,이자지급(영업),ifrs-full_InterestPaidClassifiedAsOperatingActivities,"2021, 2022, 2023",CF,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00425254,257990,(주)나우코스,비용 레버리지 위험,매출액,true,"매출액, 수익(매출액)",ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00425254,257990,(주)나우코스,비용 레버리지 위험,영업이익,true,"영업이익, 영업이익(손실)",dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00425254,257990,(주)나우코스,매출 퀀텀 점프,매출액,true,"매출액, 수익(매출액)",ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00425254,257990,(주)나우코스,어닝 서프라이즈,매출액,true,"매출액, 수익(매출액)",ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00425254,257990,(주)나우코스,어닝 서프라이즈,영업이익,true,"영업이익, 영업이익(손실)",dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00425254,257990,(주)나우코스,흑자 전환,영업이익,true,"영업이익, 영업이익(손실)",dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00425254,257990,(주)나우코스,자산 가동률 상승,매출액,true,"매출액, 수익(매출액)",ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00425254,257990,(주)나우코스,자산 가동률 상승,재고자산,true,"유동재고자산, 재고자산",ifrs-full_Inventories,"2021, 2022, 2023, 2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
 konex_001,00425254,257990,(주)나우코스,자산 가동률 상승,매출채권,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,00425254,257990,(주)나우코스,Capa 확대,유형자산,true,유형자산,ifrs-full_PropertyPlantAndEquipment,"2020, 2021, 2022, 2023",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00425254,257990,(주)나우코스,Capa 확대,유형자산,true,유형자산,ifrs-full_PropertyPlantAndEquipment,"2021, 2022, 2023, 2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
 konex_001,00425254,257990,(주)나우코스,M&A 및 신사업 진출,주요사항보고서/원문 키워드,false,,,,,,needs_manual_review,재무제표 계정이 아니라 주요사항보고서 또는 사업보고서 원문 키워드 기반으로 확인해야 합니다.
-konex_001,00425254,257990,(주)나우코스,재무 구조 개선,부채총계,true,부채총계,ifrs-full_Liabilities,"2020, 2021, 2022, 2023",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,00425254,257990,(주)나우코스,재무 구조 개선,자본총계,true,자본총계,ifrs-full_Equity,"2020, 2021, 2022, 2023","BS, SCE",,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,00425254,257990,(주)나우코스,현금 창출력 강화,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,"2020, 2021, 2022, 2023",CF,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,00425254,257990,(주)나우코스,이자 부담 해소,단기차입금,true,"단기차입금, 유동성장기차입금","ifrs-full_Borrowings, ifrs-full_ShorttermBorrowings","2020, 2021, 2022, 2023",BS,,found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
-konex_001,00425254,257990,(주)나우코스,이자 부담 해소,장기차입금,true,장기차입금,dart_LongTermBorrowingsGross,"2020, 2021, 2022, 2023",BS,,found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,00425254,257990,(주)나우코스,재무 구조 개선,부채총계,true,부채총계,ifrs-full_Liabilities,"2021, 2022, 2023, 2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00425254,257990,(주)나우코스,재무 구조 개선,자본총계,true,"기말자본, 자본총계",ifrs-full_Equity,"2021, 2022, 2023, 2024, 2025","BS, SCE",CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00425254,257990,(주)나우코스,현금 창출력 강화,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,"2021, 2022, 2023, 2024, 2025",CF,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00425254,257990,(주)나우코스,이자 부담 해소,단기차입금,true,"단기차입금, 유동성장기차입금","-표준계정코드 미사용-, ifrs-full_Borrowings, ifrs-full_ShorttermBorrowings","2021, 2022, 2023, 2024, 2025",BS,CFS,found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,00425254,257990,(주)나우코스,이자 부담 해소,장기차입금,true,장기차입금,"-표준계정코드 미사용-, dart_LongTermBorrowingsGross","2021, 2022, 2023, 2024, 2025",BS,CFS,found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
 konex_001,00425254,257990,(주)나우코스,이자 부담 해소,사채,false,,,,,,not_found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
-konex_001,00425254,257990,(주)나우코스,이자 부담 해소,자산총계,true,자산총계,ifrs-full_Assets,"2020, 2021, 2022, 2023",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,00990396,266170,(주)레드우즈,부채 과다,부채총계,true,부채총계,ifrs-full_Liabilities,2023,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,00990396,266170,(주)레드우즈,부채 과다,자본총계,true,자본총계,ifrs-full_Equity,2023,"BS, SCE",,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,00990396,266170,(주)레드우즈,실적 급락,매출액,true,매출액,ifrs-full_Revenue,2023,CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,00990396,266170,(주)레드우즈,실적 급락,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,00990396,266170,(주)레드우즈,수익성 악화,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,00990396,266170,(주)레드우즈,수익성 악화2,당기순이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,00990396,266170,(주)레드우즈,영업현금흐름 적자 지속,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,2023,CF,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,00990396,266170,(주)레드우즈,매출채권 회수 지연,매출액,true,매출액,ifrs-full_Revenue,2023,CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00425254,257990,(주)나우코스,이자 부담 해소,자산총계,true,자산총계,ifrs-full_Assets,"2021, 2022, 2023, 2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00990396,266170,(주)레드우즈,부채 과다,부채총계,true,부채총계,ifrs-full_Liabilities,"2023, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00990396,266170,(주)레드우즈,부채 과다,자본총계,true,자본총계,ifrs-full_Equity,"2023, 2025","BS, SCE",CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00990396,266170,(주)레드우즈,실적 급락,매출액,true,매출액,ifrs-full_Revenue,"2023, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00990396,266170,(주)레드우즈,실적 급락,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2023, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00990396,266170,(주)레드우즈,수익성 악화,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2023, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00990396,266170,(주)레드우즈,수익성 악화2,당기순이익,true,"당기순이익, 당기순이익(손실)","-표준계정코드 미사용-, ifrs-full_ProfitLoss","2023, 2025","CF, CIS, SCE",CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00990396,266170,(주)레드우즈,영업현금흐름 적자 지속,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,"2023, 2025",CF,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00990396,266170,(주)레드우즈,매출채권 회수 지연,매출액,true,매출액,ifrs-full_Revenue,"2023, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
 konex_001,00990396,266170,(주)레드우즈,매출채권 회수 지연,매출채권,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,00990396,266170,(주)레드우즈,재고 적체,매출액,true,매출액,ifrs-full_Revenue,2023,CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,00990396,266170,(주)레드우즈,재고 적체,재고자산,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,00990396,266170,(주)레드우즈,단기 상환 압박,현금및현금성자산,true,현금및현금성자산,ifrs-full_CashAndCashEquivalents,2023,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,00990396,266170,(주)레드우즈,단기 상환 압박,유동부채,true,유동부채,ifrs-full_CurrentLiabilities,2023,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,00990396,266170,(주)레드우즈,이자 부담 능력,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,00990396,266170,(주)레드우즈,이자 부담 능력,이자비용,true,금융비용,ifrs-full_FinanceCosts,2023,CIS,,proxy_candidate,이자비용 직접 계정은 없고 금융비용만 확인됩니다. 실제 계산 사용 여부는 사람이 결정해야 합니다.
-konex_001,00990396,266170,(주)레드우즈,비용 레버리지 위험,매출액,true,매출액,ifrs-full_Revenue,2023,CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,00990396,266170,(주)레드우즈,비용 레버리지 위험,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,00990396,266170,(주)레드우즈,매출 퀀텀 점프,매출액,true,매출액,ifrs-full_Revenue,2023,CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,00990396,266170,(주)레드우즈,어닝 서프라이즈,매출액,true,매출액,ifrs-full_Revenue,2023,CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,00990396,266170,(주)레드우즈,어닝 서프라이즈,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,00990396,266170,(주)레드우즈,흑자 전환,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,00990396,266170,(주)레드우즈,자산 가동률 상승,매출액,true,매출액,ifrs-full_Revenue,2023,CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,00990396,266170,(주)레드우즈,자산 가동률 상승,재고자산,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
+konex_001,00990396,266170,(주)레드우즈,재고 적체,매출액,true,매출액,ifrs-full_Revenue,"2023, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00990396,266170,(주)레드우즈,재고 적체,재고자산,true,유동재고자산,ifrs-full_Inventories,2025,BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00990396,266170,(주)레드우즈,단기 상환 압박,현금및현금성자산,true,현금및현금성자산,ifrs-full_CashAndCashEquivalents,"2023, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00990396,266170,(주)레드우즈,단기 상환 압박,유동부채,true,유동부채,ifrs-full_CurrentLiabilities,"2023, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00990396,266170,(주)레드우즈,이자 부담 능력,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2023, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00990396,266170,(주)레드우즈,이자 부담 능력,이자비용,true,금융비용,ifrs-full_FinanceCosts,"2023, 2025",CIS,CFS,proxy_candidate,이자비용 직접 계정은 없고 금융비용만 확인됩니다. 실제 계산 사용 여부는 사람이 결정해야 합니다.
+konex_001,00990396,266170,(주)레드우즈,비용 레버리지 위험,매출액,true,매출액,ifrs-full_Revenue,"2023, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00990396,266170,(주)레드우즈,비용 레버리지 위험,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2023, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00990396,266170,(주)레드우즈,매출 퀀텀 점프,매출액,true,매출액,ifrs-full_Revenue,"2023, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00990396,266170,(주)레드우즈,어닝 서프라이즈,매출액,true,매출액,ifrs-full_Revenue,"2023, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00990396,266170,(주)레드우즈,어닝 서프라이즈,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2023, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00990396,266170,(주)레드우즈,흑자 전환,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2023, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00990396,266170,(주)레드우즈,자산 가동률 상승,매출액,true,매출액,ifrs-full_Revenue,"2023, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00990396,266170,(주)레드우즈,자산 가동률 상승,재고자산,true,유동재고자산,ifrs-full_Inventories,2025,BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
 konex_001,00990396,266170,(주)레드우즈,자산 가동률 상승,매출채권,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,00990396,266170,(주)레드우즈,Capa 확대,유형자산,true,유형자산,ifrs-full_PropertyPlantAndEquipment,2023,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00990396,266170,(주)레드우즈,Capa 확대,유형자산,true,유형자산,ifrs-full_PropertyPlantAndEquipment,"2023, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
 konex_001,00990396,266170,(주)레드우즈,M&A 및 신사업 진출,주요사항보고서/원문 키워드,false,,,,,,needs_manual_review,재무제표 계정이 아니라 주요사항보고서 또는 사업보고서 원문 키워드 기반으로 확인해야 합니다.
-konex_001,00990396,266170,(주)레드우즈,재무 구조 개선,부채총계,true,부채총계,ifrs-full_Liabilities,2023,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,00990396,266170,(주)레드우즈,재무 구조 개선,자본총계,true,자본총계,ifrs-full_Equity,2023,"BS, SCE",,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,00990396,266170,(주)레드우즈,현금 창출력 강화,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,2023,CF,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,00990396,266170,(주)레드우즈,이자 부담 해소,단기차입금,true,단기차입금,ifrs-full_ShorttermBorrowings,2023,BS,,found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
-konex_001,00990396,266170,(주)레드우즈,이자 부담 해소,장기차입금,false,,,,,,not_found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,00990396,266170,(주)레드우즈,재무 구조 개선,부채총계,true,부채총계,ifrs-full_Liabilities,"2023, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00990396,266170,(주)레드우즈,재무 구조 개선,자본총계,true,자본총계,ifrs-full_Equity,"2023, 2025","BS, SCE",CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00990396,266170,(주)레드우즈,현금 창출력 강화,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,"2023, 2025",CF,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,00990396,266170,(주)레드우즈,이자 부담 해소,단기차입금,true,단기차입금,ifrs-full_ShorttermBorrowings,"2023, 2025",BS,CFS,found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,00990396,266170,(주)레드우즈,이자 부담 해소,장기차입금,true,장기차입금,-표준계정코드 미사용-,2025,BS,CFS,found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
 konex_001,00990396,266170,(주)레드우즈,이자 부담 해소,사채,false,,,,,,not_found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
-konex_001,00990396,266170,(주)레드우즈,이자 부담 해소,자산총계,true,자산총계,ifrs-full_Assets,2023,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01208821,266350,(주)팡스카이,부채 과다,부채총계,true,부채총계,ifrs-full_Liabilities,2023,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01208821,266350,(주)팡스카이,부채 과다,자본총계,true,자본총계,ifrs-full_Equity,2023,"BS, SCE",,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01208821,266350,(주)팡스카이,실적 급락,매출액,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01208821,266350,(주)팡스카이,실적 급락,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01208821,266350,(주)팡스카이,수익성 악화,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01208821,266350,(주)팡스카이,수익성 악화2,당기순이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01208821,266350,(주)팡스카이,영업현금흐름 적자 지속,영업활동현금흐름,true,영업활동으로 인한 현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,2023,CF,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01208821,266350,(주)팡스카이,매출채권 회수 지연,매출액,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01208821,266350,(주)팡스카이,매출채권 회수 지연,매출채권,true,매출채권,ifrs-full_TradeAndOtherCurrentReceivables,2023,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01208821,266350,(주)팡스카이,재고 적체,매출액,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
+konex_001,00990396,266170,(주)레드우즈,이자 부담 해소,자산총계,true,자산총계,ifrs-full_Assets,"2023, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01208821,266350,(주)팡스카이,부채 과다,부채총계,true,부채총계,ifrs-full_Liabilities,"2023, 2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01208821,266350,(주)팡스카이,부채 과다,자본총계,true,자본총계,ifrs-full_Equity,"2023, 2024, 2025","BS, SCE",CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01208821,266350,(주)팡스카이,실적 급락,매출액,true,"수익(매출액), 영업수익",ifrs-full_Revenue,"2023, 2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01208821,266350,(주)팡스카이,실적 급락,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2023, 2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01208821,266350,(주)팡스카이,수익성 악화,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2023, 2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01208821,266350,(주)팡스카이,수익성 악화2,당기순이익,true,당기순이익(손실),ifrs-full_ProfitLoss,"2023, 2024, 2025","CF, CIS, SCE",CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01208821,266350,(주)팡스카이,영업현금흐름 적자 지속,영업활동현금흐름,true,"영업활동으로 인한 현금흐름, 영업활동현금흐름",ifrs-full_CashFlowsFromUsedInOperatingActivities,"2023, 2024, 2025",CF,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01208821,266350,(주)팡스카이,매출채권 회수 지연,매출액,true,"수익(매출액), 영업수익",ifrs-full_Revenue,"2023, 2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01208821,266350,(주)팡스카이,매출채권 회수 지연,매출채권,true,매출채권,ifrs-full_TradeAndOtherCurrentReceivables,2023,BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01208821,266350,(주)팡스카이,재고 적체,매출액,true,"수익(매출액), 영업수익",ifrs-full_Revenue,"2023, 2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
 konex_001,01208821,266350,(주)팡스카이,재고 적체,재고자산,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01208821,266350,(주)팡스카이,단기 상환 압박,현금및현금성자산,true,현금및현금성자산,ifrs-full_CashAndCashEquivalents,2023,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01208821,266350,(주)팡스카이,단기 상환 압박,유동부채,true,유동부채,ifrs-full_CurrentLiabilities,2023,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01208821,266350,(주)팡스카이,이자 부담 능력,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01208821,266350,(주)팡스카이,이자 부담 능력,이자비용,true,금융비용,ifrs-full_FinanceCosts,2023,CIS,,proxy_candidate,이자비용 직접 계정은 없고 금융비용만 확인됩니다. 실제 계산 사용 여부는 사람이 결정해야 합니다.
-konex_001,01208821,266350,(주)팡스카이,비용 레버리지 위험,매출액,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01208821,266350,(주)팡스카이,비용 레버리지 위험,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01208821,266350,(주)팡스카이,매출 퀀텀 점프,매출액,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01208821,266350,(주)팡스카이,어닝 서프라이즈,매출액,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01208821,266350,(주)팡스카이,어닝 서프라이즈,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01208821,266350,(주)팡스카이,흑자 전환,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01208821,266350,(주)팡스카이,자산 가동률 상승,매출액,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
+konex_001,01208821,266350,(주)팡스카이,단기 상환 압박,현금및현금성자산,true,현금및현금성자산,ifrs-full_CashAndCashEquivalents,"2023, 2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01208821,266350,(주)팡스카이,단기 상환 압박,유동부채,true,유동부채,ifrs-full_CurrentLiabilities,"2023, 2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01208821,266350,(주)팡스카이,이자 부담 능력,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2023, 2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01208821,266350,(주)팡스카이,이자 부담 능력,이자비용,true,"이자지급, 이자지급(영업)",ifrs-full_InterestPaidClassifiedAsOperatingActivities,"2023, 2024, 2025",CF,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01208821,266350,(주)팡스카이,비용 레버리지 위험,매출액,true,"수익(매출액), 영업수익",ifrs-full_Revenue,"2023, 2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01208821,266350,(주)팡스카이,비용 레버리지 위험,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2023, 2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01208821,266350,(주)팡스카이,매출 퀀텀 점프,매출액,true,"수익(매출액), 영업수익",ifrs-full_Revenue,"2023, 2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01208821,266350,(주)팡스카이,어닝 서프라이즈,매출액,true,"수익(매출액), 영업수익",ifrs-full_Revenue,"2023, 2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01208821,266350,(주)팡스카이,어닝 서프라이즈,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2023, 2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01208821,266350,(주)팡스카이,흑자 전환,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2023, 2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01208821,266350,(주)팡스카이,자산 가동률 상승,매출액,true,"수익(매출액), 영업수익",ifrs-full_Revenue,"2023, 2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
 konex_001,01208821,266350,(주)팡스카이,자산 가동률 상승,재고자산,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01208821,266350,(주)팡스카이,자산 가동률 상승,매출채권,true,매출채권,ifrs-full_TradeAndOtherCurrentReceivables,2023,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01208821,266350,(주)팡스카이,Capa 확대,유형자산,true,유형자산,ifrs-full_PropertyPlantAndEquipment,2023,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01208821,266350,(주)팡스카이,자산 가동률 상승,매출채권,true,매출채권,ifrs-full_TradeAndOtherCurrentReceivables,2023,BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01208821,266350,(주)팡스카이,Capa 확대,유형자산,true,유형자산,ifrs-full_PropertyPlantAndEquipment,"2023, 2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
 konex_001,01208821,266350,(주)팡스카이,M&A 및 신사업 진출,주요사항보고서/원문 키워드,false,,,,,,needs_manual_review,재무제표 계정이 아니라 주요사항보고서 또는 사업보고서 원문 키워드 기반으로 확인해야 합니다.
-konex_001,01208821,266350,(주)팡스카이,재무 구조 개선,부채총계,true,부채총계,ifrs-full_Liabilities,2023,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01208821,266350,(주)팡스카이,재무 구조 개선,자본총계,true,자본총계,ifrs-full_Equity,2023,"BS, SCE",,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01208821,266350,(주)팡스카이,현금 창출력 강화,영업활동현금흐름,true,영업활동으로 인한 현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,2023,CF,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01208821,266350,(주)팡스카이,이자 부담 해소,단기차입금,false,,,,,,not_found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
-konex_001,01208821,266350,(주)팡스카이,이자 부담 해소,장기차입금,false,,,,,,not_found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,01208821,266350,(주)팡스카이,재무 구조 개선,부채총계,true,부채총계,ifrs-full_Liabilities,"2023, 2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01208821,266350,(주)팡스카이,재무 구조 개선,자본총계,true,자본총계,ifrs-full_Equity,"2023, 2024, 2025","BS, SCE",CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01208821,266350,(주)팡스카이,현금 창출력 강화,영업활동현금흐름,true,"영업활동으로 인한 현금흐름, 영업활동현금흐름",ifrs-full_CashFlowsFromUsedInOperatingActivities,"2023, 2024, 2025",CF,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01208821,266350,(주)팡스카이,이자 부담 해소,단기차입금,true,유동 차입금(사채 포함),ifrs-full_ShorttermBorrowings,2024,BS,CFS,found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,01208821,266350,(주)팡스카이,이자 부담 해소,장기차입금,true,비유동성 금융기관 차입금(사채 제외),ifrs-full_NoncurrentPortionOfNoncurrentLoansReceived,2024,BS,CFS,found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
 konex_001,01208821,266350,(주)팡스카이,이자 부담 해소,사채,false,,,,,,not_found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
-konex_001,01208821,266350,(주)팡스카이,이자 부담 해소,자산총계,true,자산총계,ifrs-full_Assets,2023,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01575361,267080,세븐브로이맥주 주식회사,부채 과다,부채총계,true,부채총계,ifrs-full_Liabilities,2023,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01575361,267080,세븐브로이맥주 주식회사,부채 과다,자본총계,true,자본총계,ifrs-full_Equity,2023,"BS, SCE",,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01575361,267080,세븐브로이맥주 주식회사,실적 급락,매출액,true,수익(매출액),ifrs-full_Revenue,2023,CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01575361,267080,세븐브로이맥주 주식회사,실적 급락,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01575361,267080,세븐브로이맥주 주식회사,수익성 악화,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01575361,267080,세븐브로이맥주 주식회사,수익성 악화2,당기순이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01575361,267080,세븐브로이맥주 주식회사,영업현금흐름 적자 지속,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,2023,CF,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01575361,267080,세븐브로이맥주 주식회사,매출채권 회수 지연,매출액,true,수익(매출액),ifrs-full_Revenue,2023,CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01208821,266350,(주)팡스카이,이자 부담 해소,자산총계,true,자산총계,ifrs-full_Assets,"2023, 2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,부채 과다,부채총계,true,부채총계,ifrs-full_Liabilities,"2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,부채 과다,자본총계,true,자본총계,ifrs-full_Equity,"2023, 2024, 2025","BS, SCE","CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,실적 급락,매출액,true,수익(매출액),ifrs-full_Revenue,"2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,실적 급락,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,수익성 악화,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,수익성 악화2,당기순이익,true,당기순이익(손실),ifrs-full_ProfitLoss,"2023, 2024, 2025","CF, CIS, SCE","CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,영업현금흐름 적자 지속,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,"2023, 2024, 2025",CF,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,매출채권 회수 지연,매출액,true,수익(매출액),ifrs-full_Revenue,"2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
 konex_001,01575361,267080,세븐브로이맥주 주식회사,매출채권 회수 지연,매출채권,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01575361,267080,세븐브로이맥주 주식회사,재고 적체,매출액,true,수익(매출액),ifrs-full_Revenue,2023,CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01575361,267080,세븐브로이맥주 주식회사,재고 적체,재고자산,true,유동재고자산,ifrs-full_Inventories,2023,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01575361,267080,세븐브로이맥주 주식회사,단기 상환 압박,현금및현금성자산,true,현금및현금성자산,ifrs-full_CashAndCashEquivalents,2023,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01575361,267080,세븐브로이맥주 주식회사,단기 상환 압박,유동부채,true,유동부채,ifrs-full_CurrentLiabilities,2023,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01575361,267080,세븐브로이맥주 주식회사,이자 부담 능력,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01575361,267080,세븐브로이맥주 주식회사,이자 부담 능력,이자비용,true,금융원가,ifrs-full_FinanceCosts,2023,CIS,,proxy_candidate,이자비용 직접 계정은 없고 금융비용만 확인됩니다. 실제 계산 사용 여부는 사람이 결정해야 합니다.
-konex_001,01575361,267080,세븐브로이맥주 주식회사,비용 레버리지 위험,매출액,true,수익(매출액),ifrs-full_Revenue,2023,CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01575361,267080,세븐브로이맥주 주식회사,비용 레버리지 위험,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01575361,267080,세븐브로이맥주 주식회사,매출 퀀텀 점프,매출액,true,수익(매출액),ifrs-full_Revenue,2023,CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01575361,267080,세븐브로이맥주 주식회사,어닝 서프라이즈,매출액,true,수익(매출액),ifrs-full_Revenue,2023,CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01575361,267080,세븐브로이맥주 주식회사,어닝 서프라이즈,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01575361,267080,세븐브로이맥주 주식회사,흑자 전환,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01575361,267080,세븐브로이맥주 주식회사,자산 가동률 상승,매출액,true,수익(매출액),ifrs-full_Revenue,2023,CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01575361,267080,세븐브로이맥주 주식회사,자산 가동률 상승,재고자산,true,유동재고자산,ifrs-full_Inventories,2023,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,재고 적체,매출액,true,수익(매출액),ifrs-full_Revenue,"2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,재고 적체,재고자산,true,유동재고자산,ifrs-full_Inventories,"2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,단기 상환 압박,현금및현금성자산,true,현금및현금성자산,ifrs-full_CashAndCashEquivalents,"2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,단기 상환 압박,유동부채,true,유동부채,ifrs-full_CurrentLiabilities,"2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,이자 부담 능력,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,이자 부담 능력,이자비용,true,이자지급(영업),ifrs-full_InterestPaidClassifiedAsOperatingActivities,"2023, 2024, 2025",CF,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,비용 레버리지 위험,매출액,true,수익(매출액),ifrs-full_Revenue,"2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,비용 레버리지 위험,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,매출 퀀텀 점프,매출액,true,수익(매출액),ifrs-full_Revenue,"2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,어닝 서프라이즈,매출액,true,수익(매출액),ifrs-full_Revenue,"2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,어닝 서프라이즈,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,흑자 전환,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,자산 가동률 상승,매출액,true,수익(매출액),ifrs-full_Revenue,"2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,자산 가동률 상승,재고자산,true,유동재고자산,ifrs-full_Inventories,"2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
 konex_001,01575361,267080,세븐브로이맥주 주식회사,자산 가동률 상승,매출채권,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01575361,267080,세븐브로이맥주 주식회사,Capa 확대,유형자산,true,유형자산,ifrs-full_PropertyPlantAndEquipment,2023,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,Capa 확대,유형자산,true,유형자산,ifrs-full_PropertyPlantAndEquipment,"2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
 konex_001,01575361,267080,세븐브로이맥주 주식회사,M&A 및 신사업 진출,주요사항보고서/원문 키워드,false,,,,,,needs_manual_review,재무제표 계정이 아니라 주요사항보고서 또는 사업보고서 원문 키워드 기반으로 확인해야 합니다.
-konex_001,01575361,267080,세븐브로이맥주 주식회사,재무 구조 개선,부채총계,true,부채총계,ifrs-full_Liabilities,2023,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01575361,267080,세븐브로이맥주 주식회사,재무 구조 개선,자본총계,true,자본총계,ifrs-full_Equity,2023,"BS, SCE",,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01575361,267080,세븐브로이맥주 주식회사,현금 창출력 강화,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,2023,CF,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01575361,267080,세븐브로이맥주 주식회사,이자 부담 해소,단기차입금,true,유동 차입금,ifrs-full_ShorttermBorrowings,2023,BS,,found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
-konex_001,01575361,267080,세븐브로이맥주 주식회사,이자 부담 해소,장기차입금,true,장기차입금,dart_LongTermBorrowingsGross,2023,BS,,found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,01575361,267080,세븐브로이맥주 주식회사,재무 구조 개선,부채총계,true,부채총계,ifrs-full_Liabilities,"2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,재무 구조 개선,자본총계,true,자본총계,ifrs-full_Equity,"2023, 2024, 2025","BS, SCE","CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,현금 창출력 강화,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,"2023, 2024, 2025",CF,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,이자 부담 해소,단기차입금,true,"유동 차입금, 유동 차입금(사채 포함)",ifrs-full_ShorttermBorrowings,"2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,01575361,267080,세븐브로이맥주 주식회사,이자 부담 해소,장기차입금,true,장기차입금,dart_LongTermBorrowingsGross,2023,BS,CFS,found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
 konex_001,01575361,267080,세븐브로이맥주 주식회사,이자 부담 해소,사채,false,,,,,,not_found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
-konex_001,01575361,267080,세븐브로이맥주 주식회사,이자 부담 해소,자산총계,true,자산총계,ifrs-full_Assets,2023,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01117246,278990,(주)이엠비,부채 과다,부채총계,true,부채총계,ifrs-full_Liabilities,"2020, 2021, 2022, 2023",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01117246,278990,(주)이엠비,부채 과다,자본총계,true,자본총계,ifrs-full_Equity,"2020, 2021, 2022, 2023","BS, SCE",,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01117246,278990,(주)이엠비,실적 급락,매출액,true,매출,ifrs-full_Revenue,"2020, 2021, 2022, 2023",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01117246,278990,(주)이엠비,실적 급락,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01117246,278990,(주)이엠비,수익성 악화,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01117246,278990,(주)이엠비,수익성 악화2,당기순이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01117246,278990,(주)이엠비,영업현금흐름 적자 지속,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,"2020, 2021, 2022, 2023",CF,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01117246,278990,(주)이엠비,매출채권 회수 지연,매출액,true,매출,ifrs-full_Revenue,"2020, 2021, 2022, 2023",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,이자 부담 해소,자산총계,true,자산총계,ifrs-full_Assets,"2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01117246,278990,(주)이엠비,부채 과다,부채총계,true,부채총계,ifrs-full_Liabilities,"2021, 2022, 2023, 2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01117246,278990,(주)이엠비,부채 과다,자본총계,true,"기말자본, 자본총계",ifrs-full_Equity,"2021, 2022, 2023, 2024, 2025","BS, SCE",CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01117246,278990,(주)이엠비,실적 급락,매출액,true,매출,ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01117246,278990,(주)이엠비,실적 급락,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01117246,278990,(주)이엠비,수익성 악화,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01117246,278990,(주)이엠비,수익성 악화2,당기순이익,true,당기순이익(손실),"dart_ProfitLossForStatementOfCashFlows, ifrs-full_ProfitLoss","2021, 2022, 2023, 2024, 2025","CF, CIS, SCE",CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01117246,278990,(주)이엠비,영업현금흐름 적자 지속,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,"2021, 2022, 2023, 2024, 2025",CF,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01117246,278990,(주)이엠비,매출채권 회수 지연,매출액,true,매출,ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
 konex_001,01117246,278990,(주)이엠비,매출채권 회수 지연,매출채권,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01117246,278990,(주)이엠비,재고 적체,매출액,true,매출,ifrs-full_Revenue,"2020, 2021, 2022, 2023",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01117246,278990,(주)이엠비,재고 적체,재고자산,true,"유동재고자산, 재고자산",ifrs-full_Inventories,"2020, 2021, 2022, 2023",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01117246,278990,(주)이엠비,단기 상환 압박,현금및현금성자산,true,현금및현금성자산,ifrs-full_CashAndCashEquivalents,"2020, 2021, 2022, 2023",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01117246,278990,(주)이엠비,단기 상환 압박,유동부채,true,유동부채,ifrs-full_CurrentLiabilities,"2020, 2021, 2022, 2023",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01117246,278990,(주)이엠비,이자 부담 능력,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01117246,278990,(주)이엠비,이자 부담 능력,이자비용,true,금융원가,ifrs-full_FinanceCosts,"2020, 2021, 2022, 2023",CIS,,proxy_candidate,이자비용 직접 계정은 없고 금융비용만 확인됩니다. 실제 계산 사용 여부는 사람이 결정해야 합니다.
-konex_001,01117246,278990,(주)이엠비,비용 레버리지 위험,매출액,true,매출,ifrs-full_Revenue,"2020, 2021, 2022, 2023",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01117246,278990,(주)이엠비,비용 레버리지 위험,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01117246,278990,(주)이엠비,매출 퀀텀 점프,매출액,true,매출,ifrs-full_Revenue,"2020, 2021, 2022, 2023",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01117246,278990,(주)이엠비,어닝 서프라이즈,매출액,true,매출,ifrs-full_Revenue,"2020, 2021, 2022, 2023",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01117246,278990,(주)이엠비,어닝 서프라이즈,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01117246,278990,(주)이엠비,흑자 전환,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01117246,278990,(주)이엠비,자산 가동률 상승,매출액,true,매출,ifrs-full_Revenue,"2020, 2021, 2022, 2023",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01117246,278990,(주)이엠비,자산 가동률 상승,재고자산,true,"유동재고자산, 재고자산",ifrs-full_Inventories,"2020, 2021, 2022, 2023",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01117246,278990,(주)이엠비,재고 적체,매출액,true,매출,ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01117246,278990,(주)이엠비,재고 적체,재고자산,true,"유동재고자산, 재고자산",ifrs-full_Inventories,"2021, 2022, 2023, 2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01117246,278990,(주)이엠비,단기 상환 압박,현금및현금성자산,true,현금및현금성자산,ifrs-full_CashAndCashEquivalents,"2021, 2022, 2023, 2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01117246,278990,(주)이엠비,단기 상환 압박,유동부채,true,유동부채,ifrs-full_CurrentLiabilities,"2021, 2022, 2023, 2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01117246,278990,(주)이엠비,이자 부담 능력,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01117246,278990,(주)이엠비,이자 부담 능력,이자비용,true,이자지급(영업),ifrs-full_InterestPaidClassifiedAsOperatingActivities,"2021, 2022, 2023, 2024, 2025",CF,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01117246,278990,(주)이엠비,비용 레버리지 위험,매출액,true,매출,ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01117246,278990,(주)이엠비,비용 레버리지 위험,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01117246,278990,(주)이엠비,매출 퀀텀 점프,매출액,true,매출,ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01117246,278990,(주)이엠비,어닝 서프라이즈,매출액,true,매출,ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01117246,278990,(주)이엠비,어닝 서프라이즈,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01117246,278990,(주)이엠비,흑자 전환,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01117246,278990,(주)이엠비,자산 가동률 상승,매출액,true,매출,ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01117246,278990,(주)이엠비,자산 가동률 상승,재고자산,true,"유동재고자산, 재고자산",ifrs-full_Inventories,"2021, 2022, 2023, 2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
 konex_001,01117246,278990,(주)이엠비,자산 가동률 상승,매출채권,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01117246,278990,(주)이엠비,Capa 확대,유형자산,true,유형자산,ifrs-full_PropertyPlantAndEquipment,"2020, 2021, 2022, 2023",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01117246,278990,(주)이엠비,Capa 확대,유형자산,true,유형자산,ifrs-full_PropertyPlantAndEquipment,"2021, 2022, 2023, 2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
 konex_001,01117246,278990,(주)이엠비,M&A 및 신사업 진출,주요사항보고서/원문 키워드,false,,,,,,needs_manual_review,재무제표 계정이 아니라 주요사항보고서 또는 사업보고서 원문 키워드 기반으로 확인해야 합니다.
-konex_001,01117246,278990,(주)이엠비,재무 구조 개선,부채총계,true,부채총계,ifrs-full_Liabilities,"2020, 2021, 2022, 2023",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01117246,278990,(주)이엠비,재무 구조 개선,자본총계,true,자본총계,ifrs-full_Equity,"2020, 2021, 2022, 2023","BS, SCE",,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01117246,278990,(주)이엠비,현금 창출력 강화,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,"2020, 2021, 2022, 2023",CF,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01117246,278990,(주)이엠비,이자 부담 해소,단기차입금,true,"단기차입금, 유동 차입금",ifrs-full_ShorttermBorrowings,"2020, 2021, 2022, 2023",BS,,found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
-konex_001,01117246,278990,(주)이엠비,이자 부담 해소,장기차입금,true,장기차입금,dart_LongTermBorrowingsGross,"2020, 2021, 2022, 2023",BS,,found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,01117246,278990,(주)이엠비,재무 구조 개선,부채총계,true,부채총계,ifrs-full_Liabilities,"2021, 2022, 2023, 2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01117246,278990,(주)이엠비,재무 구조 개선,자본총계,true,"기말자본, 자본총계",ifrs-full_Equity,"2021, 2022, 2023, 2024, 2025","BS, SCE",CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01117246,278990,(주)이엠비,현금 창출력 강화,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,"2021, 2022, 2023, 2024, 2025",CF,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01117246,278990,(주)이엠비,이자 부담 해소,단기차입금,true,"단기차입금, 유동 차입금, 유동 차입금(사채 포함)",ifrs-full_ShorttermBorrowings,"2021, 2022, 2023, 2024, 2025",BS,CFS,found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,01117246,278990,(주)이엠비,이자 부담 해소,장기차입금,true,장기차입금,dart_LongTermBorrowingsGross,"2021, 2022, 2023",BS,CFS,found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
 konex_001,01117246,278990,(주)이엠비,이자 부담 해소,사채,false,,,,,,not_found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
-konex_001,01117246,278990,(주)이엠비,이자 부담 해소,자산총계,true,자산총계,ifrs-full_Assets,"2020, 2021, 2022, 2023",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01290132,311960,주식회사 인터로이드,부채 과다,부채총계,true,부채총계,ifrs-full_Liabilities,"2021, 2022",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01290132,311960,주식회사 인터로이드,부채 과다,자본총계,true,자본총계,ifrs-full_Equity,"2021, 2022",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01290132,311960,주식회사 인터로이드,실적 급락,매출액,true,수익(매출액),ifrs-full_Revenue,"2021, 2022",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01290132,311960,주식회사 인터로이드,실적 급락,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01290132,311960,주식회사 인터로이드,수익성 악화,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01290132,311960,주식회사 인터로이드,수익성 악화2,당기순이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01290132,311960,주식회사 인터로이드,영업현금흐름 적자 지속,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,"2021, 2022",CF,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01290132,311960,주식회사 인터로이드,매출채권 회수 지연,매출액,true,수익(매출액),ifrs-full_Revenue,"2021, 2022",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01117246,278990,(주)이엠비,이자 부담 해소,자산총계,true,자산총계,ifrs-full_Assets,"2021, 2022, 2023, 2024, 2025",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01264234,311060,(주)엘에이티,부채 과다,부채총계,true,부채총계,ifrs-full_Liabilities,"2021, 2022, 2023, 2024, 2025",BS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01264234,311060,(주)엘에이티,부채 과다,자본총계,true,"기말자본, 자본총계",ifrs-full_Equity,"2021, 2022, 2023, 2024, 2025","BS, SCE",OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01264234,311060,(주)엘에이티,실적 급락,매출액,true,"Ⅰ.매출액, 매출액",ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025","CIS, IS",OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01264234,311060,(주)엘에이티,실적 급락,영업이익,true,"Ⅴ.영업이익(손실), 영업이익(손실)",dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025","CIS, IS",OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01264234,311060,(주)엘에이티,수익성 악화,영업이익,true,"Ⅴ.영업이익(손실), 영업이익(손실)",dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025","CIS, IS",OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01264234,311060,(주)엘에이티,수익성 악화2,당기순이익,true,당기순이익(손실),ifrs-full_ProfitLoss,"2021, 2022, 2023, 2024, 2025","CIS, IS, SCE",OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01264234,311060,(주)엘에이티,영업현금흐름 적자 지속,영업활동현금흐름,true,"Ⅰ.영업활동으로 인한 현금흐름, 영업활동으로 인한 현금흐름",ifrs-full_CashFlowsFromUsedInOperatingActivities,"2021, 2022, 2023, 2024, 2025",CF,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01264234,311060,(주)엘에이티,매출채권 회수 지연,매출액,true,"Ⅰ.매출액, 매출액",ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025","CIS, IS",OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01264234,311060,(주)엘에이티,매출채권 회수 지연,매출채권,true,매출채권,"-표준계정코드 미사용-, dart_ShortTermTradeReceivable","2021, 2022, 2023, 2024, 2025",BS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01264234,311060,(주)엘에이티,재고 적체,매출액,true,"Ⅰ.매출액, 매출액",ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025","CIS, IS",OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01264234,311060,(주)엘에이티,재고 적체,재고자산,true,"2.재고자산, 재고자산",ifrs-full_Inventories,"2021, 2022, 2023, 2024, 2025",BS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01264234,311060,(주)엘에이티,단기 상환 압박,현금및현금성자산,true,현금및현금성자산,"-표준계정코드 미사용-, ifrs-full_CashAndCashEquivalents","2021, 2022, 2023, 2024, 2025",BS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01264234,311060,(주)엘에이티,단기 상환 압박,유동부채,true,"Ⅰ.유동부채, 유동부채",ifrs-full_CurrentLiabilities,"2021, 2022, 2023, 2024, 2025",BS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01264234,311060,(주)엘에이티,이자 부담 능력,영업이익,true,"Ⅴ.영업이익(손실), 영업이익(손실)",dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025","CIS, IS",OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01264234,311060,(주)엘에이티,이자 부담 능력,이자비용,true,"이자비용, 이자의 지급","dart_LossesOnValuationOfLongTermFinancialInstruments, ifrs-full_InterestPaidClassifiedAsOperatingActivities","2021, 2022, 2023, 2024, 2025","CF, IS",OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01264234,311060,(주)엘에이티,비용 레버리지 위험,매출액,true,"Ⅰ.매출액, 매출액",ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025","CIS, IS",OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01264234,311060,(주)엘에이티,비용 레버리지 위험,영업이익,true,"Ⅴ.영업이익(손실), 영업이익(손실)",dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025","CIS, IS",OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01264234,311060,(주)엘에이티,매출 퀀텀 점프,매출액,true,"Ⅰ.매출액, 매출액",ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025","CIS, IS",OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01264234,311060,(주)엘에이티,어닝 서프라이즈,매출액,true,"Ⅰ.매출액, 매출액",ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025","CIS, IS",OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01264234,311060,(주)엘에이티,어닝 서프라이즈,영업이익,true,"Ⅴ.영업이익(손실), 영업이익(손실)",dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025","CIS, IS",OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01264234,311060,(주)엘에이티,흑자 전환,영업이익,true,"Ⅴ.영업이익(손실), 영업이익(손실)",dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025","CIS, IS",OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01264234,311060,(주)엘에이티,자산 가동률 상승,매출액,true,"Ⅰ.매출액, 매출액",ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025","CIS, IS",OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01264234,311060,(주)엘에이티,자산 가동률 상승,재고자산,true,"2.재고자산, 재고자산",ifrs-full_Inventories,"2021, 2022, 2023, 2024, 2025",BS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01264234,311060,(주)엘에이티,자산 가동률 상승,매출채권,true,매출채권,"-표준계정코드 미사용-, dart_ShortTermTradeReceivable","2021, 2022, 2023, 2024, 2025",BS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01264234,311060,(주)엘에이티,Capa 확대,유형자산,true,"2.유형자산, 유형자산",ifrs-full_PropertyPlantAndEquipment,"2021, 2022, 2023, 2024, 2025",BS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01264234,311060,(주)엘에이티,M&A 및 신사업 진출,주요사항보고서/원문 키워드,false,,,,,,needs_manual_review,재무제표 계정이 아니라 주요사항보고서 또는 사업보고서 원문 키워드 기반으로 확인해야 합니다.
+konex_001,01264234,311060,(주)엘에이티,재무 구조 개선,부채총계,true,부채총계,ifrs-full_Liabilities,"2021, 2022, 2023, 2024, 2025",BS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01264234,311060,(주)엘에이티,재무 구조 개선,자본총계,true,"기말자본, 자본총계",ifrs-full_Equity,"2021, 2022, 2023, 2024, 2025","BS, SCE",OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01264234,311060,(주)엘에이티,현금 창출력 강화,영업활동현금흐름,true,"Ⅰ.영업활동으로 인한 현금흐름, 영업활동으로 인한 현금흐름",ifrs-full_CashFlowsFromUsedInOperatingActivities,"2021, 2022, 2023, 2024, 2025",CF,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01264234,311060,(주)엘에이티,이자 부담 해소,단기차입금,true,단기차입금,ifrs-full_ShorttermBorrowings,"2021, 2022, 2023, 2024, 2025",BS,OFS,found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,01264234,311060,(주)엘에이티,이자 부담 해소,장기차입금,true,장기차입금,dart_LongTermBorrowingsGross,"2021, 2022, 2023, 2024, 2025",BS,OFS,found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,01264234,311060,(주)엘에이티,이자 부담 해소,사채,false,,,,,,not_found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,01264234,311060,(주)엘에이티,이자 부담 해소,자산총계,true,자산총계,ifrs-full_Assets,"2021, 2022, 2023, 2024, 2025",BS,OFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01290132,311960,주식회사 인터로이드,부채 과다,부채총계,true,부채총계,ifrs-full_Liabilities,"2021, 2022",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01290132,311960,주식회사 인터로이드,부채 과다,자본총계,true,"기말자본, 자본총계",ifrs-full_Equity,"2021, 2022","BS, SCE",CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01290132,311960,주식회사 인터로이드,실적 급락,매출액,true,수익(매출액),ifrs-full_Revenue,"2021, 2022",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01290132,311960,주식회사 인터로이드,실적 급락,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2021, 2022",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01290132,311960,주식회사 인터로이드,수익성 악화,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2021, 2022",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01290132,311960,주식회사 인터로이드,수익성 악화2,당기순이익,true,당기순이익(손실),"dart_ProfitLossForStatementOfCashFlows, ifrs-full_ProfitLoss","2021, 2022","CF, CIS, SCE",CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01290132,311960,주식회사 인터로이드,영업현금흐름 적자 지속,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,"2021, 2022",CF,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01290132,311960,주식회사 인터로이드,매출채권 회수 지연,매출액,true,수익(매출액),ifrs-full_Revenue,"2021, 2022",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
 konex_001,01290132,311960,주식회사 인터로이드,매출채권 회수 지연,매출채권,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01290132,311960,주식회사 인터로이드,재고 적체,매출액,true,수익(매출액),ifrs-full_Revenue,"2021, 2022",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01290132,311960,주식회사 인터로이드,재고 적체,재고자산,true,재고자산,ifrs-full_Inventories,"2021, 2022",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01290132,311960,주식회사 인터로이드,단기 상환 압박,현금및현금성자산,true,현금및현금성자산,ifrs-full_CashAndCashEquivalents,"2021, 2022",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01290132,311960,주식회사 인터로이드,단기 상환 압박,유동부채,true,유동부채,ifrs-full_CurrentLiabilities,"2021, 2022",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01290132,311960,주식회사 인터로이드,이자 부담 능력,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01290132,311960,주식회사 인터로이드,이자 부담 능력,이자비용,true,금융원가,ifrs-full_FinanceCosts,"2021, 2022",CIS,,proxy_candidate,이자비용 직접 계정은 없고 금융비용만 확인됩니다. 실제 계산 사용 여부는 사람이 결정해야 합니다.
-konex_001,01290132,311960,주식회사 인터로이드,비용 레버리지 위험,매출액,true,수익(매출액),ifrs-full_Revenue,"2021, 2022",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01290132,311960,주식회사 인터로이드,비용 레버리지 위험,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01290132,311960,주식회사 인터로이드,매출 퀀텀 점프,매출액,true,수익(매출액),ifrs-full_Revenue,"2021, 2022",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01290132,311960,주식회사 인터로이드,어닝 서프라이즈,매출액,true,수익(매출액),ifrs-full_Revenue,"2021, 2022",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01290132,311960,주식회사 인터로이드,어닝 서프라이즈,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01290132,311960,주식회사 인터로이드,흑자 전환,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01290132,311960,주식회사 인터로이드,자산 가동률 상승,매출액,true,수익(매출액),ifrs-full_Revenue,"2021, 2022",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01290132,311960,주식회사 인터로이드,자산 가동률 상승,재고자산,true,재고자산,ifrs-full_Inventories,"2021, 2022",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01290132,311960,주식회사 인터로이드,재고 적체,매출액,true,수익(매출액),ifrs-full_Revenue,"2021, 2022",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01290132,311960,주식회사 인터로이드,재고 적체,재고자산,true,재고자산,ifrs-full_Inventories,"2021, 2022",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01290132,311960,주식회사 인터로이드,단기 상환 압박,현금및현금성자산,true,현금및현금성자산,ifrs-full_CashAndCashEquivalents,"2021, 2022",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01290132,311960,주식회사 인터로이드,단기 상환 압박,유동부채,true,유동부채,ifrs-full_CurrentLiabilities,"2021, 2022",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01290132,311960,주식회사 인터로이드,이자 부담 능력,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2021, 2022",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01290132,311960,주식회사 인터로이드,이자 부담 능력,이자비용,true,이자지급(영업),ifrs-full_InterestPaidClassifiedAsOperatingActivities,"2021, 2022",CF,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01290132,311960,주식회사 인터로이드,비용 레버리지 위험,매출액,true,수익(매출액),ifrs-full_Revenue,"2021, 2022",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01290132,311960,주식회사 인터로이드,비용 레버리지 위험,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2021, 2022",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01290132,311960,주식회사 인터로이드,매출 퀀텀 점프,매출액,true,수익(매출액),ifrs-full_Revenue,"2021, 2022",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01290132,311960,주식회사 인터로이드,어닝 서프라이즈,매출액,true,수익(매출액),ifrs-full_Revenue,"2021, 2022",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01290132,311960,주식회사 인터로이드,어닝 서프라이즈,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2021, 2022",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01290132,311960,주식회사 인터로이드,흑자 전환,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2021, 2022",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01290132,311960,주식회사 인터로이드,자산 가동률 상승,매출액,true,수익(매출액),ifrs-full_Revenue,"2021, 2022",CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01290132,311960,주식회사 인터로이드,자산 가동률 상승,재고자산,true,재고자산,ifrs-full_Inventories,"2021, 2022",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
 konex_001,01290132,311960,주식회사 인터로이드,자산 가동률 상승,매출채권,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01290132,311960,주식회사 인터로이드,Capa 확대,유형자산,true,유형자산,ifrs-full_PropertyPlantAndEquipment,"2021, 2022",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01290132,311960,주식회사 인터로이드,Capa 확대,유형자산,true,유형자산,ifrs-full_PropertyPlantAndEquipment,"2021, 2022",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
 konex_001,01290132,311960,주식회사 인터로이드,M&A 및 신사업 진출,주요사항보고서/원문 키워드,false,,,,,,needs_manual_review,재무제표 계정이 아니라 주요사항보고서 또는 사업보고서 원문 키워드 기반으로 확인해야 합니다.
-konex_001,01290132,311960,주식회사 인터로이드,재무 구조 개선,부채총계,true,부채총계,ifrs-full_Liabilities,"2021, 2022",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01290132,311960,주식회사 인터로이드,재무 구조 개선,자본총계,true,자본총계,ifrs-full_Equity,"2021, 2022",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01290132,311960,주식회사 인터로이드,현금 창출력 강화,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,"2021, 2022",CF,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01290132,311960,주식회사 인터로이드,재무 구조 개선,부채총계,true,부채총계,ifrs-full_Liabilities,"2021, 2022",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01290132,311960,주식회사 인터로이드,재무 구조 개선,자본총계,true,"기말자본, 자본총계",ifrs-full_Equity,"2021, 2022","BS, SCE",CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01290132,311960,주식회사 인터로이드,현금 창출력 강화,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,"2021, 2022",CF,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
 konex_001,01290132,311960,주식회사 인터로이드,이자 부담 해소,단기차입금,false,,,,,,not_found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
-konex_001,01290132,311960,주식회사 인터로이드,이자 부담 해소,장기차입금,true,장기차입금,dart_LongTermBorrowingsGross,"2021, 2022",BS,,found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,01290132,311960,주식회사 인터로이드,이자 부담 해소,장기차입금,true,장기차입금,dart_LongTermBorrowingsGross,"2021, 2022",BS,CFS,found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
 konex_001,01290132,311960,주식회사 인터로이드,이자 부담 해소,사채,false,,,,,,not_found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
-konex_001,01290132,311960,주식회사 인터로이드,이자 부담 해소,자산총계,true,자산총계,ifrs-full_Assets,"2021, 2022",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01328170,317860,주식회사 노드메이슨,부채 과다,부채총계,true,부채총계,ifrs-full_Liabilities,"2022, 2023",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01328170,317860,주식회사 노드메이슨,부채 과다,자본총계,true,자본총계,ifrs-full_Equity,"2022, 2023","BS, SCE",,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01328170,317860,주식회사 노드메이슨,실적 급락,매출액,true,매출액,ifrs-full_Revenue,"2022, 2023",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01328170,317860,주식회사 노드메이슨,실적 급락,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01328170,317860,주식회사 노드메이슨,수익성 악화,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01328170,317860,주식회사 노드메이슨,수익성 악화2,당기순이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01328170,317860,주식회사 노드메이슨,영업현금흐름 적자 지속,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,"2022, 2023",CF,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01328170,317860,주식회사 노드메이슨,매출채권 회수 지연,매출액,true,매출액,ifrs-full_Revenue,"2022, 2023",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01328170,317860,주식회사 노드메이슨,매출채권 회수 지연,매출채권,true,매출채권,dart_ShortTermTradeReceivable,"2022, 2023",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01328170,317860,주식회사 노드메이슨,재고 적체,매출액,true,매출액,ifrs-full_Revenue,"2022, 2023",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01328170,317860,주식회사 노드메이슨,재고 적체,재고자산,true,재고자산,ifrs-full_Inventories,"2022, 2023",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01328170,317860,주식회사 노드메이슨,단기 상환 압박,현금및현금성자산,true,현금및현금성자산,ifrs-full_CashAndCashEquivalents,"2022, 2023",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01328170,317860,주식회사 노드메이슨,단기 상환 압박,유동부채,true,유동부채,ifrs-full_CurrentLiabilities,"2022, 2023",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01328170,317860,주식회사 노드메이슨,이자 부담 능력,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01328170,317860,주식회사 노드메이슨,이자 부담 능력,이자비용,true,금융원가,ifrs-full_FinanceCosts,"2022, 2023",CIS,,proxy_candidate,이자비용 직접 계정은 없고 금융비용만 확인됩니다. 실제 계산 사용 여부는 사람이 결정해야 합니다.
-konex_001,01328170,317860,주식회사 노드메이슨,비용 레버리지 위험,매출액,true,매출액,ifrs-full_Revenue,"2022, 2023",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01328170,317860,주식회사 노드메이슨,비용 레버리지 위험,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01328170,317860,주식회사 노드메이슨,매출 퀀텀 점프,매출액,true,매출액,ifrs-full_Revenue,"2022, 2023",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01328170,317860,주식회사 노드메이슨,어닝 서프라이즈,매출액,true,매출액,ifrs-full_Revenue,"2022, 2023",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01328170,317860,주식회사 노드메이슨,어닝 서프라이즈,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01328170,317860,주식회사 노드메이슨,흑자 전환,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01328170,317860,주식회사 노드메이슨,자산 가동률 상승,매출액,true,매출액,ifrs-full_Revenue,"2022, 2023",CIS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01328170,317860,주식회사 노드메이슨,자산 가동률 상승,재고자산,true,재고자산,ifrs-full_Inventories,"2022, 2023",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01328170,317860,주식회사 노드메이슨,자산 가동률 상승,매출채권,true,매출채권,dart_ShortTermTradeReceivable,"2022, 2023",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01328170,317860,주식회사 노드메이슨,Capa 확대,유형자산,true,유형자산,ifrs-full_PropertyPlantAndEquipment,"2022, 2023",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01290132,311960,주식회사 인터로이드,이자 부담 해소,자산총계,true,자산총계,ifrs-full_Assets,"2021, 2022",BS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01328170,317860,주식회사 노드메이슨,부채 과다,부채총계,true,부채총계,ifrs-full_Liabilities,"2021, 2022, 2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01328170,317860,주식회사 노드메이슨,부채 과다,자본총계,true,"기말자본, 자본총계",ifrs-full_Equity,"2021, 2022, 2023, 2024, 2025","BS, SCE","CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01328170,317860,주식회사 노드메이슨,실적 급락,매출액,true,매출액,ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01328170,317860,주식회사 노드메이슨,실적 급락,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01328170,317860,주식회사 노드메이슨,수익성 악화,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01328170,317860,주식회사 노드메이슨,수익성 악화2,당기순이익,true,당기순이익(손실),ifrs-full_ProfitLoss,"2021, 2022, 2023, 2024, 2025","CF, CIS, SCE","CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01328170,317860,주식회사 노드메이슨,영업현금흐름 적자 지속,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,"2021, 2022, 2023, 2024, 2025",CF,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01328170,317860,주식회사 노드메이슨,매출채권 회수 지연,매출액,true,매출액,ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01328170,317860,주식회사 노드메이슨,매출채권 회수 지연,매출채권,true,매출채권,dart_ShortTermTradeReceivable,"2021, 2022, 2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01328170,317860,주식회사 노드메이슨,재고 적체,매출액,true,매출액,ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01328170,317860,주식회사 노드메이슨,재고 적체,재고자산,true,재고자산,ifrs-full_Inventories,"2021, 2022, 2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01328170,317860,주식회사 노드메이슨,단기 상환 압박,현금및현금성자산,true,현금및현금성자산,ifrs-full_CashAndCashEquivalents,"2021, 2022, 2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01328170,317860,주식회사 노드메이슨,단기 상환 압박,유동부채,true,유동부채,ifrs-full_CurrentLiabilities,"2021, 2022, 2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01328170,317860,주식회사 노드메이슨,이자 부담 능력,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01328170,317860,주식회사 노드메이슨,이자 부담 능력,이자비용,true,이자지급(영업),ifrs-full_InterestPaidClassifiedAsOperatingActivities,"2021, 2022, 2023, 2024, 2025",CF,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01328170,317860,주식회사 노드메이슨,비용 레버리지 위험,매출액,true,매출액,ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01328170,317860,주식회사 노드메이슨,비용 레버리지 위험,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01328170,317860,주식회사 노드메이슨,매출 퀀텀 점프,매출액,true,매출액,ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01328170,317860,주식회사 노드메이슨,어닝 서프라이즈,매출액,true,매출액,ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01328170,317860,주식회사 노드메이슨,어닝 서프라이즈,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01328170,317860,주식회사 노드메이슨,흑자 전환,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2021, 2022, 2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01328170,317860,주식회사 노드메이슨,자산 가동률 상승,매출액,true,매출액,ifrs-full_Revenue,"2021, 2022, 2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01328170,317860,주식회사 노드메이슨,자산 가동률 상승,재고자산,true,재고자산,ifrs-full_Inventories,"2021, 2022, 2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01328170,317860,주식회사 노드메이슨,자산 가동률 상승,매출채권,true,매출채권,dart_ShortTermTradeReceivable,"2021, 2022, 2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01328170,317860,주식회사 노드메이슨,Capa 확대,유형자산,true,유형자산,ifrs-full_PropertyPlantAndEquipment,"2021, 2022, 2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
 konex_001,01328170,317860,주식회사 노드메이슨,M&A 및 신사업 진출,주요사항보고서/원문 키워드,false,,,,,,needs_manual_review,재무제표 계정이 아니라 주요사항보고서 또는 사업보고서 원문 키워드 기반으로 확인해야 합니다.
-konex_001,01328170,317860,주식회사 노드메이슨,재무 구조 개선,부채총계,true,부채총계,ifrs-full_Liabilities,"2022, 2023",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01328170,317860,주식회사 노드메이슨,재무 구조 개선,자본총계,true,자본총계,ifrs-full_Equity,"2022, 2023","BS, SCE",,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01328170,317860,주식회사 노드메이슨,현금 창출력 강화,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,"2022, 2023",CF,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01328170,317860,주식회사 노드메이슨,이자 부담 해소,단기차입금,true,단기차입금,"ifrs-full_Borrowings, ifrs-full_ShorttermBorrowings","2022, 2023",BS,,found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
-konex_001,01328170,317860,주식회사 노드메이슨,이자 부담 해소,장기차입금,true,장기차입금,dart_LongTermBorrowingsGross,"2022, 2023",BS,,found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,01328170,317860,주식회사 노드메이슨,재무 구조 개선,부채총계,true,부채총계,ifrs-full_Liabilities,"2021, 2022, 2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01328170,317860,주식회사 노드메이슨,재무 구조 개선,자본총계,true,"기말자본, 자본총계",ifrs-full_Equity,"2021, 2022, 2023, 2024, 2025","BS, SCE","CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01328170,317860,주식회사 노드메이슨,현금 창출력 강화,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,"2021, 2022, 2023, 2024, 2025",CF,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01328170,317860,주식회사 노드메이슨,이자 부담 해소,단기차입금,true,단기차입금,"ifrs-full_Borrowings, ifrs-full_ShorttermBorrowings","2021, 2022, 2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,01328170,317860,주식회사 노드메이슨,이자 부담 해소,장기차입금,true,장기차입금,dart_LongTermBorrowingsGross,"2021, 2022, 2023",BS,"CFS, OFS",found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
 konex_001,01328170,317860,주식회사 노드메이슨,이자 부담 해소,사채,false,,,,,,not_found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
-konex_001,01328170,317860,주식회사 노드메이슨,이자 부담 해소,자산총계,true,자산총계,ifrs-full_Assets,"2022, 2023",BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01185867,341170,퓨쳐메디신 주식회사,부채 과다,부채총계,true,부채총계,ifrs-full_Liabilities,2023,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01185867,341170,퓨쳐메디신 주식회사,부채 과다,자본총계,true,자본총계,ifrs-full_Equity,2023,"BS, SCE",,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01185867,341170,퓨쳐메디신 주식회사,실적 급락,매출액,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01185867,341170,퓨쳐메디신 주식회사,실적 급락,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01185867,341170,퓨쳐메디신 주식회사,수익성 악화,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01185867,341170,퓨쳐메디신 주식회사,수익성 악화2,당기순이익,true,당기순손실,ifrs-full_ProfitLoss,2023,"CIS, SCE",,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01185867,341170,퓨쳐메디신 주식회사,영업현금흐름 적자 지속,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,2023,CF,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01185867,341170,퓨쳐메디신 주식회사,매출채권 회수 지연,매출액,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
+konex_001,01328170,317860,주식회사 노드메이슨,이자 부담 해소,자산총계,true,자산총계,ifrs-full_Assets,"2021, 2022, 2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01185867,341170,퓨쳐메디신 주식회사,부채 과다,부채총계,true,부채총계,ifrs-full_Liabilities,"2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01185867,341170,퓨쳐메디신 주식회사,부채 과다,자본총계,true,자본총계,ifrs-full_Equity,"2023, 2024, 2025","BS, SCE","CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01185867,341170,퓨쳐메디신 주식회사,실적 급락,매출액,true,영업수익,-표준계정코드 미사용-,2023,CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01185867,341170,퓨쳐메디신 주식회사,실적 급락,영업이익,true,"영업손실, 영업이익(손실)",dart_OperatingIncomeLoss,"2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01185867,341170,퓨쳐메디신 주식회사,수익성 악화,영업이익,true,"영업손실, 영업이익(손실)",dart_OperatingIncomeLoss,"2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01185867,341170,퓨쳐메디신 주식회사,수익성 악화2,당기순이익,true,당기순손실,ifrs-full_ProfitLoss,"2023, 2024, 2025","CIS, SCE","CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01185867,341170,퓨쳐메디신 주식회사,영업현금흐름 적자 지속,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,"2023, 2024, 2025",CF,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01185867,341170,퓨쳐메디신 주식회사,매출채권 회수 지연,매출액,true,영업수익,-표준계정코드 미사용-,2023,CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
 konex_001,01185867,341170,퓨쳐메디신 주식회사,매출채권 회수 지연,매출채권,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01185867,341170,퓨쳐메디신 주식회사,재고 적체,매출액,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
+konex_001,01185867,341170,퓨쳐메디신 주식회사,재고 적체,매출액,true,영업수익,-표준계정코드 미사용-,2023,CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
 konex_001,01185867,341170,퓨쳐메디신 주식회사,재고 적체,재고자산,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01185867,341170,퓨쳐메디신 주식회사,단기 상환 압박,현금및현금성자산,true,현금및현금성자산,ifrs-full_CashAndCashEquivalents,2023,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01185867,341170,퓨쳐메디신 주식회사,단기 상환 압박,유동부채,true,유동부채,ifrs-full_CurrentLiabilities,2023,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01185867,341170,퓨쳐메디신 주식회사,이자 부담 능력,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01185867,341170,퓨쳐메디신 주식회사,이자 부담 능력,이자비용,true,금융비용,ifrs-full_FinanceCosts,2023,CIS,,proxy_candidate,이자비용 직접 계정은 없고 금융비용만 확인됩니다. 실제 계산 사용 여부는 사람이 결정해야 합니다.
-konex_001,01185867,341170,퓨쳐메디신 주식회사,비용 레버리지 위험,매출액,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01185867,341170,퓨쳐메디신 주식회사,비용 레버리지 위험,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01185867,341170,퓨쳐메디신 주식회사,매출 퀀텀 점프,매출액,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01185867,341170,퓨쳐메디신 주식회사,어닝 서프라이즈,매출액,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01185867,341170,퓨쳐메디신 주식회사,어닝 서프라이즈,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01185867,341170,퓨쳐메디신 주식회사,흑자 전환,영업이익,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01185867,341170,퓨쳐메디신 주식회사,자산 가동률 상승,매출액,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
+konex_001,01185867,341170,퓨쳐메디신 주식회사,단기 상환 압박,현금및현금성자산,true,현금및현금성자산,ifrs-full_CashAndCashEquivalents,"2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01185867,341170,퓨쳐메디신 주식회사,단기 상환 압박,유동부채,true,유동부채,ifrs-full_CurrentLiabilities,"2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01185867,341170,퓨쳐메디신 주식회사,이자 부담 능력,영업이익,true,"영업손실, 영업이익(손실)",dart_OperatingIncomeLoss,"2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01185867,341170,퓨쳐메디신 주식회사,이자 부담 능력,이자비용,true,이자의 지급,ifrs-full_InterestPaidClassifiedAsOperatingActivities,"2023, 2024, 2025",CF,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01185867,341170,퓨쳐메디신 주식회사,비용 레버리지 위험,매출액,true,영업수익,-표준계정코드 미사용-,2023,CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01185867,341170,퓨쳐메디신 주식회사,비용 레버리지 위험,영업이익,true,"영업손실, 영업이익(손실)",dart_OperatingIncomeLoss,"2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01185867,341170,퓨쳐메디신 주식회사,매출 퀀텀 점프,매출액,true,영업수익,-표준계정코드 미사용-,2023,CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01185867,341170,퓨쳐메디신 주식회사,어닝 서프라이즈,매출액,true,영업수익,-표준계정코드 미사용-,2023,CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01185867,341170,퓨쳐메디신 주식회사,어닝 서프라이즈,영업이익,true,"영업손실, 영업이익(손실)",dart_OperatingIncomeLoss,"2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01185867,341170,퓨쳐메디신 주식회사,흑자 전환,영업이익,true,"영업손실, 영업이익(손실)",dart_OperatingIncomeLoss,"2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01185867,341170,퓨쳐메디신 주식회사,자산 가동률 상승,매출액,true,영업수익,-표준계정코드 미사용-,2023,CIS,CFS,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
 konex_001,01185867,341170,퓨쳐메디신 주식회사,자산 가동률 상승,재고자산,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
 konex_001,01185867,341170,퓨쳐메디신 주식회사,자산 가동률 상승,매출채권,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
-konex_001,01185867,341170,퓨쳐메디신 주식회사,Capa 확대,유형자산,true,유형자산,ifrs-full_PropertyPlantAndEquipment,2023,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01185867,341170,퓨쳐메디신 주식회사,Capa 확대,유형자산,true,유형자산,ifrs-full_PropertyPlantAndEquipment,"2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
 konex_001,01185867,341170,퓨쳐메디신 주식회사,M&A 및 신사업 진출,주요사항보고서/원문 키워드,false,,,,,,needs_manual_review,재무제표 계정이 아니라 주요사항보고서 또는 사업보고서 원문 키워드 기반으로 확인해야 합니다.
-konex_001,01185867,341170,퓨쳐메디신 주식회사,재무 구조 개선,부채총계,true,부채총계,ifrs-full_Liabilities,2023,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01185867,341170,퓨쳐메디신 주식회사,재무 구조 개선,자본총계,true,자본총계,ifrs-full_Equity,2023,"BS, SCE",,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01185867,341170,퓨쳐메디신 주식회사,현금 창출력 강화,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,2023,CF,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
-konex_001,01185867,341170,퓨쳐메디신 주식회사,이자 부담 해소,단기차입금,true,단기차입금,ifrs-full_ShorttermBorrowings,2023,BS,,found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,01185867,341170,퓨쳐메디신 주식회사,재무 구조 개선,부채총계,true,부채총계,ifrs-full_Liabilities,"2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01185867,341170,퓨쳐메디신 주식회사,재무 구조 개선,자본총계,true,자본총계,ifrs-full_Equity,"2023, 2024, 2025","BS, SCE","CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01185867,341170,퓨쳐메디신 주식회사,현금 창출력 강화,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,"2023, 2024, 2025",CF,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01185867,341170,퓨쳐메디신 주식회사,이자 부담 해소,단기차입금,true,단기차입금,"-표준계정코드 미사용-, ifrs-full_ShorttermBorrowings","2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
 konex_001,01185867,341170,퓨쳐메디신 주식회사,이자 부담 해소,장기차입금,false,,,,,,not_found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
 konex_001,01185867,341170,퓨쳐메디신 주식회사,이자 부담 해소,사채,false,,,,,,not_found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
-konex_001,01185867,341170,퓨쳐메디신 주식회사,이자 부담 해소,자산총계,true,자산총계,ifrs-full_Assets,2023,BS,,found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01185867,341170,퓨쳐메디신 주식회사,이자 부담 해소,자산총계,true,자산총계,ifrs-full_Assets,"2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01547933,351020,(주)미쥬,부채 과다,부채총계,true,부채총계,ifrs-full_Liabilities,"2022, 2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01547933,351020,(주)미쥬,부채 과다,자본총계,true,자본총계,ifrs-full_Equity,"2022, 2023, 2024, 2025","BS, SCE","CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01547933,351020,(주)미쥬,실적 급락,매출액,true,수익(매출액),ifrs-full_Revenue,"2022, 2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01547933,351020,(주)미쥬,실적 급락,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2022, 2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01547933,351020,(주)미쥬,수익성 악화,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2022, 2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01547933,351020,(주)미쥬,수익성 악화2,당기순이익,true,당기순이익(손실),ifrs-full_ProfitLoss,"2022, 2023, 2024, 2025","CF, CIS, SCE","CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01547933,351020,(주)미쥬,영업현금흐름 적자 지속,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,"2022, 2023, 2024, 2025",CF,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01547933,351020,(주)미쥬,매출채권 회수 지연,매출액,true,수익(매출액),ifrs-full_Revenue,"2022, 2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01547933,351020,(주)미쥬,매출채권 회수 지연,매출채권,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
+konex_001,01547933,351020,(주)미쥬,재고 적체,매출액,true,수익(매출액),ifrs-full_Revenue,"2022, 2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01547933,351020,(주)미쥬,재고 적체,재고자산,true,유동재고자산,ifrs-full_Inventories,"2022, 2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01547933,351020,(주)미쥬,단기 상환 압박,현금및현금성자산,true,현금및현금성자산,ifrs-full_CashAndCashEquivalents,"2022, 2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01547933,351020,(주)미쥬,단기 상환 압박,유동부채,true,유동부채,ifrs-full_CurrentLiabilities,"2022, 2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01547933,351020,(주)미쥬,이자 부담 능력,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2022, 2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01547933,351020,(주)미쥬,이자 부담 능력,이자비용,false,,,,,,needs_xbrl_or_note,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
+konex_001,01547933,351020,(주)미쥬,비용 레버리지 위험,매출액,true,수익(매출액),ifrs-full_Revenue,"2022, 2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01547933,351020,(주)미쥬,비용 레버리지 위험,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2022, 2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01547933,351020,(주)미쥬,매출 퀀텀 점프,매출액,true,수익(매출액),ifrs-full_Revenue,"2022, 2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01547933,351020,(주)미쥬,어닝 서프라이즈,매출액,true,수익(매출액),ifrs-full_Revenue,"2022, 2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01547933,351020,(주)미쥬,어닝 서프라이즈,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2022, 2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01547933,351020,(주)미쥬,흑자 전환,영업이익,true,영업이익(손실),dart_OperatingIncomeLoss,"2022, 2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01547933,351020,(주)미쥬,자산 가동률 상승,매출액,true,수익(매출액),ifrs-full_Revenue,"2022, 2023, 2024, 2025",CIS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01547933,351020,(주)미쥬,자산 가동률 상승,재고자산,true,유동재고자산,ifrs-full_Inventories,"2022, 2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01547933,351020,(주)미쥬,자산 가동률 상승,매출채권,false,,,,,,not_found_in_single_all,"전체 재무제표 API 본문에서 직접 찾지 못했습니다. 필요 시 XBRL, 주석, 원문 확인이 필요합니다."
+konex_001,01547933,351020,(주)미쥬,Capa 확대,유형자산,true,유형자산,ifrs-full_PropertyPlantAndEquipment,"2022, 2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01547933,351020,(주)미쥬,M&A 및 신사업 진출,주요사항보고서/원문 키워드,false,,,,,,needs_manual_review,재무제표 계정이 아니라 주요사항보고서 또는 사업보고서 원문 키워드 기반으로 확인해야 합니다.
+konex_001,01547933,351020,(주)미쥬,재무 구조 개선,부채총계,true,부채총계,ifrs-full_Liabilities,"2022, 2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01547933,351020,(주)미쥬,재무 구조 개선,자본총계,true,자본총계,ifrs-full_Equity,"2022, 2023, 2024, 2025","BS, SCE","CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01547933,351020,(주)미쥬,현금 창출력 강화,영업활동현금흐름,true,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,"2022, 2023, 2024, 2025",CF,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
+konex_001,01547933,351020,(주)미쥬,이자 부담 해소,단기차입금,false,,,,,,not_found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,01547933,351020,(주)미쥬,이자 부담 해소,장기차입금,false,,,,,,not_found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,01547933,351020,(주)미쥬,이자 부담 해소,사채,false,,,,,,not_found_in_single_all,"단기차입금, 장기차입금, 사채를 합산해 차입금의존도 계산 구성요소로 사용합니다."
+konex_001,01547933,351020,(주)미쥬,이자 부담 해소,자산총계,true,자산총계,ifrs-full_Assets,"2022, 2023, 2024, 2025",BS,"CFS, OFS",found_in_single_all,전체 재무제표 API에서 직접 확인된 계정입니다.
