@@ -167,11 +167,17 @@ def main() -> None:
 
     chat_history: List[Dict[str, str]] = []
 
+    company_name = (ai_report_result.get("company_info", {}) or {}).get("company_name")
+    analysis_year = ai_report_result.get("analysis_year")
+    detected_changes = ai_report_result.get("detected_changes", [])
+    primary_change = detected_changes[0]
+    metric_label = primary_change.get("metric_label")
+
     questions = [
-        "파트론의 2021년 영업이익이 왜 증가했어?",
+        f"{company_name}의 {analysis_year}년 {metric_label} 변화는 어떤 배경으로 볼 수 있어?",
         "방금 답변에서 말한 뉴스 근거를 조금 더 자세히 설명해줘.",
         "그럼 두 번째 뉴스는 어떤 의미가 있어?",
-        "공시 근거는 영업이익 증가와 직접 관련이 있다고 볼 수 있어?",
+        "공시 근거는 이 변화와 직접 관련이 있다고 볼 수 있어?",
     ]
 
     for question in questions:

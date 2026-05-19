@@ -32,6 +32,36 @@ except ModuleNotFoundError:
         normalize_chat_history,
     )
 
+try:
+    from src.ai.chat_safety_filter import (
+        check_chat_safety,
+        build_safety_block_response,
+    )
+except ModuleNotFoundError:
+    try:
+        from chat_safety_filter import (
+            check_chat_safety,
+            build_safety_block_response,
+        )
+    except ModuleNotFoundError:
+        check_chat_safety = None
+        build_safety_block_response = None
+
+try:
+    from src.ai.financial_term_glossary import (
+        detect_financial_term_question,
+        build_financial_term_response,
+    )
+except ModuleNotFoundError:
+    try:
+        from financial_term_glossary import (
+            detect_financial_term_question,
+            build_financial_term_response,
+        )
+    except ModuleNotFoundError:
+        detect_financial_term_question = None
+        build_financial_term_response = None
+
 
 # ---------------------------------------------------------------------
 # 1. 공통 유틸 함수
@@ -339,7 +369,26 @@ def normalize_limitations(
     if not limitations:
         limitations = "본 답변은 제공된 AI 리포트, 재무 데이터, 뉴스 근거, 공시 근거에 한정됩니다."
 
-    return limitations
+    def normalize_chat_style(text: str) -> str:
+        text = safe_text(text).strip()
+
+        replacements = {
+            "필요함.": "필요합니다.",
+            "필요함": "필요합니다.",
+            "어려움.": "어렵습니다.",
+            "어려움": "어렵습니다.",
+            "없음.": "없습니다.",
+            "없음": "없습니다.",
+            "제한됨.": "제한됩니다.",
+            "제한됨": "제한됩니다.",
+        }
+
+        for old, new in replacements.items():
+            text = text.replace(old, new)
+
+        return text
+
+    return normalize_chat_style(limitations)
 
 
 # ---------------------------------------------------------------------
@@ -579,6 +628,63 @@ def clean_chat_answer(
     }
 
 
+def build_special_chat_response(
+    question: str,
+    chat_history: Optional[List[Dict[str, Any]]] = None,
+) -> Optional[Dict[str, Any]]:
+    """
+    LLM 호출 전에 처리할 수 있는 특수 질문을 처리합니다.
+
+    처리 대상:
+    - 욕설/부적절 표현: 즉시 차단
+    - 명확한 경제/재무 용어 설명 질문: 용어 사전 답변 반환
+
+    주의:
+    - "파트론의 2021년 영업이익이 왜 증가했어?"처럼 기업/연도/증감/원인 질문은
+      용어 질문으로 처리하지 않고 기존 리포트 Q&A로 넘깁니다.
+    """
+
+    normalized_history = normalize_chat_history(chat_history)
+
+    if check_chat_safety and build_safety_block_response:
+        try:
+            safety_result = check_chat_safety(question)
+
+            if safety_result.get("blocked"):
+                response = build_safety_block_response(
+                    question=question,
+                    safety_result=safety_result,
+                )
+                metadata = response.get("metadata", {}) or {}
+                metadata["chat_history_used"] = has_chat_history(chat_history)
+                metadata["chat_history_count"] = len(normalized_history)
+                metadata["prompt_compaction_applied"] = True
+                response["metadata"] = metadata
+                return response
+        except Exception as error:
+            print(f"[WARN] chat_safety_filter 실행 실패: {error}")
+
+    if detect_financial_term_question and build_financial_term_response:
+        try:
+            term_result = detect_financial_term_question(question)
+
+            if term_result.get("matched"):
+                response = build_financial_term_response(
+                    question=question,
+                    term_result=term_result,
+                )
+                metadata = response.get("metadata", {}) or {}
+                metadata["chat_history_used"] = has_chat_history(chat_history)
+                metadata["chat_history_count"] = len(normalized_history)
+                metadata["prompt_compaction_applied"] = True
+                response["metadata"] = metadata
+                return response
+        except Exception as error:
+            print(f"[WARN] financial_term_glossary 실행 실패: {error}")
+
+    return None
+
+
 def answer_report_question(
     llm,
     question: str,
@@ -598,8 +704,17 @@ def answer_report_question(
                 "generated_at": datetime.now().isoformat(timespec="seconds"),
                 "chat_history_used": has_chat_history(chat_history),
                 "chat_history_count": len(normalize_chat_history(chat_history)),
+                "prompt_compaction_applied": True,
             },
         }
+
+    special_response = build_special_chat_response(
+        question=question,
+        chat_history=chat_history,
+    )
+
+    if special_response is not None:
+        return special_response
 
     context_text = shorten_text(
         build_compact_context_text(chat_context),
@@ -739,6 +854,7 @@ if __name__ == "__main__":
         "삼성전자는 2023년에 영업이익이 왜 감소했어?",
         "뉴스 근거와 공시 근거를 나눠서 설명해줘.",
         "그럼 첫 번째 뉴스는 어떤 의미야?",
+        "상장이 무슨 뜻이야?",
     ]
     history: List[Dict[str, str]] = []
 
