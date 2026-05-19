@@ -1,12 +1,14 @@
 # Batch Summary: kosdaq_002
 
 ## 실행 결과
-- years: 2019-2023
+- years: 2021-2025
 - reprt_code: 11011
 - fs_div: CFS
-- success: 1916
+- fs_div fallback: CFS no_data 시 OFS를 추가 조회합니다.
+- write policy: limit/skip-existing 없이 전체 실행하면 이번 실행 결과로 CSV를 덮어씁니다.
+- success: 2430
 - failed: 0
-- no_data: 584
+- no_data: 576
 - rate_limited: 0
 - skipped: 0
 - skipped 정책: collection_log.csv에는 회사/연도별 최신 최종 상태만 보존하고, 이미 성공한 건의 skip은 이번 실행 summary에만 표시합니다.

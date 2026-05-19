@@ -290,11 +290,15 @@ OpenDART 기업개황 API 기반 상장사 master를 생성하고, 시장별 bat
 수집 기준:
 
 ```text
-years: 2019~2023
+years: recent5
 reprt_code: 11011
-fs_div: CFS
+fs_div: CFS 우선, no_data 시 OFS fallback
 source_api: fnlttSinglAcntAll.json
 ```
+
+`recent5`는 실행일 기준 최근 5개 사업연도를 자동 계산합니다.
+사업보고서 공시 시점을 고려하여 4월 이후에는 전년도까지, 1~3월에는 전전년도까지를 최신 사업연도로 봅니다.
+예를 들어 2026년 5월 실행 시 수집 대상은 2021~2025년입니다.
 
 생성된 batch:
 
@@ -327,15 +331,15 @@ source_api: fnlttSinglAcntAll.json
 | 항목 | 건수 |
 | --- | ---: |
 | 전체 회사 수 | 2,765 |
-| collection_log rows | 13,825 |
-| success | 8,715 |
-| no_data | 5,110 |
+| collection_log rows | 17,983 |
+| success | 12,031 |
+| no_data | 5,952 |
 | failed | 0 |
 | rate_limited | 0 |
-| reports rows | 8,715 |
-| financial_accounts_raw rows | 1,195,205 |
-| financial_accounts_standard rows | 113,449 |
-| standard amount 빈 값 | 968 |
+| reports rows | 12,031 |
+| financial_accounts_raw rows | 2,135,144 |
+| financial_accounts_standard rows | 331,236 |
+| standard amount 빈 값 | 2,992 |
 | fs_div 빈 값 | 0 |
 
 ### 5. 표준계정 매핑 및 전처리

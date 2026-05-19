@@ -1,146 +1,248 @@
 ﻿batch_id,corp_code,stock_code,corp_name,standard_account,category,found,years_found,sj_divs,matched_names,matched_account_ids,status,recommended_action
-konex_001,01063556,233990,(주)질경이,매출액,basic,true,"2019, 2020, 2021",CIS,매출액,ifrs-full_Revenue,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01063556,233990,(주)질경이,영업이익,basic,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,01063556,233990,(주)질경이,당기순이익,basic,true,2019,SCE,당기순손실,-표준계정코드 미사용-,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01063556,233990,(주)질경이,자산총계,basic,true,"2019, 2020, 2021",BS,자산총계,ifrs-full_Assets,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01063556,233990,(주)질경이,부채총계,basic,true,"2019, 2020, 2021",BS,부채총계,ifrs-full_Liabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01063556,233990,(주)질경이,자본총계,basic,true,"2019, 2020, 2021",BS,자본총계,ifrs-full_Equity,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01063556,233990,(주)질경이,유동부채,basic,true,"2019, 2020, 2021",BS,유동부채,ifrs-full_CurrentLiabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01063556,233990,(주)질경이,현금및현금성자산,additional,true,"2019, 2020, 2021",BS,현금및현금성자산,ifrs-full_CashAndCashEquivalents,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01063556,233990,(주)질경이,재고자산,additional,true,"2019, 2020, 2021",BS,재고자산,ifrs-full_Inventories,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00523176,086220,광동헬스바이오(주),매출액,basic,true,"2021, 2022, 2023, 2024, 2025",CIS,매출액,ifrs-full_Revenue,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00523176,086220,광동헬스바이오(주),영업이익,basic,true,"2021, 2022, 2023, 2024, 2025",CIS,영업이익(손실),dart_OperatingIncomeLoss,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00523176,086220,광동헬스바이오(주),당기순이익,basic,true,"2021, 2022, 2023, 2024, 2025","CF, CIS, SCE",당기순이익(손실),"dart_ProfitLossForStatementOfCashFlows, ifrs-full_ProfitLoss",found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00523176,086220,광동헬스바이오(주),자산총계,basic,true,"2021, 2022, 2023, 2024, 2025",BS,자산총계,ifrs-full_Assets,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00523176,086220,광동헬스바이오(주),부채총계,basic,true,"2021, 2022, 2023, 2024, 2025",BS,부채총계,ifrs-full_Liabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00523176,086220,광동헬스바이오(주),자본총계,basic,true,"2021, 2022, 2023, 2024, 2025","BS, SCE","기말자본, 자본총계",ifrs-full_Equity,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00523176,086220,광동헬스바이오(주),유동부채,basic,true,"2021, 2022, 2023, 2024, 2025",BS,유동부채,ifrs-full_CurrentLiabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00523176,086220,광동헬스바이오(주),현금및현금성자산,additional,true,"2021, 2022, 2023, 2024, 2025",BS,현금및현금성자산,ifrs-full_CashAndCashEquivalents,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00523176,086220,광동헬스바이오(주),재고자산,additional,true,"2021, 2022, 2023, 2024, 2025","BS, CF","유동재고자산, 재고자산","ifrs-full_AdjustmentsForDecreaseIncreaseInInventories, ifrs-full_Inventories",found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00523176,086220,광동헬스바이오(주),매출채권,additional,true,"2021, 2022",CF,매출채권,ifrs-full_AdjustmentsForDecreaseIncreaseInTradeAccountReceivable,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00523176,086220,광동헬스바이오(주),유형자산,additional,true,"2021, 2022, 2023, 2024, 2025",BS,유형자산,ifrs-full_PropertyPlantAndEquipment,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00523176,086220,광동헬스바이오(주),영업활동현금흐름,additional,true,"2021, 2022, 2023, 2024, 2025",CF,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00523176,086220,광동헬스바이오(주),단기차입금,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
+konex_001,00523176,086220,광동헬스바이오(주),장기차입금,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
+konex_001,00523176,086220,광동헬스바이오(주),사채,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
+konex_001,00523176,086220,광동헬스바이오(주),이자비용,additional,true,"2021, 2022, 2023, 2024, 2025",CF,"이자비용, 이자지급, 이자지급(영업)","-표준계정코드 미사용-, dart_AdjustmentsForInterestExpenses, ifrs-full_InterestPaidClassifiedAsOperatingActivities",found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00523176,086220,광동헬스바이오(주),금융비용,additional,true,"2021, 2022, 2023, 2024, 2025",CIS,금융비용,ifrs-full_FinanceCosts,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00677334,102950,(주)아하,매출액,basic,true,"2024, 2025",CIS,매출액,ifrs-full_Revenue,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00677334,102950,(주)아하,영업이익,basic,true,"2024, 2025",CIS,"영업이익, 영업이익(손실)",dart_OperatingIncomeLoss,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00677334,102950,(주)아하,당기순이익,basic,true,"2024, 2025","CIS, SCE","당기순이익, 당기순이익(손실)",ifrs-full_ProfitLoss,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00677334,102950,(주)아하,자산총계,basic,true,"2024, 2025",BS,자산총계,ifrs-full_Assets,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00677334,102950,(주)아하,부채총계,basic,true,"2024, 2025",BS,부채총계,ifrs-full_Liabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00677334,102950,(주)아하,자본총계,basic,true,"2024, 2025","BS, SCE",자본총계,ifrs-full_Equity,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00677334,102950,(주)아하,유동부채,basic,true,"2024, 2025",BS,유동부채,ifrs-full_CurrentLiabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00677334,102950,(주)아하,현금및현금성자산,additional,true,"2024, 2025",BS,현금및현금성자산,ifrs-full_CashAndCashEquivalents,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00677334,102950,(주)아하,재고자산,additional,true,"2024, 2025",BS,재고자산,ifrs-full_InventoriesTotal,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00677334,102950,(주)아하,매출채권,additional,true,"2024, 2025",BS,매출채권,"dart_ShortTermTradeReceivable, ifrs-full_CurrentTradeReceivables",found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00677334,102950,(주)아하,유형자산,additional,true,"2024, 2025",BS,유형자산,ifrs-full_PropertyPlantAndEquipment,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00677334,102950,(주)아하,영업활동현금흐름,additional,true,"2024, 2025",CF,"영업에서 창출된 현금흐름, 영업활동으로 인한 현금흐름","ifrs-full_CashFlowsFromUsedInOperatingActivities, ifrs-full_CashFlowsFromUsedInOperations",found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00677334,102950,(주)아하,단기차입금,additional,true,"2024, 2025",BS,단기차입금,-표준계정코드 미사용-,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00677334,102950,(주)아하,장기차입금,additional,true,"2024, 2025",BS,장기차입금,ifrs-full_NoncurrentPortionOfNoncurrentLoansReceived,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00677334,102950,(주)아하,사채,additional,true,2025,BS,사채,dart_BondsIssuedNominalValue,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00677334,102950,(주)아하,이자비용,additional,true,"2024, 2025",CF,이자지급,ifrs-full_InterestPaidClassifiedAsOperatingActivities,found_in_account_id,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00677334,102950,(주)아하,금융비용,additional,true,"2024, 2025",CIS,금융비용,ifrs-full_FinanceCosts,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),매출액,basic,true,"2024, 2025",CIS,수익(매출액),ifrs-full_Revenue,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),영업이익,basic,true,"2024, 2025",CIS,영업이익(손실),dart_OperatingIncomeLoss,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),당기순이익,basic,true,"2024, 2025","CIS, SCE",당기순이익(손실),ifrs-full_ProfitLoss,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),자산총계,basic,true,"2024, 2025",BS,자산총계,ifrs-full_Assets,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),부채총계,basic,true,"2024, 2025",BS,부채총계,ifrs-full_Liabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),자본총계,basic,true,"2024, 2025","BS, SCE",자본총계,ifrs-full_Equity,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),유동부채,basic,true,"2024, 2025",BS,유동부채,ifrs-full_CurrentLiabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),현금및현금성자산,additional,true,"2024, 2025",BS,현금및현금성자산,ifrs-full_CashAndCashEquivalents,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),재고자산,additional,true,"2024, 2025",BS,유동재고자산,ifrs-full_Inventories,found_in_account_id,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),매출채권,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),유형자산,additional,true,"2024, 2025",BS,유형자산,ifrs-full_PropertyPlantAndEquipment,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),영업활동현금흐름,additional,true,"2024, 2025",CF,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),단기차입금,additional,true,"2024, 2025",BS,단기차입금,-표준계정코드 미사용-,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),장기차입금,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),사채,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),이자비용,additional,true,"2024, 2025",CF,이자지급(영업),ifrs-full_InterestPaidClassifiedAsOperatingActivities,found_in_account_id,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00537221,216400,인바이츠바이오코아(주),금융비용,additional,true,"2024, 2025",CIS,금융원가,ifrs-full_FinanceCosts,found_in_account_id,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00976615,217880,(주)틸론,매출액,basic,true,2024,CIS,매출액,ifrs-full_Revenue,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00976615,217880,(주)틸론,영업이익,basic,true,2024,CIS,영업이익(손실),dart_OperatingIncomeLoss,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00976615,217880,(주)틸론,당기순이익,basic,true,2024,"CF, CIS, SCE",당기순이익(손실),ifrs-full_ProfitLoss,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00976615,217880,(주)틸론,자산총계,basic,true,2024,BS,자산총계,ifrs-full_Assets,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00976615,217880,(주)틸론,부채총계,basic,true,2024,BS,부채총계,ifrs-full_Liabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00976615,217880,(주)틸론,자본총계,basic,true,2024,"BS, SCE",자본총계,ifrs-full_Equity,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00976615,217880,(주)틸론,유동부채,basic,true,2024,BS,유동부채,ifrs-full_CurrentLiabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00976615,217880,(주)틸론,현금및현금성자산,additional,true,2024,BS,현금및현금성자산,ifrs-full_CashAndCashEquivalents,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00976615,217880,(주)틸론,재고자산,additional,true,2024,BS,재고자산,ifrs-full_Inventories,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00976615,217880,(주)틸론,매출채권,additional,true,2024,BS,매출채권,dart_ShortTermTradeReceivable,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00976615,217880,(주)틸론,유형자산,additional,true,2024,BS,유형자산,ifrs-full_PropertyPlantAndEquipment,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00976615,217880,(주)틸론,영업활동현금흐름,additional,true,2024,CF,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00976615,217880,(주)틸론,단기차입금,additional,true,2024,BS,단기차입금,ifrs-full_ShorttermBorrowings,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00976615,217880,(주)틸론,장기차입금,additional,true,2024,BS,장기차입금,dart_LongTermBorrowingsGross,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00976615,217880,(주)틸론,사채,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
+konex_001,00976615,217880,(주)틸론,이자비용,additional,true,2024,CF,이자지급(영업),ifrs-full_InterestPaidClassifiedAsOperatingActivities,found_in_account_id,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00976615,217880,(주)틸론,금융비용,additional,true,2024,CIS,금융원가,ifrs-full_FinanceCosts,found_in_account_id,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01066058,217950,(주)파마리서치바이오,매출액,basic,true,"2021, 2022, 2023, 2024, 2025",CIS,"매출액, 수익(매출액)",ifrs-full_Revenue,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01066058,217950,(주)파마리서치바이오,영업이익,basic,true,"2021, 2022, 2023, 2024, 2025",CIS,영업이익(손실),dart_OperatingIncomeLoss,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01066058,217950,(주)파마리서치바이오,당기순이익,basic,true,"2021, 2022, 2023, 2024, 2025","CF, CIS, SCE",당기순이익(손실),"dart_ProfitLossForStatementOfCashFlows, ifrs-full_ProfitLoss",found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01066058,217950,(주)파마리서치바이오,자산총계,basic,true,"2021, 2022, 2023, 2024, 2025",BS,자산총계,ifrs-full_Assets,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01066058,217950,(주)파마리서치바이오,부채총계,basic,true,"2021, 2022, 2023, 2024, 2025",BS,부채총계,ifrs-full_Liabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01066058,217950,(주)파마리서치바이오,자본총계,basic,true,"2021, 2022, 2023, 2024, 2025","BS, SCE","기말자본, 자본총계",ifrs-full_Equity,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01066058,217950,(주)파마리서치바이오,유동부채,basic,true,"2021, 2022, 2023, 2024, 2025",BS,유동부채,ifrs-full_CurrentLiabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01066058,217950,(주)파마리서치바이오,현금및현금성자산,additional,true,"2021, 2022, 2023, 2024, 2025",BS,현금및현금성자산,ifrs-full_CashAndCashEquivalents,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01066058,217950,(주)파마리서치바이오,재고자산,additional,true,"2021, 2022, 2023, 2024, 2025",BS,재고자산,ifrs-full_Inventories,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01066058,217950,(주)파마리서치바이오,매출채권,additional,true,"2021, 2022, 2023, 2024, 2025",BS,매출채권,dart_ShortTermTradeReceivable,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01066058,217950,(주)파마리서치바이오,유형자산,additional,true,"2021, 2022, 2023, 2024, 2025",BS,유형자산,ifrs-full_PropertyPlantAndEquipment,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01066058,217950,(주)파마리서치바이오,영업활동현금흐름,additional,true,"2021, 2022, 2023, 2024, 2025",CF,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01066058,217950,(주)파마리서치바이오,단기차입금,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
+konex_001,01066058,217950,(주)파마리서치바이오,장기차입금,additional,true,"2021, 2022",BS,장기차입금,dart_LongTermBorrowingsGross,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01066058,217950,(주)파마리서치바이오,사채,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
+konex_001,01066058,217950,(주)파마리서치바이오,이자비용,additional,true,"2021, 2022, 2023, 2024, 2025",CF,이자지급(영업),ifrs-full_InterestPaidClassifiedAsOperatingActivities,found_in_account_id,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01066058,217950,(주)파마리서치바이오,금융비용,additional,true,"2021, 2022, 2023, 2024, 2025",CIS,금융원가,ifrs-full_FinanceCosts,found_in_account_id,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01063556,233990,(주)질경이,매출액,basic,true,2021,CIS,매출액,ifrs-full_Revenue,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01063556,233990,(주)질경이,영업이익,basic,true,2021,CIS,영업이익(손실),dart_OperatingIncomeLoss,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01063556,233990,(주)질경이,당기순이익,basic,true,2021,"CIS, SCE",당기순이익(손실),ifrs-full_ProfitLoss,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01063556,233990,(주)질경이,자산총계,basic,true,2021,BS,자산총계,ifrs-full_Assets,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01063556,233990,(주)질경이,부채총계,basic,true,2021,BS,부채총계,ifrs-full_Liabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01063556,233990,(주)질경이,자본총계,basic,true,2021,"BS, SCE","기말자본, 자본총계",ifrs-full_Equity,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01063556,233990,(주)질경이,유동부채,basic,true,2021,BS,유동부채,ifrs-full_CurrentLiabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01063556,233990,(주)질경이,현금및현금성자산,additional,true,2021,BS,현금및현금성자산,ifrs-full_CashAndCashEquivalents,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01063556,233990,(주)질경이,재고자산,additional,true,2021,BS,재고자산,ifrs-full_Inventories,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
 konex_001,01063556,233990,(주)질경이,매출채권,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,01063556,233990,(주)질경이,유형자산,additional,true,"2019, 2020, 2021",BS,유형자산,ifrs-full_PropertyPlantAndEquipment,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01063556,233990,(주)질경이,영업활동현금흐름,additional,true,"2019, 2020, 2021",CF,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01063556,233990,(주)질경이,단기차입금,additional,true,"2019, 2020, 2021",BS,단기차입금,ifrs-full_ShorttermBorrowings,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01063556,233990,(주)질경이,장기차입금,additional,true,"2019, 2020, 2021",BS,장기차입금,dart_LongTermBorrowingsGross,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01063556,233990,(주)질경이,유형자산,additional,true,2021,BS,유형자산,ifrs-full_PropertyPlantAndEquipment,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01063556,233990,(주)질경이,영업활동현금흐름,additional,true,2021,CF,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01063556,233990,(주)질경이,단기차입금,additional,true,2021,BS,단기차입금,ifrs-full_ShorttermBorrowings,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01063556,233990,(주)질경이,장기차입금,additional,true,2021,BS,장기차입금,dart_LongTermBorrowingsGross,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
 konex_001,01063556,233990,(주)질경이,사채,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,01063556,233990,(주)질경이,이자비용,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,01063556,233990,(주)질경이,금융비용,additional,true,"2019, 2020, 2021",CIS,금융비용,ifrs-full_FinanceCosts,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,매출액,basic,true,2020,CIS,수익(매출액),ifrs-full_Revenue,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,영업이익,basic,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,당기순이익,basic,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,자산총계,basic,true,2020,BS,자산총계,ifrs-full_Assets,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,부채총계,basic,true,2020,BS,부채총계,ifrs-full_Liabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,자본총계,basic,true,2020,BS,자본총계,ifrs-full_Equity,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,유동부채,basic,true,2020,BS,유동부채,ifrs-full_CurrentLiabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,현금및현금성자산,additional,true,2020,BS,현금및현금성자산,ifrs-full_CashAndCashEquivalents,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,재고자산,additional,true,2020,BS,재고자산,ifrs-full_Inventories,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,매출채권,additional,true,2020,BS,매출채권,dart_ShortTermTradeReceivable,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,유형자산,additional,true,2020,BS,유형자산,ifrs-full_PropertyPlantAndEquipment,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,영업활동현금흐름,additional,true,2020,CF,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,단기차입금,additional,true,2020,BS,단기차입금,ifrs-full_ShorttermBorrowings,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,장기차입금,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,사채,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,이자비용,additional,true,2020,CF,이자비용,dart_AdjustmentsForInterestExpenses,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01023822,236340,(주)메디젠휴먼케어,금융비용,additional,true,2020,CIS,금융비용,ifrs-full_FinanceCosts,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01158632,250030,주식회사 진코스텍,매출액,basic,true,"2020, 2021, 2022",CIS,매출액,ifrs-full_Revenue,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01158632,250030,주식회사 진코스텍,영업이익,basic,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,01158632,250030,주식회사 진코스텍,당기순이익,basic,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,01158632,250030,주식회사 진코스텍,자산총계,basic,true,"2020, 2021, 2022",BS,자산총계,ifrs-full_Assets,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01158632,250030,주식회사 진코스텍,부채총계,basic,true,"2020, 2021, 2022",BS,부채총계,ifrs-full_Liabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01158632,250030,주식회사 진코스텍,자본총계,basic,true,"2020, 2021, 2022",BS,자본총계,ifrs-full_Equity,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01158632,250030,주식회사 진코스텍,유동부채,basic,true,"2020, 2021, 2022",BS,유동부채,ifrs-full_CurrentLiabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01158632,250030,주식회사 진코스텍,현금및현금성자산,additional,true,"2020, 2021, 2022",BS,현금및현금성자산,ifrs-full_CashAndCashEquivalents,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01158632,250030,주식회사 진코스텍,재고자산,additional,true,"2020, 2021, 2022",BS,재고자산,ifrs-full_Inventories,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01063556,233990,(주)질경이,이자비용,additional,true,2021,CF,이자지급,ifrs-full_InterestPaidClassifiedAsOperatingActivities,found_in_account_id,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01063556,233990,(주)질경이,금융비용,additional,true,2021,CIS,금융비용,ifrs-full_FinanceCosts,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01118643,238500,(주)솔루믹스,매출액,basic,true,"2022, 2023",CIS,매출액,ifrs-full_Revenue,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01118643,238500,(주)솔루믹스,영업이익,basic,true,"2022, 2023",CIS,영업이익(손실),dart_OperatingIncomeLoss,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01118643,238500,(주)솔루믹스,당기순이익,basic,true,"2022, 2023","CF, CIS, SCE",당기순이익(손실),"-표준계정코드 미사용-, dart_ProfitLossForStatementOfCashFlows, ifrs-full_ProfitLoss",found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01118643,238500,(주)솔루믹스,자산총계,basic,true,"2022, 2023",BS,자산총계,ifrs-full_Assets,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01118643,238500,(주)솔루믹스,부채총계,basic,true,"2022, 2023",BS,부채총계,ifrs-full_Liabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01118643,238500,(주)솔루믹스,자본총계,basic,true,"2022, 2023","BS, SCE","기말자본, 자본총계",ifrs-full_Equity,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01118643,238500,(주)솔루믹스,유동부채,basic,true,"2022, 2023",BS,유동부채,ifrs-full_CurrentLiabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01118643,238500,(주)솔루믹스,현금및현금성자산,additional,true,"2022, 2023",BS,현금및현금성자산,"ifrs-full_CashAndCashEquivalents, ifrs-full_CashEquivalents",found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01118643,238500,(주)솔루믹스,재고자산,additional,true,"2022, 2023",BS,"유동재고자산, 재고자산",ifrs-full_Inventories,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01118643,238500,(주)솔루믹스,매출채권,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
+konex_001,01118643,238500,(주)솔루믹스,유형자산,additional,true,"2022, 2023",BS,유형자산,ifrs-full_PropertyPlantAndEquipment,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01118643,238500,(주)솔루믹스,영업활동현금흐름,additional,true,"2022, 2023",CF,영업활동으로 인한 현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01118643,238500,(주)솔루믹스,단기차입금,additional,true,"2022, 2023",BS,"단기차입금, 유동 차입금",ifrs-full_ShorttermBorrowings,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01118643,238500,(주)솔루믹스,장기차입금,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
+konex_001,01118643,238500,(주)솔루믹스,사채,additional,true,"2022, 2023",BS,사채,dart_LongTermTradeAndOtherNonCurrentPayables,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01118643,238500,(주)솔루믹스,이자비용,additional,true,"2022, 2023",CF,"이자의 지급, 이자지급(영업)",ifrs-full_InterestPaidClassifiedAsOperatingActivities,found_in_account_id,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01118643,238500,(주)솔루믹스,금융비용,additional,true,"2022, 2023",CIS,금융원가,ifrs-full_FinanceCosts,found_in_account_id,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01158632,250030,주식회사 진코스텍,매출액,basic,true,"2021, 2022, 2023, 2024, 2025",CIS,매출액,ifrs-full_Revenue,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01158632,250030,주식회사 진코스텍,영업이익,basic,true,"2021, 2022, 2023, 2024, 2025",CIS,"영업이익, 영업이익(손실)",dart_OperatingIncomeLoss,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01158632,250030,주식회사 진코스텍,당기순이익,basic,true,"2021, 2022, 2023, 2024, 2025","CIS, SCE",당기순이익(손실),ifrs-full_ProfitLoss,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01158632,250030,주식회사 진코스텍,자산총계,basic,true,"2021, 2022, 2023, 2024, 2025",BS,자산총계,ifrs-full_Assets,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01158632,250030,주식회사 진코스텍,부채총계,basic,true,"2021, 2022, 2023, 2024, 2025",BS,부채총계,ifrs-full_Liabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01158632,250030,주식회사 진코스텍,자본총계,basic,true,"2021, 2022, 2023, 2024, 2025","BS, SCE","기말자본, 자본총계",ifrs-full_Equity,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01158632,250030,주식회사 진코스텍,유동부채,basic,true,"2021, 2022, 2023, 2024, 2025",BS,유동부채,ifrs-full_CurrentLiabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01158632,250030,주식회사 진코스텍,현금및현금성자산,additional,true,"2021, 2022, 2023, 2024, 2025",BS,현금및현금성자산,ifrs-full_CashAndCashEquivalents,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01158632,250030,주식회사 진코스텍,재고자산,additional,true,"2021, 2022, 2023, 2024, 2025",BS,재고자산,ifrs-full_Inventories,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
 konex_001,01158632,250030,주식회사 진코스텍,매출채권,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,01158632,250030,주식회사 진코스텍,유형자산,additional,true,"2020, 2021, 2022",BS,유형자산,ifrs-full_PropertyPlantAndEquipment,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01158632,250030,주식회사 진코스텍,영업활동현금흐름,additional,true,"2020, 2021, 2022",CF,영업활동으로 인한 현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01158632,250030,주식회사 진코스텍,단기차입금,additional,true,"2020, 2021, 2022",BS,단기차입금,ifrs-full_ShorttermBorrowings,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01158632,250030,주식회사 진코스텍,장기차입금,additional,true,"2020, 2021, 2022",BS,장기차입금,dart_LongTermBorrowingsGross,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01158632,250030,주식회사 진코스텍,유형자산,additional,true,"2021, 2022, 2023, 2024, 2025",BS,유형자산,ifrs-full_PropertyPlantAndEquipment,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01158632,250030,주식회사 진코스텍,영업활동현금흐름,additional,true,"2021, 2022, 2023, 2024, 2025",CF,영업활동으로 인한 현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01158632,250030,주식회사 진코스텍,단기차입금,additional,true,"2021, 2022, 2023, 2024, 2025",BS,단기차입금,ifrs-full_ShorttermBorrowings,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01158632,250030,주식회사 진코스텍,장기차입금,additional,true,"2021, 2022, 2023, 2025",BS,장기차입금,dart_LongTermBorrowingsGross,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
 konex_001,01158632,250030,주식회사 진코스텍,사채,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,01158632,250030,주식회사 진코스텍,이자비용,additional,true,"2020, 2021",CF,이자비용,dart_AdjustmentsForInterestExpenses,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01158632,250030,주식회사 진코스텍,금융비용,additional,true,"2020, 2021, 2022",CIS,금융비용,ifrs-full_FinanceCosts,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,00425254,257990,(주)나우코스,매출액,basic,true,"2020, 2021, 2022, 2023",CIS,"매출액, 수익(매출액)",ifrs-full_Revenue,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,00425254,257990,(주)나우코스,영업이익,basic,true,2021,CIS,영업이익,dart_OperatingIncomeLoss,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,00425254,257990,(주)나우코스,당기순이익,basic,true,2021,"CIS, SCE",당기순이익,ifrs-full_ProfitLoss,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,00425254,257990,(주)나우코스,자산총계,basic,true,"2020, 2021, 2022, 2023",BS,자산총계,ifrs-full_Assets,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,00425254,257990,(주)나우코스,부채총계,basic,true,"2020, 2021, 2022, 2023",BS,부채총계,ifrs-full_Liabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,00425254,257990,(주)나우코스,자본총계,basic,true,"2020, 2021, 2022, 2023","BS, SCE",자본총계,ifrs-full_Equity,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,00425254,257990,(주)나우코스,유동부채,basic,true,"2020, 2021, 2022, 2023",BS,유동부채,ifrs-full_CurrentLiabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,00425254,257990,(주)나우코스,현금및현금성자산,additional,true,"2020, 2021, 2022, 2023",BS,현금및현금성자산,ifrs-full_CashAndCashEquivalents,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,00425254,257990,(주)나우코스,재고자산,additional,true,"2020, 2021, 2022, 2023",BS,재고자산,ifrs-full_Inventories,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01158632,250030,주식회사 진코스텍,이자비용,additional,true,"2021, 2023, 2024, 2025",CF,"이자비용, 이자지급, 이자지급(영업)","dart_AdjustmentsForInterestExpenses, ifrs-full_InterestPaidClassifiedAsOperatingActivities",found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01158632,250030,주식회사 진코스텍,금융비용,additional,true,"2021, 2022, 2023, 2024, 2025",CIS,금융비용,ifrs-full_FinanceCosts,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00425254,257990,(주)나우코스,매출액,basic,true,"2021, 2022, 2023, 2024, 2025",CIS,"매출액, 수익(매출액)",ifrs-full_Revenue,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00425254,257990,(주)나우코스,영업이익,basic,true,"2021, 2022, 2023, 2024, 2025",CIS,"영업이익, 영업이익(손실)",dart_OperatingIncomeLoss,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00425254,257990,(주)나우코스,당기순이익,basic,true,"2021, 2022, 2023, 2024, 2025","CIS, SCE","당기순이익, 당기순이익(손실)",ifrs-full_ProfitLoss,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00425254,257990,(주)나우코스,자산총계,basic,true,"2021, 2022, 2023, 2024, 2025",BS,자산총계,ifrs-full_Assets,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00425254,257990,(주)나우코스,부채총계,basic,true,"2021, 2022, 2023, 2024, 2025",BS,부채총계,ifrs-full_Liabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00425254,257990,(주)나우코스,자본총계,basic,true,"2021, 2022, 2023, 2024, 2025","BS, SCE","기말자본, 자본총계",ifrs-full_Equity,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00425254,257990,(주)나우코스,유동부채,basic,true,"2021, 2022, 2023, 2024, 2025",BS,유동부채,ifrs-full_CurrentLiabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00425254,257990,(주)나우코스,현금및현금성자산,additional,true,"2021, 2022, 2023, 2024, 2025",BS,현금및현금성자산,ifrs-full_CashAndCashEquivalents,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00425254,257990,(주)나우코스,재고자산,additional,true,"2021, 2022, 2023, 2024, 2025",BS,"유동재고자산, 재고자산",ifrs-full_Inventories,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
 konex_001,00425254,257990,(주)나우코스,매출채권,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,00425254,257990,(주)나우코스,유형자산,additional,true,"2020, 2021, 2022, 2023",BS,유형자산,ifrs-full_PropertyPlantAndEquipment,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,00425254,257990,(주)나우코스,영업활동현금흐름,additional,true,"2020, 2021, 2022, 2023",CF,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,00425254,257990,(주)나우코스,단기차입금,additional,true,"2020, 2021, 2022, 2023",BS,"단기차입금, 유동성장기차입금","ifrs-full_Borrowings, ifrs-full_ShorttermBorrowings",found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,00425254,257990,(주)나우코스,장기차입금,additional,true,"2020, 2021, 2022, 2023",BS,장기차입금,dart_LongTermBorrowingsGross,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00425254,257990,(주)나우코스,유형자산,additional,true,"2021, 2022, 2023, 2024, 2025",BS,유형자산,ifrs-full_PropertyPlantAndEquipment,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00425254,257990,(주)나우코스,영업활동현금흐름,additional,true,"2021, 2022, 2023, 2024, 2025",CF,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00425254,257990,(주)나우코스,단기차입금,additional,true,"2021, 2022, 2023, 2024, 2025",BS,"단기차입금, 유동성장기차입금","-표준계정코드 미사용-, ifrs-full_Borrowings, ifrs-full_ShorttermBorrowings",found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00425254,257990,(주)나우코스,장기차입금,additional,true,"2021, 2022, 2023, 2024, 2025",BS,장기차입금,"-표준계정코드 미사용-, dart_LongTermBorrowingsGross",found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
 konex_001,00425254,257990,(주)나우코스,사채,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,00425254,257990,(주)나우코스,이자비용,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,00425254,257990,(주)나우코스,금융비용,additional,true,"2020, 2021, 2022, 2023",CIS,"금융비용, 금융원가",ifrs-full_FinanceCosts,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,00990396,266170,(주)레드우즈,매출액,basic,true,2023,CIS,매출액,ifrs-full_Revenue,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,00990396,266170,(주)레드우즈,영업이익,basic,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,00990396,266170,(주)레드우즈,당기순이익,basic,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,00990396,266170,(주)레드우즈,자산총계,basic,true,2023,BS,자산총계,ifrs-full_Assets,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,00990396,266170,(주)레드우즈,부채총계,basic,true,2023,BS,부채총계,ifrs-full_Liabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,00990396,266170,(주)레드우즈,자본총계,basic,true,2023,"BS, SCE",자본총계,ifrs-full_Equity,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,00990396,266170,(주)레드우즈,유동부채,basic,true,2023,BS,유동부채,ifrs-full_CurrentLiabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,00990396,266170,(주)레드우즈,현금및현금성자산,additional,true,2023,BS,현금및현금성자산,ifrs-full_CashAndCashEquivalents,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,00990396,266170,(주)레드우즈,재고자산,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
+konex_001,00425254,257990,(주)나우코스,이자비용,additional,true,"2021, 2022, 2023",CF,이자지급(영업),ifrs-full_InterestPaidClassifiedAsOperatingActivities,found_in_account_id,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00425254,257990,(주)나우코스,금융비용,additional,true,"2021, 2022, 2023, 2024, 2025",CIS,"금융비용, 금융원가",ifrs-full_FinanceCosts,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00990396,266170,(주)레드우즈,매출액,basic,true,"2023, 2025",CIS,매출액,ifrs-full_Revenue,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00990396,266170,(주)레드우즈,영업이익,basic,true,"2023, 2025",CIS,영업이익(손실),dart_OperatingIncomeLoss,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00990396,266170,(주)레드우즈,당기순이익,basic,true,"2023, 2025","CF, CIS, SCE","당기순이익, 당기순이익(손실)","-표준계정코드 미사용-, ifrs-full_ProfitLoss",found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00990396,266170,(주)레드우즈,자산총계,basic,true,"2023, 2025",BS,자산총계,ifrs-full_Assets,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00990396,266170,(주)레드우즈,부채총계,basic,true,"2023, 2025",BS,부채총계,ifrs-full_Liabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00990396,266170,(주)레드우즈,자본총계,basic,true,"2023, 2025","BS, SCE",자본총계,ifrs-full_Equity,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00990396,266170,(주)레드우즈,유동부채,basic,true,"2023, 2025",BS,유동부채,ifrs-full_CurrentLiabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00990396,266170,(주)레드우즈,현금및현금성자산,additional,true,"2023, 2025",BS,현금및현금성자산,ifrs-full_CashAndCashEquivalents,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00990396,266170,(주)레드우즈,재고자산,additional,true,2025,BS,유동재고자산,ifrs-full_Inventories,found_in_account_id,기존 standard_account 매핑 후보로 사용할 수 있습니다.
 konex_001,00990396,266170,(주)레드우즈,매출채권,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,00990396,266170,(주)레드우즈,유형자산,additional,true,2023,BS,유형자산,ifrs-full_PropertyPlantAndEquipment,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,00990396,266170,(주)레드우즈,영업활동현금흐름,additional,true,2023,CF,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,00990396,266170,(주)레드우즈,단기차입금,additional,true,2023,BS,단기차입금,ifrs-full_ShorttermBorrowings,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,00990396,266170,(주)레드우즈,장기차입금,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
+konex_001,00990396,266170,(주)레드우즈,유형자산,additional,true,"2023, 2025",BS,유형자산,ifrs-full_PropertyPlantAndEquipment,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00990396,266170,(주)레드우즈,영업활동현금흐름,additional,true,"2023, 2025",CF,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00990396,266170,(주)레드우즈,단기차입금,additional,true,"2023, 2025",BS,단기차입금,ifrs-full_ShorttermBorrowings,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00990396,266170,(주)레드우즈,장기차입금,additional,true,2025,BS,장기차입금,-표준계정코드 미사용-,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
 konex_001,00990396,266170,(주)레드우즈,사채,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
 konex_001,00990396,266170,(주)레드우즈,이자비용,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,00990396,266170,(주)레드우즈,금융비용,additional,true,2023,CIS,금융비용,ifrs-full_FinanceCosts,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01208821,266350,(주)팡스카이,매출액,basic,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,01208821,266350,(주)팡스카이,영업이익,basic,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,01208821,266350,(주)팡스카이,당기순이익,basic,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,01208821,266350,(주)팡스카이,자산총계,basic,true,2023,BS,자산총계,ifrs-full_Assets,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01208821,266350,(주)팡스카이,부채총계,basic,true,2023,BS,부채총계,ifrs-full_Liabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01208821,266350,(주)팡스카이,자본총계,basic,true,2023,"BS, SCE",자본총계,ifrs-full_Equity,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01208821,266350,(주)팡스카이,유동부채,basic,true,2023,BS,유동부채,ifrs-full_CurrentLiabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01208821,266350,(주)팡스카이,현금및현금성자산,additional,true,2023,BS,현금및현금성자산,ifrs-full_CashAndCashEquivalents,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,00990396,266170,(주)레드우즈,금융비용,additional,true,"2023, 2025",CIS,금융비용,ifrs-full_FinanceCosts,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01208821,266350,(주)팡스카이,매출액,basic,true,"2023, 2024, 2025",CIS,"수익(매출액), 영업수익",ifrs-full_Revenue,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01208821,266350,(주)팡스카이,영업이익,basic,true,"2023, 2024, 2025",CIS,영업이익(손실),dart_OperatingIncomeLoss,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01208821,266350,(주)팡스카이,당기순이익,basic,true,"2023, 2024, 2025","CF, CIS, SCE",당기순이익(손실),ifrs-full_ProfitLoss,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01208821,266350,(주)팡스카이,자산총계,basic,true,"2023, 2024, 2025",BS,자산총계,ifrs-full_Assets,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01208821,266350,(주)팡스카이,부채총계,basic,true,"2023, 2024, 2025",BS,부채총계,ifrs-full_Liabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01208821,266350,(주)팡스카이,자본총계,basic,true,"2023, 2024, 2025","BS, SCE",자본총계,ifrs-full_Equity,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01208821,266350,(주)팡스카이,유동부채,basic,true,"2023, 2024, 2025",BS,유동부채,ifrs-full_CurrentLiabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01208821,266350,(주)팡스카이,현금및현금성자산,additional,true,"2023, 2024, 2025",BS,현금및현금성자산,ifrs-full_CashAndCashEquivalents,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
 konex_001,01208821,266350,(주)팡스카이,재고자산,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
 konex_001,01208821,266350,(주)팡스카이,매출채권,additional,true,2023,BS,매출채권,ifrs-full_TradeAndOtherCurrentReceivables,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01208821,266350,(주)팡스카이,유형자산,additional,true,2023,BS,유형자산,ifrs-full_PropertyPlantAndEquipment,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01208821,266350,(주)팡스카이,영업활동현금흐름,additional,true,2023,CF,영업활동으로 인한 현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01208821,266350,(주)팡스카이,단기차입금,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,01208821,266350,(주)팡스카이,장기차입금,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
+konex_001,01208821,266350,(주)팡스카이,유형자산,additional,true,"2023, 2024, 2025",BS,유형자산,ifrs-full_PropertyPlantAndEquipment,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01208821,266350,(주)팡스카이,영업활동현금흐름,additional,true,"2023, 2024, 2025",CF,"영업활동으로 인한 현금흐름, 영업활동현금흐름",ifrs-full_CashFlowsFromUsedInOperatingActivities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01208821,266350,(주)팡스카이,단기차입금,additional,true,2024,BS,유동 차입금(사채 포함),ifrs-full_ShorttermBorrowings,found_in_account_id,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01208821,266350,(주)팡스카이,장기차입금,additional,true,2024,BS,비유동성 금융기관 차입금(사채 제외),ifrs-full_NoncurrentPortionOfNoncurrentLoansReceived,found_in_account_id,기존 standard_account 매핑 후보로 사용할 수 있습니다.
 konex_001,01208821,266350,(주)팡스카이,사채,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,01208821,266350,(주)팡스카이,이자비용,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,01208821,266350,(주)팡스카이,금융비용,additional,true,2023,CIS,금융비용,ifrs-full_FinanceCosts,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01575361,267080,세븐브로이맥주 주식회사,매출액,basic,true,2023,CIS,수익(매출액),ifrs-full_Revenue,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01575361,267080,세븐브로이맥주 주식회사,영업이익,basic,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,01575361,267080,세븐브로이맥주 주식회사,당기순이익,basic,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,01575361,267080,세븐브로이맥주 주식회사,자산총계,basic,true,2023,BS,자산총계,ifrs-full_Assets,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01575361,267080,세븐브로이맥주 주식회사,부채총계,basic,true,2023,BS,부채총계,ifrs-full_Liabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01575361,267080,세븐브로이맥주 주식회사,자본총계,basic,true,2023,"BS, SCE",자본총계,ifrs-full_Equity,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01575361,267080,세븐브로이맥주 주식회사,유동부채,basic,true,2023,BS,유동부채,ifrs-full_CurrentLiabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01575361,267080,세븐브로이맥주 주식회사,현금및현금성자산,additional,true,2023,BS,현금및현금성자산,ifrs-full_CashAndCashEquivalents,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01575361,267080,세븐브로이맥주 주식회사,재고자산,additional,true,2023,BS,유동재고자산,ifrs-full_Inventories,found_in_account_id,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01208821,266350,(주)팡스카이,이자비용,additional,true,"2023, 2024, 2025",CF,"이자지급, 이자지급(영업)",ifrs-full_InterestPaidClassifiedAsOperatingActivities,found_in_account_id,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01208821,266350,(주)팡스카이,금융비용,additional,true,"2023, 2024, 2025",CIS,"금융비용, 금융원가",ifrs-full_FinanceCosts,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,매출액,basic,true,"2023, 2024, 2025",CIS,수익(매출액),ifrs-full_Revenue,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,영업이익,basic,true,"2023, 2024, 2025",CIS,영업이익(손실),dart_OperatingIncomeLoss,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,당기순이익,basic,true,"2023, 2024, 2025","CF, CIS, SCE",당기순이익(손실),ifrs-full_ProfitLoss,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,자산총계,basic,true,"2023, 2024, 2025",BS,자산총계,ifrs-full_Assets,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,부채총계,basic,true,"2023, 2024, 2025",BS,부채총계,ifrs-full_Liabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,자본총계,basic,true,"2023, 2024, 2025","BS, SCE",자본총계,ifrs-full_Equity,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,유동부채,basic,true,"2023, 2024, 2025",BS,유동부채,ifrs-full_CurrentLiabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,현금및현금성자산,additional,true,"2023, 2024, 2025",BS,현금및현금성자산,ifrs-full_CashAndCashEquivalents,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,재고자산,additional,true,"2023, 2024, 2025",BS,유동재고자산,ifrs-full_Inventories,found_in_account_id,기존 standard_account 매핑 후보로 사용할 수 있습니다.
 konex_001,01575361,267080,세븐브로이맥주 주식회사,매출채권,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,01575361,267080,세븐브로이맥주 주식회사,유형자산,additional,true,2023,BS,유형자산,ifrs-full_PropertyPlantAndEquipment,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01575361,267080,세븐브로이맥주 주식회사,영업활동현금흐름,additional,true,2023,CF,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01575361,267080,세븐브로이맥주 주식회사,단기차입금,additional,true,2023,BS,유동 차입금,ifrs-full_ShorttermBorrowings,found_in_account_id,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,유형자산,additional,true,"2023, 2024, 2025",BS,유형자산,ifrs-full_PropertyPlantAndEquipment,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,영업활동현금흐름,additional,true,"2023, 2024, 2025",CF,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,단기차입금,additional,true,"2023, 2024, 2025",BS,"유동 차입금, 유동 차입금(사채 포함)",ifrs-full_ShorttermBorrowings,found_in_account_id,기존 standard_account 매핑 후보로 사용할 수 있습니다.
 konex_001,01575361,267080,세븐브로이맥주 주식회사,장기차입금,additional,true,2023,BS,장기차입금,dart_LongTermBorrowingsGross,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
 konex_001,01575361,267080,세븐브로이맥주 주식회사,사채,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,01575361,267080,세븐브로이맥주 주식회사,이자비용,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,01575361,267080,세븐브로이맥주 주식회사,금융비용,additional,true,2023,CIS,금융원가,ifrs-full_FinanceCosts,found_in_account_id,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01117246,278990,(주)이엠비,매출액,basic,true,"2020, 2021, 2022, 2023",CIS,매출,ifrs-full_Revenue,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01117246,278990,(주)이엠비,영업이익,basic,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,01117246,278990,(주)이엠비,당기순이익,basic,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,01117246,278990,(주)이엠비,자산총계,basic,true,"2020, 2021, 2022, 2023",BS,자산총계,ifrs-full_Assets,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01117246,278990,(주)이엠비,부채총계,basic,true,"2020, 2021, 2022, 2023",BS,부채총계,ifrs-full_Liabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01117246,278990,(주)이엠비,자본총계,basic,true,"2020, 2021, 2022, 2023","BS, SCE",자본총계,ifrs-full_Equity,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01117246,278990,(주)이엠비,유동부채,basic,true,"2020, 2021, 2022, 2023",BS,유동부채,ifrs-full_CurrentLiabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01117246,278990,(주)이엠비,현금및현금성자산,additional,true,"2020, 2021, 2022, 2023",BS,현금및현금성자산,ifrs-full_CashAndCashEquivalents,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01117246,278990,(주)이엠비,재고자산,additional,true,"2020, 2021, 2022, 2023",BS,"유동재고자산, 재고자산",ifrs-full_Inventories,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,이자비용,additional,true,"2023, 2024, 2025",CF,이자지급(영업),ifrs-full_InterestPaidClassifiedAsOperatingActivities,found_in_account_id,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01575361,267080,세븐브로이맥주 주식회사,금융비용,additional,true,"2023, 2024, 2025",CIS,금융원가,ifrs-full_FinanceCosts,found_in_account_id,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01117246,278990,(주)이엠비,매출액,basic,true,"2021, 2022, 2023, 2024, 2025",CIS,매출,ifrs-full_Revenue,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01117246,278990,(주)이엠비,영업이익,basic,true,"2021, 2022, 2023, 2024, 2025",CIS,영업이익(손실),dart_OperatingIncomeLoss,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01117246,278990,(주)이엠비,당기순이익,basic,true,"2021, 2022, 2023, 2024, 2025","CF, CIS, SCE",당기순이익(손실),"dart_ProfitLossForStatementOfCashFlows, ifrs-full_ProfitLoss",found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01117246,278990,(주)이엠비,자산총계,basic,true,"2021, 2022, 2023, 2024, 2025",BS,자산총계,ifrs-full_Assets,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01117246,278990,(주)이엠비,부채총계,basic,true,"2021, 2022, 2023, 2024, 2025",BS,부채총계,ifrs-full_Liabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01117246,278990,(주)이엠비,자본총계,basic,true,"2021, 2022, 2023, 2024, 2025","BS, SCE","기말자본, 자본총계",ifrs-full_Equity,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01117246,278990,(주)이엠비,유동부채,basic,true,"2021, 2022, 2023, 2024, 2025",BS,유동부채,ifrs-full_CurrentLiabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01117246,278990,(주)이엠비,현금및현금성자산,additional,true,"2021, 2022, 2023, 2024, 2025",BS,현금및현금성자산,ifrs-full_CashAndCashEquivalents,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01117246,278990,(주)이엠비,재고자산,additional,true,"2021, 2022, 2023, 2024, 2025",BS,"유동재고자산, 재고자산",ifrs-full_Inventories,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
 konex_001,01117246,278990,(주)이엠비,매출채권,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,01117246,278990,(주)이엠비,유형자산,additional,true,"2020, 2021, 2022, 2023",BS,유형자산,ifrs-full_PropertyPlantAndEquipment,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01117246,278990,(주)이엠비,영업활동현금흐름,additional,true,"2020, 2021, 2022, 2023",CF,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01117246,278990,(주)이엠비,단기차입금,additional,true,"2020, 2021, 2022, 2023",BS,"단기차입금, 유동 차입금",ifrs-full_ShorttermBorrowings,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01117246,278990,(주)이엠비,장기차입금,additional,true,"2020, 2021, 2022, 2023",BS,장기차입금,dart_LongTermBorrowingsGross,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01117246,278990,(주)이엠비,유형자산,additional,true,"2021, 2022, 2023, 2024, 2025",BS,유형자산,ifrs-full_PropertyPlantAndEquipment,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01117246,278990,(주)이엠비,영업활동현금흐름,additional,true,"2021, 2022, 2023, 2024, 2025",CF,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01117246,278990,(주)이엠비,단기차입금,additional,true,"2021, 2022, 2023, 2024, 2025",BS,"단기차입금, 유동 차입금, 유동 차입금(사채 포함)",ifrs-full_ShorttermBorrowings,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01117246,278990,(주)이엠비,장기차입금,additional,true,"2021, 2022, 2023",BS,장기차입금,dart_LongTermBorrowingsGross,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
 konex_001,01117246,278990,(주)이엠비,사채,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,01117246,278990,(주)이엠비,이자비용,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,01117246,278990,(주)이엠비,금융비용,additional,true,"2020, 2021, 2022, 2023",CIS,금융원가,ifrs-full_FinanceCosts,found_in_account_id,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01117246,278990,(주)이엠비,이자비용,additional,true,"2021, 2022, 2023, 2024, 2025",CF,이자지급(영업),ifrs-full_InterestPaidClassifiedAsOperatingActivities,found_in_account_id,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01117246,278990,(주)이엠비,금융비용,additional,true,"2021, 2022, 2023, 2024, 2025",CIS,금융원가,ifrs-full_FinanceCosts,found_in_account_id,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01264234,311060,(주)엘에이티,매출액,basic,true,"2021, 2022, 2023, 2024, 2025","CIS, IS","Ⅰ.매출액, 매출액",ifrs-full_Revenue,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01264234,311060,(주)엘에이티,영업이익,basic,true,"2021, 2022, 2023, 2024, 2025","CIS, IS","Ⅴ.영업이익(손실), 영업이익(손실)",dart_OperatingIncomeLoss,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01264234,311060,(주)엘에이티,당기순이익,basic,true,"2021, 2022, 2023, 2024, 2025","CIS, IS, SCE",당기순이익(손실),ifrs-full_ProfitLoss,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01264234,311060,(주)엘에이티,자산총계,basic,true,"2021, 2022, 2023, 2024, 2025",BS,자산총계,ifrs-full_Assets,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01264234,311060,(주)엘에이티,부채총계,basic,true,"2021, 2022, 2023, 2024, 2025",BS,부채총계,ifrs-full_Liabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01264234,311060,(주)엘에이티,자본총계,basic,true,"2021, 2022, 2023, 2024, 2025","BS, SCE","기말자본, 자본총계",ifrs-full_Equity,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01264234,311060,(주)엘에이티,유동부채,basic,true,"2021, 2022, 2023, 2024, 2025",BS,"Ⅰ.유동부채, 유동부채",ifrs-full_CurrentLiabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01264234,311060,(주)엘에이티,현금및현금성자산,additional,true,"2021, 2022, 2023, 2024, 2025",BS,현금및현금성자산,"-표준계정코드 미사용-, ifrs-full_CashAndCashEquivalents",found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01264234,311060,(주)엘에이티,재고자산,additional,true,"2021, 2022, 2023, 2024, 2025",BS,"2.재고자산, 재고자산",ifrs-full_Inventories,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01264234,311060,(주)엘에이티,매출채권,additional,true,"2021, 2022, 2023, 2024, 2025",BS,매출채권,"-표준계정코드 미사용-, dart_ShortTermTradeReceivable",found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01264234,311060,(주)엘에이티,유형자산,additional,true,"2021, 2022, 2023, 2024, 2025",BS,"2.유형자산, 유형자산",ifrs-full_PropertyPlantAndEquipment,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01264234,311060,(주)엘에이티,영업활동현금흐름,additional,true,"2021, 2022, 2023, 2024, 2025",CF,"Ⅰ.영업활동으로 인한 현금흐름, 영업활동으로 인한 현금흐름",ifrs-full_CashFlowsFromUsedInOperatingActivities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01264234,311060,(주)엘에이티,단기차입금,additional,true,"2021, 2022, 2023, 2024, 2025",BS,단기차입금,ifrs-full_ShorttermBorrowings,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01264234,311060,(주)엘에이티,장기차입금,additional,true,"2021, 2022, 2023, 2024, 2025",BS,장기차입금,dart_LongTermBorrowingsGross,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01264234,311060,(주)엘에이티,사채,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
+konex_001,01264234,311060,(주)엘에이티,이자비용,additional,true,"2021, 2022, 2023, 2024, 2025","CF, IS","이자비용, 이자의 지급","dart_LossesOnValuationOfLongTermFinancialInstruments, ifrs-full_InterestPaidClassifiedAsOperatingActivities",found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01264234,311060,(주)엘에이티,금융비용,additional,true,"2022, 2023, 2024, 2025",CIS,금융비용,ifrs-full_FinanceCosts,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
 konex_001,01290132,311960,주식회사 인터로이드,매출액,basic,true,"2021, 2022",CIS,수익(매출액),ifrs-full_Revenue,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01290132,311960,주식회사 인터로이드,영업이익,basic,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,01290132,311960,주식회사 인터로이드,당기순이익,basic,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
+konex_001,01290132,311960,주식회사 인터로이드,영업이익,basic,true,"2021, 2022",CIS,영업이익(손실),dart_OperatingIncomeLoss,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01290132,311960,주식회사 인터로이드,당기순이익,basic,true,"2021, 2022","CF, CIS, SCE",당기순이익(손실),"dart_ProfitLossForStatementOfCashFlows, ifrs-full_ProfitLoss",found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
 konex_001,01290132,311960,주식회사 인터로이드,자산총계,basic,true,"2021, 2022",BS,자산총계,ifrs-full_Assets,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
 konex_001,01290132,311960,주식회사 인터로이드,부채총계,basic,true,"2021, 2022",BS,부채총계,ifrs-full_Liabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01290132,311960,주식회사 인터로이드,자본총계,basic,true,"2021, 2022",BS,자본총계,ifrs-full_Equity,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01290132,311960,주식회사 인터로이드,자본총계,basic,true,"2021, 2022","BS, SCE","기말자본, 자본총계",ifrs-full_Equity,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
 konex_001,01290132,311960,주식회사 인터로이드,유동부채,basic,true,"2021, 2022",BS,유동부채,ifrs-full_CurrentLiabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
 konex_001,01290132,311960,주식회사 인터로이드,현금및현금성자산,additional,true,"2021, 2022",BS,현금및현금성자산,ifrs-full_CashAndCashEquivalents,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
 konex_001,01290132,311960,주식회사 인터로이드,재고자산,additional,true,"2021, 2022",BS,재고자산,ifrs-full_Inventories,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
@@ -150,39 +252,56 @@ konex_001,01290132,311960,주식회사 인터로이드,영업활동현금흐름,
 konex_001,01290132,311960,주식회사 인터로이드,단기차입금,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
 konex_001,01290132,311960,주식회사 인터로이드,장기차입금,additional,true,"2021, 2022",BS,장기차입금,dart_LongTermBorrowingsGross,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
 konex_001,01290132,311960,주식회사 인터로이드,사채,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,01290132,311960,주식회사 인터로이드,이자비용,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
+konex_001,01290132,311960,주식회사 인터로이드,이자비용,additional,true,"2021, 2022",CF,이자지급(영업),ifrs-full_InterestPaidClassifiedAsOperatingActivities,found_in_account_id,기존 standard_account 매핑 후보로 사용할 수 있습니다.
 konex_001,01290132,311960,주식회사 인터로이드,금융비용,additional,true,"2021, 2022",CIS,금융원가,ifrs-full_FinanceCosts,found_in_account_id,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01328170,317860,주식회사 노드메이슨,매출액,basic,true,"2022, 2023",CIS,매출액,ifrs-full_Revenue,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01328170,317860,주식회사 노드메이슨,영업이익,basic,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,01328170,317860,주식회사 노드메이슨,당기순이익,basic,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,01328170,317860,주식회사 노드메이슨,자산총계,basic,true,"2022, 2023",BS,자산총계,ifrs-full_Assets,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01328170,317860,주식회사 노드메이슨,부채총계,basic,true,"2022, 2023",BS,부채총계,ifrs-full_Liabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01328170,317860,주식회사 노드메이슨,자본총계,basic,true,"2022, 2023","BS, SCE",자본총계,ifrs-full_Equity,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01328170,317860,주식회사 노드메이슨,유동부채,basic,true,"2022, 2023",BS,유동부채,ifrs-full_CurrentLiabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01328170,317860,주식회사 노드메이슨,현금및현금성자산,additional,true,"2022, 2023",BS,현금및현금성자산,ifrs-full_CashAndCashEquivalents,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01328170,317860,주식회사 노드메이슨,재고자산,additional,true,"2022, 2023",BS,재고자산,ifrs-full_Inventories,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01328170,317860,주식회사 노드메이슨,매출채권,additional,true,"2022, 2023",BS,매출채권,dart_ShortTermTradeReceivable,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01328170,317860,주식회사 노드메이슨,유형자산,additional,true,"2022, 2023",BS,유형자산,ifrs-full_PropertyPlantAndEquipment,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01328170,317860,주식회사 노드메이슨,영업활동현금흐름,additional,true,"2022, 2023",CF,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01328170,317860,주식회사 노드메이슨,단기차입금,additional,true,"2022, 2023",BS,단기차입금,"ifrs-full_Borrowings, ifrs-full_ShorttermBorrowings",found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01328170,317860,주식회사 노드메이슨,장기차입금,additional,true,"2022, 2023",BS,장기차입금,dart_LongTermBorrowingsGross,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01328170,317860,주식회사 노드메이슨,매출액,basic,true,"2021, 2022, 2023, 2024, 2025",CIS,매출액,ifrs-full_Revenue,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01328170,317860,주식회사 노드메이슨,영업이익,basic,true,"2021, 2022, 2023, 2024, 2025",CIS,영업이익(손실),dart_OperatingIncomeLoss,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01328170,317860,주식회사 노드메이슨,당기순이익,basic,true,"2021, 2022, 2023, 2024, 2025","CF, CIS, SCE",당기순이익(손실),ifrs-full_ProfitLoss,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01328170,317860,주식회사 노드메이슨,자산총계,basic,true,"2021, 2022, 2023, 2024, 2025",BS,자산총계,ifrs-full_Assets,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01328170,317860,주식회사 노드메이슨,부채총계,basic,true,"2021, 2022, 2023, 2024, 2025",BS,부채총계,ifrs-full_Liabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01328170,317860,주식회사 노드메이슨,자본총계,basic,true,"2021, 2022, 2023, 2024, 2025","BS, SCE","기말자본, 자본총계",ifrs-full_Equity,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01328170,317860,주식회사 노드메이슨,유동부채,basic,true,"2021, 2022, 2023, 2024, 2025",BS,유동부채,ifrs-full_CurrentLiabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01328170,317860,주식회사 노드메이슨,현금및현금성자산,additional,true,"2021, 2022, 2023, 2024, 2025",BS,현금및현금성자산,ifrs-full_CashAndCashEquivalents,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01328170,317860,주식회사 노드메이슨,재고자산,additional,true,"2021, 2022, 2023, 2024, 2025",BS,재고자산,ifrs-full_Inventories,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01328170,317860,주식회사 노드메이슨,매출채권,additional,true,"2021, 2022, 2023, 2024, 2025",BS,매출채권,dart_ShortTermTradeReceivable,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01328170,317860,주식회사 노드메이슨,유형자산,additional,true,"2021, 2022, 2023, 2024, 2025",BS,유형자산,ifrs-full_PropertyPlantAndEquipment,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01328170,317860,주식회사 노드메이슨,영업활동현금흐름,additional,true,"2021, 2022, 2023, 2024, 2025",CF,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01328170,317860,주식회사 노드메이슨,단기차입금,additional,true,"2021, 2022, 2023, 2024, 2025",BS,단기차입금,"ifrs-full_Borrowings, ifrs-full_ShorttermBorrowings",found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01328170,317860,주식회사 노드메이슨,장기차입금,additional,true,"2021, 2022, 2023",BS,장기차입금,dart_LongTermBorrowingsGross,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
 konex_001,01328170,317860,주식회사 노드메이슨,사채,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,01328170,317860,주식회사 노드메이슨,이자비용,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,01328170,317860,주식회사 노드메이슨,금융비용,additional,true,"2022, 2023",CIS,금융원가,ifrs-full_FinanceCosts,found_in_account_id,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01185867,341170,퓨쳐메디신 주식회사,매출액,basic,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,01185867,341170,퓨쳐메디신 주식회사,영업이익,basic,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,01185867,341170,퓨쳐메디신 주식회사,당기순이익,basic,true,2023,"CIS, SCE",당기순손실,ifrs-full_ProfitLoss,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01185867,341170,퓨쳐메디신 주식회사,자산총계,basic,true,2023,BS,자산총계,ifrs-full_Assets,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01185867,341170,퓨쳐메디신 주식회사,부채총계,basic,true,2023,BS,부채총계,ifrs-full_Liabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01185867,341170,퓨쳐메디신 주식회사,자본총계,basic,true,2023,"BS, SCE",자본총계,ifrs-full_Equity,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01185867,341170,퓨쳐메디신 주식회사,유동부채,basic,true,2023,BS,유동부채,ifrs-full_CurrentLiabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01185867,341170,퓨쳐메디신 주식회사,현금및현금성자산,additional,true,2023,BS,현금및현금성자산,ifrs-full_CashAndCashEquivalents,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01328170,317860,주식회사 노드메이슨,이자비용,additional,true,"2021, 2022, 2023, 2024, 2025",CF,이자지급(영업),ifrs-full_InterestPaidClassifiedAsOperatingActivities,found_in_account_id,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01328170,317860,주식회사 노드메이슨,금융비용,additional,true,"2021, 2022, 2023, 2024, 2025",CIS,금융원가,ifrs-full_FinanceCosts,found_in_account_id,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01185867,341170,퓨쳐메디신 주식회사,매출액,basic,true,2023,CIS,영업수익,-표준계정코드 미사용-,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01185867,341170,퓨쳐메디신 주식회사,영업이익,basic,true,"2023, 2024, 2025",CIS,"영업손실, 영업이익(손실)",dart_OperatingIncomeLoss,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01185867,341170,퓨쳐메디신 주식회사,당기순이익,basic,true,"2023, 2024, 2025","CIS, SCE",당기순손실,ifrs-full_ProfitLoss,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01185867,341170,퓨쳐메디신 주식회사,자산총계,basic,true,"2023, 2024, 2025",BS,자산총계,ifrs-full_Assets,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01185867,341170,퓨쳐메디신 주식회사,부채총계,basic,true,"2023, 2024, 2025",BS,부채총계,ifrs-full_Liabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01185867,341170,퓨쳐메디신 주식회사,자본총계,basic,true,"2023, 2024, 2025","BS, SCE",자본총계,ifrs-full_Equity,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01185867,341170,퓨쳐메디신 주식회사,유동부채,basic,true,"2023, 2024, 2025",BS,유동부채,ifrs-full_CurrentLiabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01185867,341170,퓨쳐메디신 주식회사,현금및현금성자산,additional,true,"2023, 2024, 2025",BS,현금및현금성자산,ifrs-full_CashAndCashEquivalents,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
 konex_001,01185867,341170,퓨쳐메디신 주식회사,재고자산,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
 konex_001,01185867,341170,퓨쳐메디신 주식회사,매출채권,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,01185867,341170,퓨쳐메디신 주식회사,유형자산,additional,true,2023,BS,유형자산,ifrs-full_PropertyPlantAndEquipment,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01185867,341170,퓨쳐메디신 주식회사,영업활동현금흐름,additional,true,2023,CF,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
-konex_001,01185867,341170,퓨쳐메디신 주식회사,단기차입금,additional,true,2023,BS,단기차입금,ifrs-full_ShorttermBorrowings,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01185867,341170,퓨쳐메디신 주식회사,유형자산,additional,true,"2023, 2024, 2025",BS,유형자산,ifrs-full_PropertyPlantAndEquipment,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01185867,341170,퓨쳐메디신 주식회사,영업활동현금흐름,additional,true,"2023, 2024, 2025",CF,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01185867,341170,퓨쳐메디신 주식회사,단기차입금,additional,true,"2023, 2024, 2025",BS,단기차입금,"-표준계정코드 미사용-, ifrs-full_ShorttermBorrowings",found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
 konex_001,01185867,341170,퓨쳐메디신 주식회사,장기차입금,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
 konex_001,01185867,341170,퓨쳐메디신 주식회사,사채,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,01185867,341170,퓨쳐메디신 주식회사,이자비용,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
-konex_001,01185867,341170,퓨쳐메디신 주식회사,금융비용,additional,true,2023,CIS,금융비용,ifrs-full_FinanceCosts,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01185867,341170,퓨쳐메디신 주식회사,이자비용,additional,true,"2023, 2024, 2025",CF,이자의 지급,ifrs-full_InterestPaidClassifiedAsOperatingActivities,found_in_account_id,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01185867,341170,퓨쳐메디신 주식회사,금융비용,additional,true,"2023, 2024, 2025",CIS,금융비용,ifrs-full_FinanceCosts,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01547933,351020,(주)미쥬,매출액,basic,true,"2022, 2023, 2024, 2025",CIS,수익(매출액),ifrs-full_Revenue,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01547933,351020,(주)미쥬,영업이익,basic,true,"2022, 2023, 2024, 2025",CIS,영업이익(손실),dart_OperatingIncomeLoss,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01547933,351020,(주)미쥬,당기순이익,basic,true,"2022, 2023, 2024, 2025","CF, CIS, SCE",당기순이익(손실),ifrs-full_ProfitLoss,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01547933,351020,(주)미쥬,자산총계,basic,true,"2022, 2023, 2024, 2025",BS,자산총계,ifrs-full_Assets,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01547933,351020,(주)미쥬,부채총계,basic,true,"2022, 2023, 2024, 2025",BS,부채총계,ifrs-full_Liabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01547933,351020,(주)미쥬,자본총계,basic,true,"2022, 2023, 2024, 2025","BS, SCE",자본총계,ifrs-full_Equity,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01547933,351020,(주)미쥬,유동부채,basic,true,"2022, 2023, 2024, 2025",BS,유동부채,ifrs-full_CurrentLiabilities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01547933,351020,(주)미쥬,현금및현금성자산,additional,true,"2022, 2023, 2024, 2025",BS,현금및현금성자산,ifrs-full_CashAndCashEquivalents,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01547933,351020,(주)미쥬,재고자산,additional,true,"2022, 2023, 2024, 2025",BS,유동재고자산,ifrs-full_Inventories,found_in_account_id,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01547933,351020,(주)미쥬,매출채권,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
+konex_001,01547933,351020,(주)미쥬,유형자산,additional,true,"2022, 2023, 2024, 2025",BS,유형자산,ifrs-full_PropertyPlantAndEquipment,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01547933,351020,(주)미쥬,영업활동현금흐름,additional,true,"2022, 2023, 2024, 2025",CF,영업활동현금흐름,ifrs-full_CashFlowsFromUsedInOperatingActivities,found_in_single_all,기존 standard_account 매핑 후보로 사용할 수 있습니다.
+konex_001,01547933,351020,(주)미쥬,단기차입금,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
+konex_001,01547933,351020,(주)미쥬,장기차입금,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
+konex_001,01547933,351020,(주)미쥬,사채,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
+konex_001,01547933,351020,(주)미쥬,이자비용,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
+konex_001,01547933,351020,(주)미쥬,금융비용,additional,false,,,,,not_found_in_single_all,DART 원문 계정명 또는 account_id 후보를 사람이 재검토해야 합니다.
