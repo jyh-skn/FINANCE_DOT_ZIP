@@ -46,22 +46,20 @@ function buildTable(reportData, keys) {
     });
 
   // yoy_change_rate 행 추가 (분석연도 기준)
-  const yoyRow = {
-    label: 'YoY 변동률',
-    values: sorted.map((s, i) => {
-      if (i === 0) return '-';
-      const key = keys[0];
-      const m   = metrics[key];
-      // yoy_change_rate가 null/undefined이면 toFixed 호출하지 않음
-      if (m && s.year === m.current_year && m.yoy_change_rate != null) {
-        const rate = Number(m.yoy_change_rate);
-        if (isNaN(rate)) return '-';
-        return `${rate > 0 ? '+' : ''}${rate.toFixed(1)}%`;
-      }
-      return '-';
-    }),
-    dir: sorted.map(() => 0),
-  };
+const yoyRow = {
+  label: 'YoY 변동률',
+  values: sorted.map((s, i) => {
+    if (i === 0) return '-';
+    const key = keys[0];
+    const yoyVal = s[`${key}_yoy`];  // revenue_yoy, operating_income_yoy, etc.
+
+    if (yoyVal == null || isNaN(Number(yoyVal))) return '-';
+    if (yoyVal == null || isNaN(Number(yoyVal))) return '-';
+    const rate = Number(yoyVal);
+    return `${rate > 0 ? '+' : ''}${rate.toFixed(1)}%`;
+  }),
+  dir: sorted.map(() => 0),
+};
   rows.push(yoyRow);
 
   return { years, rows };

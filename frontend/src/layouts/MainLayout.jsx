@@ -4,14 +4,16 @@ import HomePage from '../pages/Home';
 import { Building2 } from 'lucide-react';
 import './MainLayout.css';
 
+// 탭
 const TABS = [
   { id: 'report',      label: '보고서' },
   { id: 'news',        label: '뉴스 분석' },
   { id: 'disclosure',  label: '공시 분석' },
 ];
 
+// 채팅영역 Width
 const CHAT_MIN = 220;
-const CHAT_MAX = 600;
+const CHAT_MAX = 550;
 const CHAT_DEFAULT = 340;
 
 export default function MainLayout({ activeTab, onTabChange, children, companyName, stockCode }) {
@@ -20,6 +22,7 @@ export default function MainLayout({ activeTab, onTabChange, children, companyNa
   const startX = useRef(0);
   const startWidth = useRef(0);
 
+  // 
   const onMouseDown = useCallback((e) => {
     e.preventDefault();
     dragging.current = true;
