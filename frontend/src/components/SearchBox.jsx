@@ -62,7 +62,7 @@ export function SearchBox({ onSearch, onKeyIn, searchResults, keyword, onKeyword
           className="sb-input"
           type="text"
           value={keyword}
-          placeholder="기업명을 입력하세요"
+          placeholder="기업명으로 종목코드를 검색하세요."
           onChange={handleInputChange}
           onKeyDown={handleInputKeydown}
           maxLength="20"

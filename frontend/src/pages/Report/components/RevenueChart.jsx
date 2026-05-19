@@ -19,7 +19,7 @@ const MOCK_DATA = [
 
 const COLORS = { revenue: '#4f8ef7', operating: '#f7c94f', yoy: '#ff6b6b' };
 
-const fmtEok = (v) => `${(v / 100).toFixed(0)}억`;
+const fmtEok = (v) => `${(v).toFixed(0)}억`;
 
 function buildChartData(financeSummary) {
   if (!financeSummary?.length) return MOCK_DATA;
