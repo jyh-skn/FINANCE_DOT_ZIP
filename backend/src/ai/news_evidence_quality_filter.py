@@ -618,6 +618,408 @@ def summarize_quality_filter_result(
         ],
     }
 
+# ---------------------------------------------------------------------
+# 7. v4 override: direct/supporting evidence classification
+# ---------------------------------------------------------------------
+
+GROUP_CONTEXT_ALIASES = {
+    "LG": ["LG전자", "LG화학", "LG에너지솔루션", "LG이노텍", "LG유플러스", "LG생활건강", "LG CNS"],
+    "LS": ["LS전선", "LS ELECTRIC", "LS일렉트릭", "LS MnM", "LS엠앤엠", "LS머트리얼즈"],
+    "DL": ["DL이앤씨", "DL건설", "DL케미칼", "DL에너지"],
+}
+
+# 짧은 기업명/지주회사 케이스 보완
+COMPANY_ALIASES.update(
+    {
+        "LG": ["LG", "LG그룹", "003550"],
+        "LG전자": ["LG전자", "066570"],
+        "LS": ["LS", "LS그룹", "006260"],
+        "DL": ["DL", "DL그룹", "000210"],
+    }
+)
+
+
+def get_group_aliases(company_name: str) -> List[str]:
+    return GROUP_CONTEXT_ALIASES.get(safe_text(company_name).strip(), [])
+
+
+def get_hard_reject_reason(
+    item: Dict[str, Any],
+    ai_input: Dict[str, Any],
+) -> Optional[str]:
+    """
+    v4 hard reject.
+    - 명확한 오프토픽은 제거합니다.
+    - 삼성전자처럼 대상이 명확한 기업은 다른 계열사 중심 기사를 제거합니다.
+    - LG/LS/DL 같은 지주회사·그룹성 기업은 계열사 문맥을 supporting 후보로 허용합니다.
+    """
+
+    company_name = get_company_name(ai_input)
+    stock_code = get_stock_code(ai_input)
+
+    title = get_title(item)
+    text = get_news_text(item)
+
+    title_lower = title.lower()
+    text_lower = text.lower()
+
+    exact_company_in_title = bool(company_name and company_name.lower() in title_lower)
+    stock_code_in_title = bool(stock_code and stock_code in title)
+    exact_company_in_text = bool(company_name and company_name.lower() in text_lower)
+    stock_code_in_text = bool(stock_code and stock_code in text)
+
+    shorthand_title_match = (
+        company_name == "삼성전자"
+        and is_samsung_electronics_shorthand_title(title)
+    )
+    group_alias_hit = count_keyword_hits(text, get_group_aliases(company_name)) > 0
+
+    if contains_any(title, HARD_OFF_TOPIC_TITLE_KEYWORDS):
+        return "hard_reject: title contains off-topic investment/market keyword"
+
+    for other_company in RELATED_COMPANY_EXCLUSION.get(company_name, []):
+        if other_company.lower() in title_lower:
+            if not exact_company_in_title and not stock_code_in_title:
+                return f"hard_reject: title is about another related company({other_company})"
+
+    if not (
+        exact_company_in_title
+        or stock_code_in_title
+        or exact_company_in_text
+        or stock_code_in_text
+        or shorthand_title_match
+        or group_alias_hit
+    ):
+        return "hard_reject: target company/stock_code/group context not found"
+
+    return None
+
+
+def score_news_evidence_item(
+    item: Dict[str, Any],
+    ai_input: Dict[str, Any],
+) -> Tuple[float, List[str], Optional[str], Dict[str, Any]]:
+    """
+    v4 scoring.
+    return: quality_score, quality_reasons, hard_reject_reason, flags
+    """
+
+    company_name = get_company_name(ai_input)
+    stock_code = get_stock_code(ai_input)
+    analysis_year = get_analysis_year(ai_input)
+    base_year = get_base_year(ai_input)
+
+    title = get_title(item)
+    text = get_news_text(item)
+    title_lower = title.lower()
+    lowered = text.lower()
+
+    company_aliases = build_company_aliases(company_name, stock_code)
+    group_aliases = get_group_aliases(company_name)
+    metric_keywords = get_metric_keywords(item)
+
+    score = 0.0
+    reasons = []
+
+    exact_company_in_title = bool(company_name and company_name.lower() in title_lower)
+    stock_code_in_title = bool(stock_code and stock_code in title)
+    shorthand_title_match = (
+        company_name == "삼성전자"
+        and is_samsung_electronics_shorthand_title(title)
+    )
+    group_alias_hit_count = count_keyword_hits(text, group_aliases)
+
+    hard_reject_reason = get_hard_reject_reason(
+        item=item,
+        ai_input=ai_input,
+    )
+
+    if exact_company_in_title:
+        score += 5.0
+        reasons.append("제목에 정확한 기업명 있음")
+    elif stock_code_in_title:
+        score += 4.5
+        reasons.append("제목에 종목코드 있음")
+    elif shorthand_title_match:
+        score += 3.8
+        reasons.append("제목에 삼성전자 축약형 반도체 문맥 있음")
+    elif group_alias_hit_count > 0:
+        score += 2.8
+        reasons.append(f"그룹/계열사 문맥 있음({group_alias_hit_count})")
+    else:
+        reasons.append("제목에 정확한 기업명/종목코드 없음")
+
+    company_hit_count = count_keyword_hits(text, company_aliases)
+
+    if company_hit_count >= 2:
+        score += 2.5
+        reasons.append(f"본문/요약에 기업명 또는 종목코드 반복 언급({company_hit_count})")
+    elif company_hit_count == 1:
+        score += 0.8
+        reasons.append("본문/요약에 기업명 또는 종목코드 1회 언급")
+    elif shorthand_title_match:
+        score += 0.5
+        reasons.append("본문 기업명 반복은 약하지만 제목 약칭 문맥 인정")
+    elif group_alias_hit_count > 0:
+        score += 0.4
+        reasons.append("target 직접 언급은 약하지만 그룹/계열사 문맥 인정")
+    else:
+        score -= 5.0
+        reasons.append("본문/요약에 기업명 또는 종목코드 없음")
+
+    metric_hit_count = count_keyword_hits(text, metric_keywords)
+
+    if metric_hit_count > 0:
+        score += min(2.5, 1.0 + metric_hit_count * 0.4)
+        reasons.append(f"지표 키워드 언급 있음({metric_hit_count})")
+    else:
+        score -= 0.5
+        reasons.append("지표 키워드 직접 언급 부족")
+
+    financial_hit_count = count_keyword_hits(text, GENERIC_FINANCIAL_KEYWORDS)
+
+    if financial_hit_count > 0:
+        score += min(2.0, financial_hit_count * 0.3)
+        reasons.append(f"재무/실적 관련 키워드 있음({financial_hit_count})")
+
+    item_year = safe_int(item.get("year"))
+    text_year = extract_year_from_text(text)
+    effective_year = item_year or text_year
+
+    valid_years = {year for year in [analysis_year, base_year] if year is not None}
+
+    if effective_year and valid_years:
+        if effective_year in valid_years:
+            score += 1.0
+            reasons.append(f"분석/기준 연도와 일치({effective_year})")
+        elif min(abs(effective_year - year) for year in valid_years) <= 1:
+            score += 0.3
+            reasons.append(f"분석연도와 인접({effective_year})")
+        else:
+            score -= 1.0
+            reasons.append(f"분석연도와 거리가 있음({effective_year})")
+
+    relevance_score = safe_float(item.get("relevance_score"), default=0.0)
+
+    if relevance_score > 0:
+        score += min(0.8, relevance_score * 1.2)
+        reasons.append(f"vector relevance_score 반영({relevance_score:.3f})")
+
+    soft_off_topic_hits = [keyword for keyword in SOFT_OFF_TOPIC_KEYWORDS if keyword.lower() in lowered]
+
+    if soft_off_topic_hits:
+        penalty = min(3.0, len(soft_off_topic_hits) * 1.2)
+        score -= penalty
+        reasons.append(f"오프토픽 키워드 감점({', '.join(soft_off_topic_hits[:3])})")
+
+    if len(text.strip()) < 80:
+        score -= 0.8
+        reasons.append("본문/요약이 너무 짧음")
+
+    if hard_reject_reason:
+        reasons.append(hard_reject_reason)
+
+    flags = {
+        "exact_company_in_title": exact_company_in_title,
+        "stock_code_in_title": stock_code_in_title,
+        "company_hit_count": company_hit_count,
+        "group_alias_hit_count": group_alias_hit_count,
+        "shorthand_title_match": shorthand_title_match,
+        "metric_hit_count": metric_hit_count,
+        "financial_hit_count": financial_hit_count,
+    }
+
+    return score, reasons, hard_reject_reason, flags
+
+
+def classify_evidence_level(
+    score: float,
+    hard_reject_reason: Optional[str],
+    flags: Dict[str, Any],
+    direct_threshold: float = 4.0,
+    supporting_threshold: float = 2.8,
+) -> str:
+    if hard_reject_reason:
+        return "excluded"
+
+    has_direct_company_signal = (
+        flags.get("exact_company_in_title")
+        or flags.get("stock_code_in_title")
+        or flags.get("company_hit_count", 0) >= 2
+        or flags.get("shorthand_title_match")
+    )
+
+    has_supporting_signal = (
+        flags.get("group_alias_hit_count", 0) > 0
+        or flags.get("financial_hit_count", 0) > 0
+    )
+
+    if has_direct_company_signal and score >= direct_threshold:
+        return "direct"
+
+    if has_supporting_signal and score >= supporting_threshold:
+        return "supporting"
+
+    return "excluded"
+
+
+def enrich_news_item_with_quality(
+    item: Dict[str, Any],
+    ai_input: Dict[str, Any],
+    direct_threshold: float = 4.0,
+    supporting_threshold: float = 2.8,
+) -> Dict[str, Any]:
+    quality_score, quality_reasons, hard_reject_reason, flags = score_news_evidence_item(
+        item=item,
+        ai_input=ai_input,
+    )
+
+    evidence_level = classify_evidence_level(
+        score=quality_score,
+        hard_reject_reason=hard_reject_reason,
+        flags=flags,
+        direct_threshold=direct_threshold,
+        supporting_threshold=supporting_threshold,
+    )
+
+    if evidence_level == "direct":
+        evidence_role = "핵심 근거"
+        evidence_usage_note = "직접 근거로 사용할 수 있습니다."
+    elif evidence_level == "supporting":
+        evidence_role = "보조 근거"
+        evidence_usage_note = "직접 원인으로 단정하지 말고 산업/그룹/업황 배경 근거로만 사용하세요."
+    else:
+        evidence_role = "제외"
+        evidence_usage_note = "보고서 근거로 사용하지 않습니다."
+
+    return {
+        **item,
+        "quality_score": round(quality_score, 4),
+        "quality_reasons": quality_reasons,
+        "quality_filter_passed": evidence_level in {"direct", "supporting"},
+        "hard_reject_reason": hard_reject_reason,
+        "evidence_level": evidence_level,
+        "evidence_role": evidence_role,
+        "evidence_usage_note": evidence_usage_note,
+    }
+
+
+def rank_news_evidence_for_report(
+    evidence_news: List[Dict[str, Any]],
+    ai_input: Dict[str, Any],
+    max_items: int = 3,
+    direct_threshold: float = 4.0,
+    supporting_threshold: float = 2.8,
+) -> Dict[str, Any]:
+    """
+    뉴스 후보를 direct/supporting/excluded로 분류하고,
+    보고서에 사용할 direct+supporting evidence를 최대 max_items개 반환합니다.
+    """
+
+    evidence_news = evidence_news or []
+
+    enriched_items = [
+        enrich_news_item_with_quality(
+            item=item,
+            ai_input=ai_input,
+            direct_threshold=direct_threshold,
+            supporting_threshold=supporting_threshold,
+        )
+        for item in evidence_news
+        if isinstance(item, dict)
+    ]
+
+    included = [item for item in enriched_items if item.get("evidence_level") in {"direct", "supporting"}]
+
+    included.sort(
+        key=lambda item: (
+            1 if item.get("evidence_level") == "direct" else 0,
+            safe_float(item.get("quality_score")),
+            safe_float(item.get("relevance_score")),
+        ),
+        reverse=True,
+    )
+
+    selected = []
+    seen = set()
+
+    for item in included:
+        key = (get_url(item) or get_title(item)).lower()
+
+        if key and key in seen:
+            continue
+
+        if key:
+            seen.add(key)
+
+        selected.append(item)
+
+        if len(selected) >= max_items:
+            break
+
+    metadata = {
+        "source": "news_evidence_quality_filter_v4",
+        "before_count": len(evidence_news),
+        "after_count": len(selected),
+        "removed_count": max(0, len(evidence_news) - len(selected)),
+        "direct_count": sum(1 for item in selected if item.get("evidence_level") == "direct"),
+        "supporting_count": sum(1 for item in selected if item.get("evidence_level") == "supporting"),
+        "excluded_count": sum(1 for item in enriched_items if item.get("evidence_level") == "excluded"),
+        "quality_scores": [item.get("quality_score") for item in selected],
+        "evidence_levels": [item.get("evidence_level") for item in selected],
+        "direct_threshold": direct_threshold,
+        "supporting_threshold": supporting_threshold,
+    }
+
+    return {
+        "selected_news": selected,
+        "all_scored_news": enriched_items,
+        "metadata": metadata,
+    }
+
+
+def filter_news_evidence_quality(
+    evidence_news: List[Dict[str, Any]],
+    ai_input: Dict[str, Any],
+    min_quality_score: float = 4.0,
+    max_items: int = 3,
+    require_company_mention: bool = True,
+) -> List[Dict[str, Any]]:
+    """
+    기존 호출부 호환용 함수입니다.
+    min_quality_score는 direct_threshold로 사용하고,
+    supporting_threshold는 2.8로 고정합니다.
+    """
+
+    result = rank_news_evidence_for_report(
+        evidence_news=evidence_news,
+        ai_input=ai_input,
+        max_items=max_items,
+        direct_threshold=min_quality_score,
+        supporting_threshold=2.8,
+    )
+
+    return result.get("selected_news", [])
+
+
+def summarize_quality_filter_result(
+    before_news: List[Dict[str, Any]],
+    after_news: List[Dict[str, Any]],
+) -> Dict[str, Any]:
+    direct_count = sum(1 for item in after_news if item.get("evidence_level") == "direct")
+    supporting_count = sum(1 for item in after_news if item.get("evidence_level") == "supporting")
+
+    return {
+        "source": "news_evidence_quality_filter_v4",
+        "before_count": len(before_news or []),
+        "after_count": len(after_news or []),
+        "removed_count": max(0, len(before_news or []) - len(after_news or [])),
+        "direct_count": direct_count,
+        "supporting_count": supporting_count,
+        "quality_scores": [item.get("quality_score") for item in after_news],
+        "evidence_levels": [item.get("evidence_level") for item in after_news],
+    }
+
 
 if __name__ == "__main__":
     sample_ai_input = {
@@ -625,19 +1027,28 @@ if __name__ == "__main__":
             "company_name": "삼성전자",
             "stock_code": "005930",
         },
-        "analysis_year": 2022,
-        "base_year": 2021,
+        "analysis_year": 2023,
+        "base_year": 2022,
     }
 
     sample_news = [
         {
-            "title": "메모리 수요부진 직격탄…삼성·SK하이닉스 '재고 회전율'도 뚝",
-            "metric_key": "asset_turnover",
-            "metric_label": "자산회전율",
-            "year": 2022,
-            "evidence_summary": "삼성전자가 가동률을 높이고 있다는 내용과 재고자산 규모 변화가 언급됩니다.",
+            "title": "삼성전자 1분기 영업이익 급감…반도체 한파 영향",
+            "metric_key": "operating_income",
+            "metric_label": "영업이익",
+            "year": 2023,
+            "evidence_summary": "삼성전자의 반도체 업황 부진과 영업이익 감소가 언급됩니다.",
             "relevance_score": 0.50,
             "url": "https://example.com/1",
+        },
+        {
+            "title": "대기업 작년 4분기 영업익 69% 급감…'반도체 한파'에 실적 악화",
+            "metric_key": "operating_income",
+            "metric_label": "영업이익",
+            "year": 2023,
+            "evidence_summary": "삼성전자[005930]와 SK하이닉스 실적이 반도체 한파로 급락했다는 내용입니다.",
+            "relevance_score": 0.37,
+            "url": "https://example.com/2",
         },
         {
             "title": "삼성SDS 2023년 1분기 실적발표 컨퍼런스콜 전문",
@@ -646,15 +1057,6 @@ if __name__ == "__main__":
             "year": 2023,
             "evidence_summary": "삼성SDS의 매출과 영업이익이 언급되며, 본문에 삼성전자 등 제조 관계사가 한 번 언급됩니다.",
             "relevance_score": 0.39,
-            "url": "https://example.com/2",
-        },
-        {
-            "title": "명품백 없어 못사면 명품株로 눈길 돌려라",
-            "metric_key": "asset_turnover",
-            "metric_label": "자산회전율",
-            "year": 2022,
-            "evidence_summary": "명품 기업들의 재고자산회전율 상승이 언급됩니다.",
-            "relevance_score": 0.43,
             "url": "https://example.com/3",
         },
         {
@@ -668,14 +1070,16 @@ if __name__ == "__main__":
         },
     ]
 
-    filtered = filter_news_evidence_quality(
+    result = rank_news_evidence_for_report(
         evidence_news=sample_news,
         ai_input=sample_ai_input,
+        max_items=3,
     )
 
-    print("[News Evidence Quality Filter v3 Test]")
+    print("[News Evidence Quality Filter v4 Test]")
     print("before:", len(sample_news))
-    print("after:", len(filtered))
+    print("after:", len(result["selected_news"]))
+    print("metadata:", result["metadata"])
 
     import json
-    print(json.dumps(filtered, ensure_ascii=False, indent=2))
+    print(json.dumps(result["selected_news"], ensure_ascii=False, indent=2))

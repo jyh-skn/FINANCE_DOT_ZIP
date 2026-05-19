@@ -301,6 +301,10 @@ def prepare_evidence_news_for_prompt(
                 "published_date": item.get("published_date", ""),
                 "evidence_summary": shorten_text(summary, max_length=450),
                 "relevance_score": item.get("relevance_score"),
+                "quality_score": item.get("quality_score"),
+                "evidence_level": item.get("evidence_level", "direct"),
+                "evidence_role": item.get("evidence_role", "핵심 근거"),
+                "evidence_usage_note": item.get("evidence_usage_note", ""),
             }
         )
 
@@ -472,6 +476,9 @@ REPORT_WRITER_SYSTEM_PROMPT = """
 - 제공된 재무 문맥, 뉴스 근거, 공시 근거, 산업 가이드 안의 정보만 사용하세요.
 - 재무 수치를 새로 계산하지 마세요.
 - 뉴스/공시와 재무 변화의 관계를 직접 인과로 단정하지 마세요.
+- 뉴스 근거의 evidence_level이 supporting이면 직접 원인으로 단정하지 말고 산업/그룹/업황 배경 근거로만 사용하세요.
+- evidence_level이 direct인 뉴스는 핵심 근거로 사용할 수 있으나, 이 경우에도 단정적 인과 표현은 피하세요.
+- 재고회전율, 재고자산, 가동률 관련 뉴스는 자산회전율과 완전히 같은 지표로 간주하지 말고, 관련 업황/운영 효율 배경으로만 신중하게 해석하세요.
 - "가능한 배경", "관련 요인", "검토할 수 있다", "추가 확인이 필요하다"처럼 신중하게 표현하세요.
 - 투자 추천, 매수, 매도, 보유, 목표주가 판단은 절대 작성하지 마세요.
 - 공시 근거가 없으면 없다고 쓰고, 리포트 생성은 계속하세요.
@@ -616,6 +623,8 @@ def generate_report(
             "industry_instruction_applied": bool(resolved_industry_instruction),
             "prompt_compaction_applied": True,
             "prompt_news_count": len(prepared_news),
+            "prompt_direct_news_count": sum(1 for item in prepared_news if item.get("evidence_level") == "direct"),
+            "prompt_supporting_news_count": sum(1 for item in prepared_news if item.get("evidence_level") == "supporting"),
             "prompt_disclosure_count": len(prepared_disclosures),
         }
 
