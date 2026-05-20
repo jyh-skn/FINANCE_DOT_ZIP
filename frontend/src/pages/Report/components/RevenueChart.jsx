@@ -19,7 +19,13 @@ const MOCK_DATA = [
 
 const COLORS = { revenue: '#4f8ef7', operating: '#f7c94f', yoy: '#ff6b6b' };
 
-const fmtEok = (v) => `${(v).toFixed(0)}억`;
+const fmtAmt = (v) => {
+  if (Math.abs(v) >= 10_000) {
+    const jo = v / 10_000;
+    return `${jo % 1 === 0 ? jo.toFixed(0) : jo.toFixed(1)}조`;
+  }
+  return `${Math.round(v)}억`;
+};
 
 function buildChartData(financeSummary) {
   if (!financeSummary?.length) return MOCK_DATA;
@@ -41,11 +47,11 @@ function buildChartData(financeSummary) {
 const CustomTooltip = ({ active, payload, label }) => {
   if (!active || !payload?.length) return null;
   return (
-    <div style={{ background: '#1a2035', border: '1px solid #252d3d', borderRadius: 6, padding: '8px 12px', fontSize: 11 }}>
-      <p style={{ color: '#8899bb', marginBottom: 4 }}>{label}년</p>
+    <div style={{ background: 'var(--bg-input)', border: '1px solid var(--border)', borderRadius: 6, padding: '8px 12px', fontSize: 11 }}>
+      <p style={{ color: 'var(--text-secondary)', marginBottom: 4 }}>{label}년</p>
       {payload.map((p) => (
         <p key={p.name} style={{ color: p.color, margin: '2px 0' }}>
-          {p.name}: {p.name === 'YoY%' ? `${p.value}%` : fmtEok(p.value)}
+          {p.name}: {p.name === 'YoY%' ? `${p.value}%` : fmtAmt(p.value)}
         </p>
       ))}
     </div>
@@ -78,7 +84,7 @@ export default function RevenueChart({ reportData }) {
           <ComposedChart data={chartData} margin={{ top: 4, right: 24, left: 0, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(37,45,61,0.8)" vertical={false} />
             <XAxis dataKey="year" tick={{ fontSize: 10, fill: '#8899bb' }} axisLine={false} tickLine={false} />
-            <YAxis yAxisId="left" tickFormatter={fmtEok} tick={{ fontSize: 10, fill: '#8899bb' }} axisLine={false} tickLine={false} width={48} />
+            <YAxis yAxisId="left" tickFormatter={fmtAmt} tick={{ fontSize: 10, fill: '#8899bb' }} axisLine={false} tickLine={false} width={52} />
             <YAxis yAxisId="right" orientation="right" tickFormatter={(v) => `${v}%`} tick={{ fontSize: 10, fill: '#8899bb' }} axisLine={false} tickLine={false} width={32} />
             <Tooltip content={<CustomTooltip />} />
             <Bar yAxisId="left" dataKey="revenue"   name="매출"     fill={COLORS.revenue}   opacity={0.85} radius={[2,2,0,0]} barSize={14} />

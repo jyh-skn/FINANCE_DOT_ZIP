@@ -22,8 +22,6 @@ export const gfn_transaction = async (options) => {
       [method.toUpperCase() === 'GET' ? 'params' : 'data']: param,
     });
 
-    console.log(response);
-
     // 2. 서버 응답 성공 (HTTP 200)
     if (pCall && typeof pCall === 'function') {
     

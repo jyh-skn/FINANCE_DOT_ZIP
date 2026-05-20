@@ -15,8 +15,6 @@ export default function BasicInfo({ reportData }) {
   const riskLevel = summary.overall_risk_level ?? 'NORMAL';
   const riskStyle = RISK_COLOR[riskLevel] ?? RISK_COLOR.NORMAL;
 
-  console.log(reportData)
-
   const rows = [
     { label: '기업명',   value: info.company_name   ?? '-' },
     { label: '종목코드', value: info.stock_code     ?? '-', highlight: true },

@@ -55,11 +55,6 @@ function App() {
     fetchInitialData();
   }, []);
 
-// const code = responseData.data.reportData?.company_info?.stock_code ?? null;
-// if (code && !responseData.data.newsData.evidence_news?.length) {
-//     fetchNewsAnalysis(code);
-// }
-
   const fetchNewsAnalysis = async (code) => {
     setNewsLoading(true);
     const options = {
@@ -132,11 +127,6 @@ function App() {
               ...disclosureData
             }
 
-            console.log(combinedData)
-            console.log(responseData.data.reportData)
-            console.log(responseData.data.disclosureData)
-            console.log("responseData.data.reportData")
-            console.log(responseData.data.reportData)
             // useState 업데이트
             setSearchResult(responseData.data);
             setCompanyName(responseData.data.reportData?.company_name ?? keyword);
