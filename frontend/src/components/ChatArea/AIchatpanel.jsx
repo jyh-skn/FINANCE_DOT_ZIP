@@ -5,7 +5,7 @@ import ratIcon from "../../assets/rat_icon.png";
 
 // ── 아이콘 ──────────────────────────────────────────
 function BotIcon() {
-  return <img src={ratIcon} alt="AI" width="28" height="28" style={{ borderRadius: "50%", objectFit: "cover" }} />;
+  return <img src={ratIcon} alt="AI" width="24" height="24" style={{ borderRadius: "50%", objectFit: "cover" }} />;
 }
 
 function UserIcon() {
@@ -126,9 +126,6 @@ export default function AIChatPanel({ companyName, stockCode }) {
 
     // 현재 질문 포함한 전체 대화 이력 (role/content 만 추출)
     const history = [...messages, userMsg].map(({ role, content }) => ({ role, content }));
-
-    console.log("history");
-    console.log(history);
 
     const param = {
       question: text,

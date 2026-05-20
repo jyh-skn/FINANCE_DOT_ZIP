@@ -439,21 +439,8 @@ def search_company(request):
     if not stock_code:
         return fail_response(message="자동완성에서 종목코드를 선택해주세요.", data=[])
 
-    # DB에서 검색 결과 가져오기
-    # result = search_companies(keyword)
-
-    # if not result:
-    #     return fail_response(message="검색 결과가 없습니다.", data=[])
-
-    # 주석처리
-    # if len(result) > 1:
-    #     return fail_response(message="검색 결과가 여러 개입니다. 더 구체적으로 검색해주세요.", data=result)
-    
-    # matched = resultstock_code = matched["TICKER"][0]  
-
     try:
         from src.services.report_service import build_report_response
-        # report_result = build_report_response(stock_code)
 
         # 기존 report_result를 ai_report에서 포함하고 있어, 주석처리 후 ai_report 변수 생성
         ai_report_result = build_ai_report_result_once(

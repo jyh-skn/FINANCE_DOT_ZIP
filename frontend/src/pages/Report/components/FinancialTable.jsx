@@ -79,10 +79,6 @@ function dirClass(d) {
 export default function FinancialTable({ reportData }) {
   const [activeTab, setActiveTab] = useState('stmt');
 
-
-  console.log("ReportData")
-  console.log(reportData)
-
   const keys = activeTab === 'stmt' ? STMT_KEYS : RATIO_KEYS;
   const data = buildTable(reportData, keys);
 
