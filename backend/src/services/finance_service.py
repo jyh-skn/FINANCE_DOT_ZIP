@@ -142,6 +142,12 @@ def calculate_finance_summary(stock_code: str):
             percent=False
         )
 
+        asset_turnover = safe_divide(
+            revenue,
+            total_assets,
+            percent=False
+        )
+
         item = {
             "year": year,
             "revenue": revenue,
@@ -174,6 +180,7 @@ def calculate_finance_summary(stock_code: str):
             "interest_coverage_ratio": interest_coverage_ratio,
             "receivables_turnover": receivables_turnover,
             "inventory_turnover": inventory_turnover,
+            "asset_turnover": asset_turnover,
 
             "operating_cash_flow": operating_cash_flow,
 
@@ -185,6 +192,8 @@ def calculate_finance_summary(stock_code: str):
             "equity_ratio_change": None,
             "receivables_turnover_yoy": None,
             "inventory_turnover_yoy": None,
+            "asset_turnover_yoy": None,
+            "interest_coverage_ratio_change": None,
             "borrowings_dependency_change": None,
         }
 
@@ -231,6 +240,20 @@ def calculate_finance_summary(stock_code: str):
                 inventory_turnover,
                 previous_item.get("inventory_turnover")
             )
+
+            item["asset_turnover_yoy"] = calculate_yoy(
+                asset_turnover,
+                previous_item.get("asset_turnover")
+            )
+
+            if (
+                interest_coverage_ratio is not None
+                and previous_item.get("interest_coverage_ratio") is not None
+            ):
+                item["interest_coverage_ratio_change"] = round(
+                    interest_coverage_ratio - previous_item["interest_coverage_ratio"],
+                    2
+                )
 
             if (
                 borrowings_dependency is not None

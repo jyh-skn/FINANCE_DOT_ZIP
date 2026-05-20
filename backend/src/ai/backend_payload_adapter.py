@@ -43,9 +43,10 @@ METRIC_CONFIG = {
     "current_ratio": {"label": "유동비율", "unit": "%", "change_field": None},
     "quick_ratio": {"label": "당좌비율", "unit": "%", "change_field": None},
     "borrowings_dependency": {"label": "차입금의존도", "unit": "%", "change_field": "borrowings_dependency_change"},
-    "interest_coverage_ratio": {"label": "이자보상배율", "unit": "배", "change_field": None},
+    "interest_coverage_ratio": {"label": "이자보상배율", "unit": "배", "change_field": "interest_coverage_ratio_change"},
     "receivables_turnover": {"label": "매출채권회전율", "unit": "회", "change_field": "receivables_turnover_yoy"},
     "inventory_turnover": {"label": "재고자산회전율", "unit": "회", "change_field": "inventory_turnover_yoy"},
+    "asset_turnover": {"label": "자산회전율", "unit": "회", "change_field": "asset_turnover_yoy"},
     "operating_cash_flow": {"label": "영업활동현금흐름", "unit": "KRW", "change_field": None},
 }
 

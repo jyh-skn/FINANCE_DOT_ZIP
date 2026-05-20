@@ -87,6 +87,18 @@ def format_rate(value: Any) -> str:
     return f"{number:.2f}%"
 
 
+def build_change_value_text(metric_key: str, value: Any) -> str:
+    number = safe_float(value)
+
+    if number is None:
+        return "계산 불가"
+
+    if metric_key == "interest_coverage_ratio":
+        return f"{number:.2f}배"
+
+    return f"{number:.2f}%"
+
+
 def normalize_list(value: Any) -> List[Any]:
     if isinstance(value, list):
         return value
@@ -230,6 +242,7 @@ def build_detected_change_summary_text(
     lines = []
 
     for item in sorted_changes:
+        metric_key = item.get("metric_key")
         metric_label = item.get("metric_label") or item.get("metric_key")
         year = item.get("year")
         base_year = item.get("base_year")
@@ -249,7 +262,7 @@ def build_detected_change_summary_text(
         lines.append(
             "- "
             f"{year}년 {metric_label}: "
-            f"전년/기준연도({base_year}) 대비 변화율={format_rate(yoy_change_rate)}, "
+            f"전년/기준연도({base_year}) 대비 변화값={build_change_value_text(metric_key, yoy_change_rate)}, "
             f"현재값={format_number(current_value)}, "
             f"기준값={format_number(base_value)}, "
             f"{direction_text} 흐름입니다. "
