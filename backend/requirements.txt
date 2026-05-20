@@ -1,3 +1,4 @@
+pytest
 python-dotenv==1.0.0
 requests==2.31.0
 beautifulsoup4==4.12.2
@@ -10,6 +11,7 @@ django-cors-headers
 PyMySQL==1.1.3
 
 openai
+langchain
 langchain-core
 langchain-openai
 langchain-pinecone
