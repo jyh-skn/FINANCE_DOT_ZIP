@@ -236,11 +236,15 @@ def build_detected_change_summary_text(
         yoy_change_rate = item.get("yoy_change_rate")
         current_value = item.get("current_value")
         base_value = item.get("base_value")
-        change_type = item.get("change_type")
         direction = item.get("direction")
-        severity = item.get("severity")
-        signal_type = item.get("signal_type")
         description = item.get("description") or item.get("source_signal") or ""
+
+        if direction == "increase":
+            direction_text = "증가"
+        elif direction == "decrease":
+            direction_text = "감소"
+        else:
+            direction_text = "변동"
 
         lines.append(
             "- "
@@ -248,10 +252,7 @@ def build_detected_change_summary_text(
             f"전년/기준연도({base_year}) 대비 변화율={format_rate(yoy_change_rate)}, "
             f"현재값={format_number(current_value)}, "
             f"기준값={format_number(base_value)}, "
-            f"change_type={change_type}, "
-            f"direction={direction}, "
-            f"severity={severity}, "
-            f"signal_type={signal_type}. "
+            f"{direction_text} 흐름입니다. "
             f"{description}"
         )
 
