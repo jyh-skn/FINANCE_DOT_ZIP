@@ -247,6 +247,8 @@ def get_metric_yoy(item, metric_key):
         "equity_ratio": "equity_ratio_change",
         "receivables_turnover": "receivables_turnover_yoy",
         "inventory_turnover": "inventory_turnover_yoy",
+        "asset_turnover": "asset_turnover_yoy",
+        "interest_coverage_ratio": "interest_coverage_ratio_change",
         "borrowings_dependency": "borrowings_dependency_change",
         "net_margin": "net_margin_change",
     }
