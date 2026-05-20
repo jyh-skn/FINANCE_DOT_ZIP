@@ -62,7 +62,7 @@
 <table align="center">
   <tr>
     <td align="center" width="170" valign="top">
-      <table>
+      <table width="150">
         <tr>
           <td align="center" height="130">
             <img src="./assets/team/gary.jpg" width="100" height="110" style="object-fit:contain; border-radius:10px;">
@@ -72,12 +72,12 @@
           <td align="center"><b>김이선</b></td>
         </tr>
         <tr>
-          <td align="center"><a href="https://github.com/kysuniv-cyber">@kysuniv-cyber</a></td>
+          <td align="center" width="150" style="word-break: break-all;"><a href="https://github.com/kysuniv-cyber">@kysuniv-cyber</a></td>
         </tr>
       </table>
     </td>
     <td align="center" width="170" valign="top">
-      <table>
+      <table width="150">
         <tr>
           <td align="center" height="130">
             <img src="./assets/team/little_judith.jpg" width="100" height="110" style="object-fit:contain; border-radius:10px;">
@@ -87,12 +87,12 @@
           <td align="center"><b>김지윤</b></td>
         </tr>
         <tr>
-          <td align="center"><a href="https://github.com/JiyounKim-EllyKim">@JiyounKim-EllyKim</a></td>
+          <td align="center" width="150" style="word-break: break-all;"><a href="https://github.com/JiyounKim-EllyKim">@JiyounKim-EllyKim</a></td>
         </tr>
       </table>
     </td>
     <td align="center" width="170" valign="top">
-      <table>
+      <table width="150">
         <tr>
           <td align="center" height="130">
             <img src="./assets/team/judy_hopps.jpg" width="100" height="110" style="object-fit:contain; border-radius:10px;">
@@ -102,12 +102,12 @@
           <td align="center"><b>박소윤</b></td>
         </tr>
         <tr>
-          <td align="center"><a href="https://github.com/parksoyun9084-cloud">@parksoyun9084-cloud</a></td>
+          <td align="center" width="150" style="word-break: break-all;"><a href="https://github.com/parksoyun9084-cloud">@parksoyun9084-cloud</a></td>
         </tr>
       </table>
     </td>
     <td align="center" width="170" valign="top">
-      <table>
+      <table width="150">
         <tr>
           <td align="center" height="130">
             <img src="./assets/team/nick.jpg" width="100" height="110" style="object-fit:contain; border-radius:10px;">
@@ -117,12 +117,12 @@
           <td align="center"><b>박은지</b></td>
         </tr>
         <tr>
-          <td align="center"><a href="https://github.com/lo1f0306">@lo1f0306</a></td>
+          <td align="center" width="150" style="word-break: break-all;"><a href="https://github.com/lo1f0306">@lo1f0306</a></td>
         </tr>
       </table>
     </td>
     <td align="center" width="170" valign="top">
-      <table>
+      <table width="150">
         <tr>
           <td align="center" height="130">
             <img src="./assets/team/clawhauser.jpg" width="100" height="110" style="object-fit:contain; border-radius:10px;">
@@ -132,12 +132,12 @@
           <td align="center"><b>위희찬</b></td>
         </tr>
         <tr>
-          <td align="center"><a href="https://github.com/dnlgmlcks">@dnlgmlcks</a></td>
+          <td align="center" width="150" style="word-break: break-all;"><a href="https://github.com/dnlgmlcks">@dnlgmlcks</a></td>
         </tr>
       </table>
     </td>
     <td align="center" width="170" valign="top">
-      <table>
+      <table width="150">
         <tr>
           <td align="center" height="130">
             <img src="./assets/team/flash.jpg" width="100" height="110" style="object-fit:contain; border-radius:10px;">
@@ -147,7 +147,7 @@
           <td align="center"><b>홍지윤</b></td>
         </tr>
         <tr>
-          <td align="center"><a href="https://github.com/jyh-skn">@jyh-skn</a></td>
+          <td align="center" width="150" style="word-break: break-all;"><a href="https://github.com/jyh-skn">@jyh-skn</a></td>
         </tr>
       </table>
     </td>
@@ -998,21 +998,28 @@ POST /api/v1/report/comprehensive/{stock_code}/chat
 
 ## 13. 한계 및 향후 개선 방향
 
+### 13-1. 현재 한계
+
 - 전체 재무제표 API에서도 기업별로 일부 계정이 누락될 수 있습니다.
-- `amount` 빈 값에 대한 처리 정책이 필요합니다.
 - raw CSV 파일 크기가 커서 GitHub 관리 방식 결정이 필요합니다.
+- 주요사항 이벤트 API는 전체 공시 검색이 아니므로 이벤트 판정 기준을 명확히 해야 합니다.
+- 뉴스와 재무지표의 시간적 연관성이 실제 인과관계를 보장하지 않으므로, 리포트에서는 원인을 단정하지 않고 가능한 배경 요인으로 표현해야 합니다.
+- 금융업은 재무제표 구조와 지표 해석 방식이 일반 제조·서비스업과 다르므로, 산업별 분석 기준 분리가 필요합니다.
+
+### 13-2. 향후 개선 방향
+
 - DB 적재 전 dry-run 검증을 강화해야 합니다.
 - `companies_for_db.csv` 기반 회사 메타데이터 seed는 가능하지만, 운영 DB 반영과 적재 검증이 필요합니다.
 - 전체 공시 목록 수집을 위해 `list.json` 기반 수집 스크립트 보강이 필요합니다.
-- 주요사항 이벤트 API는 전체 공시 검색이 아니므로 이벤트 판정 기준을 명확히 해야 합니다.
 - 재무비율 계산 결과에 대한 산업별 threshold 튜닝이 필요합니다.
 - Vector DB 기반 공시/사업보고서/뉴스 검색 품질 검증이 필요합니다.
 - 뉴스 Vector DB 실시간 적재와 Tavily fallback의 우선순위 정책을 더 정교화해야 합니다.
 - LLM 리포트 생성 시 hallucination 방지를 위한 evidence 기반 응답 규칙을 강화해야 합니다.
-- 뉴스와 재무지표의 시간적 연관성이 실제 인과관계를 보장하지 않으므로, 리포트에서는 원인을 단정하지 않고 가능한 배경 요인으로 표현해야 합니다.
-- 금융업은 재무제표 구조와 지표 해석 방식이 일반 제조·서비스업과 다르므로, 산업별 분석 기준 분리가 필요합니다.
 - AI 리포트의 문체, 근거 인용 방식, 위험/긍정 요인 정렬 기준을 지속적으로 튜닝해야 합니다.
 - 챗봇이 리포트 범위를 벗어난 질문을 받았을 때의 응답 정책을 더 정교화해야 합니다.
+- 웹에서 기업명 검색 시 응답속도 개선이 필요합니다.
+
+---
 
 ---
 
