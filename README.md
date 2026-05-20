@@ -61,95 +61,35 @@
 
 <table align="center">
   <tr>
-    <td align="center" width="170" valign="top">
-      <table width="150">
-        <tr>
-          <td align="center" height="130">
-            <img src="./assets/team/gary.jpg" width="100" height="110" style="object-fit:contain; border-radius:10px;">
-          </td>
-        </tr>
-        <tr>
-          <td align="center"><b>김이선</b></td>
-        </tr>
-        <tr>
-          <td align="center" width="150" style="word-break: break-all;"><a href="https://github.com/kysuniv-cyber">@kysuniv-cyber</a></td>
-        </tr>
-      </table>
+    <td align="center" width="150" valign="top">
+      <img src="./assets/team/gary.jpg" width="100" height="120" style="object-fit:contain;"><br>
+      <b>김이선</b><br>
+      <sub><a href="https://github.com/kysuniv-cyber">@kysuniv-cyber</a></sub>
     </td>
-    <td align="center" width="170" valign="top">
-      <table width="150">
-        <tr>
-          <td align="center" height="130">
-            <img src="./assets/team/little_judith.jpg" width="100" height="110" style="object-fit:contain; border-radius:10px;">
-          </td>
-        </tr>
-        <tr>
-          <td align="center"><b>김지윤</b></td>
-        </tr>
-        <tr>
-          <td align="center" width="150" style="word-break: break-all;"><a href="https://github.com/JiyounKim-EllyKim">@JiyounKim-EllyKim</a></td>
-        </tr>
-      </table>
+    <td align="center" width="150" valign="top">
+      <img src="./assets/team/little_judith.jpg" width="100" height="120" style="object-fit:contain;"><br>
+      <b>김지윤</b><br>
+      <sub><a href="https://github.com/JiyounKim-EllyKim">@JiyounKim-EllyKim</a></sub>
     </td>
-    <td align="center" width="170" valign="top">
-      <table width="150">
-        <tr>
-          <td align="center" height="130">
-            <img src="./assets/team/judy_hopps.jpg" width="100" height="110" style="object-fit:contain; border-radius:10px;">
-          </td>
-        </tr>
-        <tr>
-          <td align="center"><b>박소윤</b></td>
-        </tr>
-        <tr>
-          <td align="center" width="150" style="word-break: break-all;"><a href="https://github.com/parksoyun9084-cloud">@parksoyun9084-cloud</a></td>
-        </tr>
-      </table>
+    <td align="center" width="150" valign="top">
+      <img src="./assets/team/judy_hopps.jpg" width="100" height="120" style="object-fit:contain;"><br>
+      <b>박소윤</b><br>
+      <sub><a href="https://github.com/parksoyun9084-cloud">@parksoyun9084-cloud</a></sub>
     </td>
-    <td align="center" width="170" valign="top">
-      <table width="150">
-        <tr>
-          <td align="center" height="130">
-            <img src="./assets/team/nick.jpg" width="100" height="110" style="object-fit:contain; border-radius:10px;">
-          </td>
-        </tr>
-        <tr>
-          <td align="center"><b>박은지</b></td>
-        </tr>
-        <tr>
-          <td align="center" width="150" style="word-break: break-all;"><a href="https://github.com/lo1f0306">@lo1f0306</a></td>
-        </tr>
-      </table>
+    <td align="center" width="150" valign="top">
+      <img src="./assets/team/nick.jpg" width="100" height="120" style="object-fit:contain;"><br>
+      <b>박은지</b><br>
+      <sub><a href="https://github.com/lo1f0306">@lo1f0306</a></sub>
     </td>
-    <td align="center" width="170" valign="top">
-      <table width="150">
-        <tr>
-          <td align="center" height="130">
-            <img src="./assets/team/clawhauser.jpg" width="100" height="110" style="object-fit:contain; border-radius:10px;">
-          </td>
-        </tr>
-        <tr>
-          <td align="center"><b>위희찬</b></td>
-        </tr>
-        <tr>
-          <td align="center" width="150" style="word-break: break-all;"><a href="https://github.com/dnlgmlcks">@dnlgmlcks</a></td>
-        </tr>
-      </table>
+    <td align="center" width="150" valign="top">
+      <img src="./assets/team/clawhauser.jpg" width="100" height="120" style="object-fit:contain;"><br>
+      <b>위희찬</b><br>
+      <sub><a href="https://github.com/dnlgmlcks">@dnlgmlcks</a></sub>
     </td>
-    <td align="center" width="170" valign="top">
-      <table width="150">
-        <tr>
-          <td align="center" height="130">
-            <img src="./assets/team/flash.jpg" width="100" height="110" style="object-fit:contain; border-radius:10px;">
-          </td>
-        </tr>
-        <tr>
-          <td align="center"><b>홍지윤</b></td>
-        </tr>
-        <tr>
-          <td align="center" width="150" style="word-break: break-all;"><a href="https://github.com/jyh-skn">@jyh-skn</a></td>
-        </tr>
-      </table>
+    <td align="center" width="150" valign="top">
+      <img src="./assets/team/flash.jpg" width="100" height="120" style="object-fit:contain;"><br>
+      <b>홍지윤</b><br>
+      <sub><a href="https://github.com/jyh-skn">@jyh-skn</a></sub>
     </td>
   </tr>
 </table>
